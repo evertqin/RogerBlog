@@ -31,7 +31,6 @@
         });
 
         $("a").click(function() {
-            console.log(this);
             $root.animate({
                 scrollTop: $( $.attr(this, 'href') ).offset().top
             }, 500);
@@ -41,14 +40,10 @@
         // For Parallax
         var s = skrollr.init({
             render: function (data) {
-                console.log(data.curTop);
+                //console.log(data.curTop);
             }
         });
-
-
     });
-
-
 })(jQuery);
 
 

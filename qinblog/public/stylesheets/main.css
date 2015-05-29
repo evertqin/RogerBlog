@@ -110,7 +110,6 @@ a.anchor {
   height: 100%;
   overflow: hidden;
   position: relative;
-  opacity: 0;
 }
 .hsContent {
   max-width: 450px;
@@ -130,7 +129,7 @@ a.anchor {
   width: 100%;
 }
 #slide-1 .bcg {
-  background-image: url('../images/background.png');
+  background-image: url('../images/background_1.png');
 }
 .scroll-up > a {
   background-color: white;

@@ -46,7 +46,7 @@ block content
                 .navbar-wrapper
                     .container
                         .navbar-header
-                            button(type="button").navbar-toggle(data-toggle="collapse" data-target=".navbar-collapse")
+                            button(type="button", data-toggle="collapse", data-target=".navbar-collapse").navbar-toggle
                                 span.sr-only Toggle navigation
                                 span.icon-bar
                                 span.icon-bar
@@ -55,7 +55,7 @@ block content
                         #navigation-items.navbar-collapse.collapse
                             ul.nav.navbar-nav
                                 li
-                                    a#nav-home(href="#") Home
+                                    a#nav-home(href="#top") Home
                                 li
                                     a#nav-highlight(href="#highlight-section") Highlight
                                 li
@@ -63,17 +63,16 @@ block content
                                 li
                                     a#nav-photography(href="#") Photography
                                 li
-                                    a#nav-blog(href="#") Blog
+                                    a#nav-blog(href="/blog") Blog
         section.homeSlide#slide-1
             .bcg(data-center="background-position: 50% 0px;"
                  data-top-bottom="background-position: 50% -100px;"
                  data-anchor-target="#slide-1")
                 .hsContainer
                     .hsContent(data-center="opacity: 1"
-                               data-106-top="opacity: 0"
+                               data-top="opacity: 0"
                                data-anchor-target="#slide-1 h2")
-                        h2 Fade out elements before <br>
-                            |they leave viewport
+                        h2
         a.anchor#highlight-section(name="hightlight-section")
         section.highlight.text-block
             .container
