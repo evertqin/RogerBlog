@@ -23,16 +23,29 @@
             }
         });
 
+        var $root = $('html, body');
+
         $('a[href="#totop"]').click(function () {
-            $('html, body').animate({scrollTop: 0}, 'slow');
+            $root.animate({scrollTop: 0}, 500);
             return false;
         });
 
+        $("a").click(function() {
+            console.log(this);
+            $root.animate({
+                scrollTop: $( $.attr(this, 'href') ).offset().top
+            }, 500);
+            return false;
+        });
+
+        // For Parallax
         var s = skrollr.init({
             render: function (data) {
                 console.log(data.curTop);
             }
         });
+
+
     });
 
 
