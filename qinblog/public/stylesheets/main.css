@@ -41,9 +41,6 @@ h6 {
 .social-network-above-navbar .social-network-inner .social-network-right-panel .social-network-icon a {
   color: #808080;
 }
-.nonsticky-top {
-  height: 40px;
-}
 .sticky-top {
   height: 0;
 }
@@ -118,9 +115,9 @@ h6 {
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  background-size: cover;
   height: 1080px;
   width: 100%;
-  background-size: cover;
 }
 #slide-1 .bcg {
   background-image: url('../images/background.png');
@@ -196,4 +193,16 @@ section.contact-me p {
 section.copy-right .copy-right {
   padding-top: 20px;
   text-align: center;
+}
+@media only screen and (max-width: 768px) {
+  .social-network-above-navbar {
+    height: 0;
+  }
+  .navbar-default {
+    position: fixed;
+    top: 0px !important;
+  }
+  .navbar-default .navbar-wrapper {
+    background-color: white;
+  }
 }

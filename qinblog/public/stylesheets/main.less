@@ -49,10 +49,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-.nonsticky-top {
-  height:40px;
 
-}
 .sticky-top {
   height:0;
 }
@@ -64,7 +61,6 @@ h1, h2, h3, h4, h5, h6 {
   z-index: 999;
 
 }
-
 
 .sticky-scrolling {
   position: fixed;
@@ -114,9 +110,6 @@ h1, h2, h3, h4, h5, h6 {
 
 }
 
-
-
-
 .hsContainer {
   display: table;
   table-layout: fixed;
@@ -142,7 +135,7 @@ h1, h2, h3, h4, h5, h6 {
   background-size: cover;
   height: 1080px;
   width: 100%;
-  background-size:cover;
+  
 }
 
 #slide-1 .bcg {background-image:url('../images/background.png')}
@@ -238,9 +231,17 @@ section.copy-right .copy-right {
   padding-top: 20px;
   text-align: center;
 }
-@media only screen and (min-width:768px) {
-
-
+@media only screen and (max-width:768px) {
+  .social-network-above-navbar {
+    height:0;
+  }
+  .navbar-default {
+    position: fixed;
+    top:0px !important;
+    .navbar-wrapper {
+      background-color: white;
+    }
+  }
 }
 
 
