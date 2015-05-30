@@ -1,10 +1,5 @@
-@navbar-hover-color:black;
-@box-background-color:#f8f8f8;
-@underbox-background-color:#808080;
-@navbar-transparent-text-color:#7e7e7e;
-@navbar-focus-bkg-color:#d7d7d7;
-
-
+@import "constants.less";
+|
 body,
 html {
   width: 100%;
@@ -20,103 +15,6 @@ h1, h2, h3, h4, h5, h6 {
 a.anchor {
   display:block;
   position: relative; top: -40px; visibility: hidden;
-}
-
-
-.social-network-above-navbar {
-  -moz-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
-  transition: all 0.5s ease;
-  -webkit-transition: all 0.5s ease; /* For Safari 3.1 to 6.0 */
-  position: fixed;
-  width:100%;
-  min-height: 40px;
-  background-color: white;
-  .social-network-inner {
-    line-height: 40px;
-    padding-left:60px;
-    padding-right:40px;
-
-    .social-network-right-panel {
-      float: right !important;
-
-      .social-network-icon {
-        font-size: 14px;
-        display: inline-block;
-        height: 40px;
-        width:25px;
-        a {
-          color: @underbox-background-color;
-        }
-      }
-    }
-  }
-}
-
-
-.sticky-top {
-  height:0;
-}
-
-#navigation{
-  position: absolute;
-  top: 65px;
-  width: 100%;
-  z-index: 999;
-
-}
-
-.sticky-scrolling {
-  position: fixed;
-  top:0 !important;
-  .navbar-wrapper {
-    background-color: white;
-  }
-}
-
-.navbar-default {
-  -webkit-transition: all 0.5s ease-in-out;
-  -moz-transition: all 0.5s ease-in-out;
-  -o-transition: all 0.5s ease-in-out;
-  transition: all 0.5s ease-in-out;
-
-}
-
-.navbar-default .navbar-nav>li>a, .navbar-nav>li>a {
-  color:@navbar-transparent-text-color;
-  -webkit-transition: color, background-color 0.5s ease;
-}
-
-.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
-  color: @navbar-hover-color !important;
-}
-
-.navbar-default .navbar-nav > li > a:focus {
-  background-color: @navbar-focus-bkg-color;
-}
-
-.navbar-default .navbar-brand, .transparent .navbar-brand {
-  color:@underbox-background-color;
-}
-
-.navbar-default .navbar-brand:hover , .navbar-default .navbar-brand:focus  {
-  color: @navbar-hover-color !important;
-}
-
-.navbar.navbar-default.navbar-fixed-top {
-  border-width: 0;-webkit-box-shadow: 0 0;
-  box-shadow:0 0;
-  background-color: rgba(0,0,0,0.0);
-  background-image: -webkit-gradient(linear, 50.00% 0.00%, 50.00% 100.00%, color-stop( 0% , rgba(0,0,0,0.00)),color-stop( 100% , rgba(0,0,0,0.00)));
-  background-image: -webkit-linear-gradient(270deg,rgba(0,0,0,0.00) 0%,rgba(0,0,0,0.00) 100%);
-  background-image: linear-gradient(180deg,rgba(0,0,0,0.00) 0%,rgba(0,0,0,0.00) 100%);
-  position: fixed;
-  top:40px;
-  .navbar-wrapper {
-    background-color: @box-background-color;
-  }
-
-
 }
 
 // This section contains parallax configurations

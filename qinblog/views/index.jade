@@ -26,44 +26,7 @@ mixin sample_dummy_text()
 
 block content
     body
-        .social-network-above-navbar
-            .social-network-inner
-                .social-network-right-panel
-                    .social-network-icon.social-network-twitter(data-type="tooltip")
-                        a
-                            span
-                                i.fa.fa-twitter
-                    .social-network-icon.social-network-facebook(data-type="tooltip")
-                        a
-                            span
-                                i.fa.fa-facebook
-                    .social-network-icon.social-network-email(data-type="tooltip")
-                        a
-                            span
-                                i.fa.fa-envelope-o
-        #navigation.header
-            nav.navbar.navbar-default.navbar-fixed-top(role="banner")
-                .navbar-wrapper
-                    .container
-                        .navbar-header
-                            button(type="button", data-toggle="collapse", data-target=".navbar-collapse").navbar-toggle
-                                span.sr-only Toggle navigation
-                                span.icon-bar
-                                span.icon-bar
-                                span.icon-bar
-                            a.navbar-brand(href="#") RogerQin
-                        #navigation-items.navbar-collapse.collapse
-                            ul.nav.navbar-nav
-                                li
-                                    a#nav-home(href="#top") Home
-                                li
-                                    a#nav-highlight(href="#highlight-section") Highlight
-                                li
-                                    a#nav-about-me(href="#about-me") About
-                                li
-                                    a#nav-photography(href="#") Photography
-                                li
-                                    a#nav-blog(href="/blog") Blog
+        include ./includes/header-navbar-section.jade
         section.homeSlide#slide-1
             .bcg(data-center="background-position: 50% 0px;"
                  data-top-bottom="background-position: 50% -100px;"
