@@ -19,9 +19,9 @@ block blog_content
                 .container
                     .row
                         // blog columns
-                        .blog-posts.col-sm-9
+                        .blog-posts.col-sm-8
                             - for (var i = 0; i < 5; ++i) {
-                            .article
+                            .article(id="article"+i)
                                 .post-image
 
                                         img(src="/images/background.png")
