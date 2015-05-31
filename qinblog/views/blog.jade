@@ -2,11 +2,51 @@
    Created by Roger on 5/28/2015.
 extends blog_layout
 
+mixin long_paragraph
+ .content.more Lorem ipsum dolor sit amet, vel ad melius argumentum honestatis, ea cum amet alii phaedrum, in has congue omnium. Vis timeam ornatus eu, duo quis corrumpit cotidieque cu, ei sed sonet philosophia. Nam recteque contentiones at, iuvaret volutpat ei sed, has ea delectus reprimique. No labore platonem voluptatum sea, his mazim aliquip cu, porro lucilius mel an. Nobis choro adolescens no vel, possim scriptorem usu at, conceptam neglegentur ne est. Prompta luptatum definitiones est in. Eam ne postulant voluptatum.
+     |Eu homero ubique trac
+     |tatos mea. Veri nostrum contentiones eam in, cum hinc insolens volutpat eu. Tale prima denique ne vis, duo eirmod aliquid ut. Diceret mentitum ius ne, cu nisl dolore tamquam ius. Praesent corrumpit cu mel.
+     |Homero prompta percipit est at, sea utinam adversarium ad, volumus adipisci eos te. An amet clita disputando pri, ferri dicta id ius. Ius no clita offendit, in quo etiam debet consectetuer. Id similique interesset his, ut modus molestiae vix, vix virtute recteque eu. Vis quaeque tractatos ea, pri ex mundi impedit percipit.
+     |Ut putent scaevola expetenda nec. Sea natum probo dicat ei, eam cu invenire corrumpit. Solet expetenda voluptatibus has te. Rebum iusto salutandi an est, mel amet suas mediocrem ad. Enim persequeris conclusionemque in qui, sea at idque quidam referrentur, sea dicta denique ut. Ad quo summo oporteat torquatos, id graece verear vix, at ceteros habemus vulputate vix.
+     |Harum repudiare ne pri, ut mel nobis verear luptatum. Verear persius ei pro, mea ei brute accusam consectetuer. Pro at reque maluisset ullamcorper, malis aliquando inciderint vim id, has quas falli maiestatis cu. Duo ea vero munere, cu nec homero dolorem admodum, ut dicat labores vel. Molestie salutandi instructior sed an, sea inani tantas laudem ad, ea esse debet mea. Nominati consectetuer vel id, dicam scripta denique est ei.
+
+
 block blog_content
     body
-       include ./includes/header-navbar-section.jade
-       section#blog-entries
+        include ./includes/header-navbar-section.jade
+        section.module
+            .blog-wrapper
+                .container
+                    .row
+                        // blog columns
+                        .blog-posts.col-sm-9
+                            - for (var i = 0; i < 5; ++i) {
+                            .article
+                                .post-image
 
-
+                                        img(src="/images/background.png")
+                                .post-content
+                                    .post-heading
+                                        h6
+                                            span Posted:&nbsp;
+                                            span#posted-time May 31, 2015
+                                            span  /
+                                            span#num-comments 3
+                                            span &nbsp;comm.
+                                        h5
+                                            a(href="#") This is an example
+                                    .post-entry
+                                        +long_paragraph
+                                    button(type="submit").btn.btn-default Read More
+                            - }
+                        .blog-metas.col-sm-3.m-t-sm-60
+                            .blog-entries-list
+                                .post-heading
+                                    h4 Blog Entries
+                                .list-body
+                                    ul
+                                        each val in [1, 2, 3, 4, 5]
+                                            li
+                                                a(href="#")= "Link to post " + val
 
 
