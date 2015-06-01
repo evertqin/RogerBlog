@@ -1,0 +1,17 @@
+#!/cygdrive/c/Python34/python
+
+# the purpose of this script is to help loading blog entries into the mongodb
+# will support following actions
+# 1) insert blog entries
+# 2) retrive certain entries
+# 3) update certain entry
+# 4) delete certain entry
+# blog entry structure
+"""
+{
+id
+
+}
+"""
+import platform
+platform.architecture()

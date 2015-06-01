@@ -1,0 +1,71 @@
+body,
+html {
+  width: 100%;
+  height: 100%;
+  font: 400 14px/1.8 "Lato", sans-serif;
+  color: #777777;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Raleway', sans-serif;
+  font-weight: normal;
+}
+a {
+  color: black;
+  -webkit-transition: color 0.3s ease;
+}
+a:hover {
+  color: #777777;
+  text-decoration: none;
+}
+a.anchor {
+  display: block;
+  position: relative;
+  top: -40px;
+  visibility: hidden;
+}
+.blog-wrapper {
+  position: absolute;
+  top: 100px;
+}
+.blog-wrapper .container {
+  margin: 20px 20px 20px 90px;
+  width: 100%;
+}
+.blog-wrapper .post-image {
+  margin: 0 0 20px;
+}
+.blog-wrapper .post-image img {
+  width: 100%;
+}
+.article {
+  margin: 0 0 20px 45px;
+}
+.post-heading {
+  font-family: "Lato", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+.post-heading h6 {
+  font-size: 10px;
+  margin: 0px 0 5px;
+}
+.post-heading button {
+  margin-top: 20px;
+}
+.blog-metas .blog-entries-list .post-heading {
+  margin: 0 0 0 20px;
+}
+.blog-metas .blog-entries-list h4 {
+  color: black;
+}
+.blog-metas .blog-entries-list ul a {
+  color: #777777;
+}
+.blog-metas .blog-entries-list ul a:hover {
+  color: black;
+}
