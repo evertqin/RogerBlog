@@ -27,24 +27,13 @@ photo:"User path to the file system",
 """
 
 from pymongo import MongoClient
-import logging 
-
-class MongoLogger:
-    FORMAT = '%(asctime)-15s %(levelname)s: %(message)s'
-    _logger = None
-    
-    def __init__(self):
-        logging.basicConfig(format = self.FORMAT)
-
-        self._logger = logging.getLogger('MongoLogger')
-        self._logger.setLevel(20)
-
-    def getLogger(self):
-        return self._logger;
+from bson.objectid import ObjectId
+from logger import MongoLogger
 
 class MongoConnector:
     _client = None
     _db = None
+    _posts = None
     
     def __init__(self, dbname):
         try:
@@ -56,8 +45,14 @@ class MongoConnector:
         logger.info("Connecting to db")
         self._db = self._client[dbname]
         logger.info("Successfully connected to " + dbname)
+        self._posts = self._db.posts
+        
     def listAllDBCollection(self):
         print(self._db.collection_names(include_system_collections=False))
+
+    def listAllDBEntries(self):
+        for post in self._posts.find():
+            yield post
 
         
 logger = MongoLogger().getLogger()
@@ -65,6 +60,9 @@ logger.info("Program started")
 
 mongodb = MongoConnector("nodetest1")
 mongodb.listAllDBCollection()
+mongodb.listAllDBEntries()
+
+
 
 
 

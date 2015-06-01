@@ -1,0 +1,15 @@
+// This is a JSON template, in the future, all posts will match this template
+{
+    //_id: This field
+    comments: {
+        author: %(comm_author),
+        timestamp:%(comm_timestamp),
+        content: %(comm_content),
+        upvote: %(comm_upvote),
+        downvote: %(comm_downvote),
+    },
+    timestamp:%(timestamp),
+    content:%(content),
+    photo: %(photo_path), // This can be a list
+
+}
