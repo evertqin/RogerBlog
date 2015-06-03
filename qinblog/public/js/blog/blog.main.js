@@ -52,14 +52,15 @@
         }());
 
         // This following is used to update the fontend posts
-        (function() {
-            $.ajax("/blog/blog_entries").done(function(data) {
-                for(var i = 0; i < data.length; ++i) {
-                    $("#article" + i + " #title a").text(data[i].title);
-                    $("#article" + i + " .post-entry .content").text(data[i].content);
-                }
-            })
-        })();
+        //(function() {
+        //    $.ajax("/blog/blog_entries").done(function(data) {
+        //        for(var i = 0; i < data.length; ++i) {
+        //            $("#article" + i + " #title a").text(data[i].title);
+        //            $("#article" + i + " .post-entry .content").text(data[i].content);
+        //        }
+        //    })
+        //})();
+        console.log(posts);
 
     });
 })(jQuery);

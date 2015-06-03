@@ -7,8 +7,14 @@ var monk = require('monk');
 var db = monk('localhost:27017/nodetest1');
 var router = express.Router();
 
+
 router.get('/',function(req, res, next) {
-    console.log("Blogdddd");
+    console.log("Requesting blog entries");
+
+    var collection = db.get('posts');
+    collection.find({},function(e, docs) {
+        res.render('blog', {posts:docs});
+    });
 
 });
 
@@ -22,9 +28,11 @@ router.get('/trial', function(req, res, next) {
 });
 
 router.get('/blog_entries', function(req, res, next) {
+    //console.log("Requesting blog entries");
     var collection = db.get('posts');
     collection.find({},function(e, docs) {
-        res.json(docs);
+        res.render('blog_entries', { title: 'Hey', message: 'Hello there!'});
+        //res.render('blog_entries', {posts:docs, title:"Hello"});
     });
 });
 
