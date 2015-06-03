@@ -2,11 +2,10 @@
  * Created by Roger on 5/29/2015.
  */
 var express = require('express');
-var router = express.Router();
-// support for mongodb
 var mongo = require('mongodb');
 var monk = require('monk');
 var db = monk('localhost:27017/nodetest1');
+var router = express.Router();
 
 router.get('/',function(req, res, next) {
     console.log("Blogdddd");
@@ -22,10 +21,10 @@ router.get('/trial', function(req, res, next) {
     res.send({iii:"dsds"});
 });
 
-router.get('/userlist', function(req, res, next) {
-    var collection = db.get('usercollection');
+router.get('/blog_entries', function(req, res, next) {
+    var collection = db.get('posts');
     collection.find({},function(e, docs) {
-        res.send({userlist:docs});
+        res.json(docs);
     });
 });
 
