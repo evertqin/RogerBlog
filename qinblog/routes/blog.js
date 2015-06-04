@@ -9,8 +9,6 @@ var router = express.Router();
 
 
 router.get('/',function(req, res, next) {
-    console.log("Requesting blog entries");
-
     var collection = db.get('posts');
     collection.find({},function(e, docs) {
         res.render('blog', {posts:docs});
@@ -34,6 +32,10 @@ router.get('/blog_entries', function(req, res, next) {
         res.render('blog_entries', { title: 'Hey', message: 'Hello there!'});
         //res.render('blog_entries', {posts:docs, title:"Hello"});
     });
+});
+
+router.get('/post', function(req, res, next) {
+
 });
 
 module.exports = router;

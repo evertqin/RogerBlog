@@ -61,6 +61,7 @@
         }());
 
         // This following is used to update the fontend posts
+        // now this is replaced by direct jade
         //(function() {
         //    $.ajax("/blog/blog_entries").done(function(data) {
         //        for(var i = 0; i < data.length; ++i) {
@@ -70,6 +71,8 @@
         //    })
         //})();
         //console.log(posts);
-
+        $("#read-more").on('click', function() {
+            
+        });
     });
 })(jQuery);
