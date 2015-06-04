@@ -26,10 +26,19 @@
         //    });
         //});
 
+        if(typeof String.prototype.startsWith != 'function') {
+            String.prototype.startsWith = function(str) {
+                return this.slice(0, str.length) == str;
+            }
+        }
+
+        console.log("Hellow".startsWith("He"));
         (function () {
             $('#navigation-items li>a').each(function() {
                 var orgHref = $(this).attr('href');
-                $(this).attr('href', '/' + orgHref);
+                if(orgHref.startsWith('#')) {
+                    $(this).attr('href', '/' + orgHref);
+                }
             });
         }());
 
@@ -60,7 +69,7 @@
         //        }
         //    })
         //})();
-        console.log(posts);
+        //console.log(posts);
 
     });
 })(jQuery);

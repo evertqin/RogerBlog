@@ -29,7 +29,8 @@ block blog_content
                                         .post-heading
                                             h6
                                                 span Posted:&nbsp;
-                                                span#posted-time!= post.timestamp
+                                                - var date = new Date(post.timestamp);
+                                                span#posted-time!= date.toDateString()
                                                 span  /
                                                 span#num-comments 3
                                                 span &nbsp;comm.
@@ -44,8 +45,8 @@ block blog_content
                                     h4 Blog Entries
                                 .list-body
                                     ul
-                                        each val in [1, 2, 3, 4, 5]
+                                        each post in posts
                                             li
-                                                a(href="#")= "Link to post " + val
+                                                a(href="#")= "Link to post " + post.title
 
 
