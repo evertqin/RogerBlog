@@ -32,7 +32,6 @@
             }
         }
 
-        console.log("Hellow".startsWith("He"));
         (function () {
             $('#navigation-items li>a').each(function() {
                 var orgHref = $(this).attr('href');
@@ -71,8 +70,6 @@
         //    })
         //})();
         //console.log(posts);
-        $("#read-more").on('click', function() {
-            
-        });
+
     });
 })(jQuery);

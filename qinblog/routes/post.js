@@ -4,12 +4,29 @@
 var express = require('express');
 var mongo = require('mongodb');
 var monk = require('monk');
+var url = require('url');
 var db = monk('localhost:27017/nodetest1');
 var router = express.Router();
 
-router.get('/', function(req, res, next) {
-    console.log("in post");
-    res.render('post');
+
+var collection = db.get('posts');
+
+
+
+
+router.get('/', function (req, res, next) {
+    var urlParts = url.parse(req.url, true);
+    var query = urlParts.query;
+
+    collection.findById(query.id, function(err, doc) {
+        console.log(doc);
+        res.render('post', {post: doc});
+
+    });
+});
+
+router.use(function (err, req, res, next) {
+    console.log(err);
 });
 
 module.exports = router;

@@ -6,6 +6,12 @@ var mongo = require('mongodb');
 var monk = require('monk');
 var db = monk('localhost:27017/nodetest1');
 var router = express.Router();
+var post = require('./post');
+
+
+
+
+
 
 
 router.get('/',function(req, res, next) {
@@ -14,6 +20,16 @@ router.get('/',function(req, res, next) {
         res.render('blog', {posts:docs});
     });
 
+});
+
+
+
+
+router.get('/raw', function(req, res) {
+    var collection = db.get('posts');
+    collection.find({},function(e, docs) {
+        res.send( {posts:docs});
+    });
 });
 
 router.get('/test', function(req, res, next) {
@@ -34,8 +50,6 @@ router.get('/blog_entries', function(req, res, next) {
     });
 });
 
-router.get('/post', function(req, res, next) {
-
-});
+router.use('/post', post);
 
 module.exports = router;
