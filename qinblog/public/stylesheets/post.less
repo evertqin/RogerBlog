@@ -1,34 +1,60 @@
-.container {
-  margin:20px 20px 20px 90px;
+@import "constants.less";
+
+body,
+html {
+  width: 100%;
+  height: 100%;
+  font:400 14px/1.8 "Lato", sans-serif;
+  color:@text-default-color;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Raleway', sans-serif;
+  font-weight:normal;
+}
+a {
+  color: black;
+  -webkit-transition: color 0.3s ease;
+}
+
+a:hover {
+  color:@text-default-color;
+  text-decoration: none;
+}
+
+a.anchor {
+  display:block;
+  position: relative; top: -40px; visibility: hidden;
+}
+
+svg {
   width: 100%;
 }
 
-.article {
-  margin:0 0 20px 45px;
+#post-body {
+  padding-top:100px;
+  .article {
+    margin: 0 0 0px 45px;
 
-  .post-image {
-    margin:0 0 20px;
-    img {
-      width:100%;
-    }
-  }
-
-  .post-heading {
-    font-family:"Lato", sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-
-    h6 {
-      font-size: 10px;
-      margin:0px 0 5px;
-
+    .post-image {
+      img {
+        width: 100%;
+      }
     }
 
+    .post-heading {
+      font-family: "Lato", sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 2px;
 
-    button {
-      margin-top: 20px;
+      h6 {
+        font-size: 10px;
+        margin: 0px 0 5px;
+
+      }
+
+      button {
+        margin-top: 20px;
+      }
     }
   }
 }
-
-

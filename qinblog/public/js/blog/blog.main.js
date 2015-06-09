@@ -70,6 +70,10 @@
         //    })
         //})();
         //console.log(posts);
+        $(".edit-button").on('click', function() {
+          console.log("This is called");
+        });
+
 
     });
 })(jQuery);

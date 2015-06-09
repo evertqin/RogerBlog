@@ -3,11 +3,17 @@
 from logger import FileGenLogger
 
 class BlogFormatter:
+    content = ''
+    
     def __init__(self):
         pass
 
-    def parse_input_file(self, filename):
-        
+    def read_input_file(self, filename):
+        with open filename as f:
+            self.content = f.readlines()
+            
+
+            
 
 
 

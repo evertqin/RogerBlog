@@ -45,8 +45,6 @@ class MongoConnector:
 
 
 if __name__ == "__main__":
-
-
     mongodb = MongoConnector("nodetest1")
     mongodb.listAllDBCollection()
 #mongodb.listAllDBEntries()

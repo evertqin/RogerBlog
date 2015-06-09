@@ -12,8 +12,6 @@ var router = express.Router();
 var collection = db.get('posts');
 
 
-
-
 router.get('/', function (req, res, next) {
     var urlParts = url.parse(req.url, true);
     var query = urlParts.query;
