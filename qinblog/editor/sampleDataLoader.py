@@ -12,7 +12,7 @@ dataList = [
 <p>These days, I have been working on manipulating svg files throw d3.js and jQuery. The goal I have been trying to achieve is: given a svg file with point clouds, I need to be able to show label when mouse move close to any point.</p>
 
 <object data="http://localhost:8000/Clouds.svg" type="image/svg+xml"></object>
-<p><script src=\"https://gist.github.com/evertqin/e65786facf796ed6366e.js\"></script></p>
+<script src="https://gist.github.com/evertqin/e65786facf796ed6366e.js"></script>
 """
      ,  "photo": "http://localhost:8000/Clouds.svg"
      , "comments" : {
