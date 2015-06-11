@@ -112,6 +112,9 @@ h2.section-title {
 .rq-p-col .title-block h4 {
   color: white;
 }
+.rq-p-col .title-block h4 p {
+  color: white;
+}
 section.contact-me p {
   font-size: 14px;
 }

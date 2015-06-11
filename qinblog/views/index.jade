@@ -1,6 +1,6 @@
 extends layout
 
-mixin highlight_box(id, name, icon)
+mixin highlight_box(id, name, date, icon)
     .col-lg-3.col-md-4.col-sm-5
         .box
             .box-gray.aligncenter
@@ -8,7 +8,7 @@ mixin highlight_box(id, name, icon)
                 .icon
                     i.fa.fa3x(class=icon)
                 .box-stat-info
-                    span#publish-date May 20
+                    span#publish-date= date
                     span#comments
                         i.fa.fa-comments 1
                     span#shares
@@ -22,6 +22,8 @@ mixin highlight_box(id, name, icon)
 
 mixin sample_dummy_text()
     h4 See how your website convert to money
+mixin put_content(content)
+    h4= content    
 
 
 block content
@@ -45,21 +47,23 @@ block content
 
                 .hlt-container(style="position:relative;")
                     .rq-p-col
-                        +highlight_box("first-title", "Fully Responsive", "fa-desktop")
+                        each post, i in posts
+                            - var date = new Date(post.timestamp);
+                            +highlight_box("title" + i, post.title, date.toDateString(),"fa-desktop")
+                                h4.more!= post.content
+                        +highlight_box("second-title", "Fully Responsive", "May 20", "fa-desktop")
                             +sample_dummy_text
-                        +highlight_box("second-title", "Fully Responsive", "fa-desktop")
+                        +highlight_box("third-title", "Fully Responsive", "May 20","fa-desktop")
                             +sample_dummy_text
-                        +highlight_box("third-title", "Fully Responsive", "fa-desktop")
+                        +highlight_box("third-title", "Fully Responsive", "May 20","fa-desktop")
                             +sample_dummy_text
-                        +highlight_box("third-title", "Fully Responsive", "fa-desktop")
+                        +highlight_box("third-title", "Fully Responsive", "May 20","fa-desktop")
                             +sample_dummy_text
-                        +highlight_box("third-title", "Fully Responsive", "fa-desktop")
+                        +highlight_box("third-title", "Fully Responsive", "May 20","fa-desktop")
                             +sample_dummy_text
-                        +highlight_box("third-title", "Fully Responsive", "fa-desktop")
+                        +highlight_box("third-title", "Fully Responsive", "May 20","fa-desktop")
                             +sample_dummy_text
-                        +highlight_box("third-title", "Fully Responsive", "fa-desktop")
-                            +sample_dummy_text
-                        +highlight_box("third-title", "Fully Responsive", "fa-desktop")
+                        +highlight_box("third-title", "Fully Responsive", "May 20","fa-desktop")
                             +sample_dummy_text
         a.anchor#about-me(name="about-me")
         section.about-me.text-block

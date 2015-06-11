@@ -1,4 +1,5 @@
-#!/cygdrive/c/Python34/python
+###!/cygdrive/c/Python34/python
+#!/usr/bin/local/python3.4
 
 from datetime import datetime
 from dbloader import MongoConnector

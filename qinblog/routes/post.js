@@ -19,9 +19,14 @@ router.get('/', function (req, res, next) {
     collection.findById(query.id, function(err, doc) {
         console.log(doc);
         res.render('post', {post: doc});
-
+        next();
     });
 });
+
+router.get('/svg', function(req, res, next) {
+  
+});
+
 
 router.use(function (err, req, res, next) {
     console.log(err);

@@ -1,15 +1,14 @@
 var express = require('express');
 var router = express.Router();
-
+var mongo = require('mongodb');
+var monk = require('monk');
+var db = monk('localhost:27017/nodetest1');
 /* GET home page. */
 router.get('/', function (req, res, next) {
-    res.render('index');
+  var collection = db.get('posts');
+  collection.find({},function(e, docs) {
+      res.render('index', {posts:docs});
+  });
 });
-
-//router.get('/blog', function (req, res, next) {
-//    console.log("Entering blog");
-//    //res.render('blog');
-//    next();
-//});
 
 module.exports = router;

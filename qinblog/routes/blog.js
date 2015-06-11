@@ -8,18 +8,11 @@ var db = monk('localhost:27017/nodetest1');
 var router = express.Router();
 var post = require('./post');
 
-
-
-
-
-
-
 router.get('/',function(req, res, next) {
     var collection = db.get('posts');
     collection.find({},function(e, docs) {
         res.render('blog', {posts:docs});
     });
-
 });
 
 

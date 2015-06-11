@@ -4,6 +4,7 @@
   transition: all 0.5s linear;
   -webkit-transition: all 0.5s linear;
   /* For Safari 3.1 to 6.0 */
+
   position: fixed;
   width: 100%;
   min-height: 40px;
@@ -57,7 +58,7 @@
 }
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
-  color: black !important;
+  color: #000000 !important;
 }
 .navbar-default .navbar-nav > li > a:focus {
   background-color: #d7d7d7;
@@ -68,7 +69,7 @@
 }
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus {
-  color: black !important;
+  color: #000000 !important;
 }
 .navbar.navbar-default.navbar-fixed-top {
   border-width: 0;
