@@ -23,13 +23,17 @@ router.get('/', function (req, res, next) {
     });
 });
 
+var svg_post_handler = require('../models/business_logic/svg_post.js');
+
 router.get('/svg', function(req, res, next) {
-  
+  svg_post_handler.handlers.getPost(1, function(data) {
+    next();
+  })
 });
 
 
-router.use(function (err, req, res, next) {
-    console.log(err);
-});
+// router.use(function (err, req, res, next) {
+//     console.log(err);
+// });
 
 module.exports = router;
