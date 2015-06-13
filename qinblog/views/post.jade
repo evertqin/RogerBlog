@@ -4,25 +4,24 @@
 extends post_layout
 
 block post_content
-    body
-        include ./includes/header-navbar-section
-        section#post-body
-            .container
-                .row
-                    .col-md-9
-                        .article(id="article"+i)
-                            .post-content
-                                .post-heading
-                                    h6
-                                        span Posted:&nbsp;
-                                        - var date = new Date(post.timestamp);
-                                        span#posted-time!= date.toDateString()
-                                        span  /
-                                        span#num-comments 3
-                                        span &nbsp;comm.
-                                    h5#title
-                                        a(href="#")!= post.title
-                                        i.fa.fa-pencil-square-o.edit-button
-                                .post-entry
-                                    .content.more!= post.content
-
+  body
+    include ./includes/header-navbar-section
+    section#post-body
+      .container
+        .row
+          .col-md-9
+            .article(id="article"+i)
+              .post-content
+                .post-heading
+                  h6
+                    span Posted:&nbsp;
+                    - var date = new Date(post.timestamp);
+                    span#posted-time!= date.toDateString()
+                    span  /
+                    span#num-comments 3
+                    span &nbsp;comm.
+                  h5#title
+                    a(href="#")!= post.title
+                    i.fa.fa-pencil-square-o.edit-button
+                .post-entry
+                  .content.more!= post.content

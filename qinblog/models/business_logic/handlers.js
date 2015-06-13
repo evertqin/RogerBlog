@@ -20,10 +20,7 @@ handlers.handlers_map = (function(filename){
     var postHandler = tokens[1].trim();
     map[postName] = postHandler;
   }
-
-
   return map;
-
 })('../constants/handlers_map');
 //require('svg_post_handler');
 handlers.routePost = function(postName) {
@@ -31,6 +28,8 @@ handlers.routePost = function(postName) {
   return require('./' + this.handlers_map[postName])[this.handlers_map[postName]];
 };
 
-handlers.routePost('post1')('post1', function(data) {
-  console.log(data);
-});
+// handlers.routePost('post1')('post1', function(data) {
+//   console.log(data);
+// });
+
+module.exports = handlers;

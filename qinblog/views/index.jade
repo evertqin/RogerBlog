@@ -1,94 +1,94 @@
 extends layout
 
 mixin highlight_box(id, name, date, icon)
-    .col-lg-3.col-md-4.col-sm-5
-        .box
-            .box-gray.aligncenter
-                h4(id=id)= name
-                .icon
-                    i.fa.fa3x(class=icon)
-                .box-stat-info
-                    span#publish-date= date
-                    span#comments
-                        i.fa.fa-comments 1
-                    span#shares
-                        i.fa.fa-heart 15
-            .title-block
-                if block
-                    block
-                else
-                    h4 No Content Provided
+  .col-lg-3.col-md-4.col-sm-5
+    .box
+      .box-gray.aligncenter
+        h4(id=id)= name
+        .icon
+          i.fa.fa3x(class=icon)
+        .box-stat-info
+          span#publish-date= date
+          span#comments
+            i.fa.fa-comments 1
+          span#shares
+            i.fa.fa-heart 15
+      .title-block
+        if block
+          block
+        else
+          h4 No Content Provided
 
 
 mixin sample_dummy_text()
-    h4 See how your website convert to money
+  h4 See how your website convert to money
 mixin put_content(content)
-    h4= content    
+  h4= content  
 
 
 block content
-    body
-        include ./includes/header-navbar-section.jade
-        section.homeSlide#slide-1
-            .bcg(data-center="background-position: 50% 0px;"
-                 data-top-bottom="background-position: 50% -100px;"
-                 data-anchor-target="#slide-1")
-                .hsContainer
-                    .hsContent(data-center="opacity: 1"
-                               data-top="opacity: 0"
-                               data-anchor-target="#slide-1 h2")
-                        h2
-        a.anchor#highlight-section(name="hightlight-section")
-        section.highlight.text-block
-            .container
-                .row
-                    .col-sm-6.col-sm-offset-3
-                        h2.section-title.highlight-title.font-alt Blog Highlight
+  body
+    include ./includes/header-navbar-section.jade
+    section.homeSlide#slide-1
+      .bcg(data-center="background-position: 50% 0px;"
+         data-top-bottom="background-position: 50% -100px;"
+         data-anchor-target="#slide-1")
+        .hsContainer
+          .hsContent(data-center="opacity: 1"
+                 data-top="opacity: 0"
+                 data-anchor-target="#slide-1 h2")
+            h2
+    a.anchor#highlight-section(name="hightlight-section")
+    section.highlight.text-block
+      .container
+        .row
+          .col-sm-6.col-sm-offset-3
+            h2.section-title.highlight-title.font-alt Blog Highlight
 
-                .hlt-container(style="position:relative;")
-                    .rq-p-col
-                        each post, i in posts
-                            - var date = new Date(post.timestamp);
-                            +highlight_box("title" + i, post.title, date.toDateString(),"fa-desktop")
-                                h4.more!= post.content
-                        +highlight_box("second-title", "Fully Responsive", "May 20", "fa-desktop")
-                            +sample_dummy_text
-                        +highlight_box("third-title", "Fully Responsive", "May 20","fa-desktop")
-                            +sample_dummy_text
-                        +highlight_box("third-title", "Fully Responsive", "May 20","fa-desktop")
-                            +sample_dummy_text
-                        +highlight_box("third-title", "Fully Responsive", "May 20","fa-desktop")
-                            +sample_dummy_text
-                        +highlight_box("third-title", "Fully Responsive", "May 20","fa-desktop")
-                            +sample_dummy_text
-                        +highlight_box("third-title", "Fully Responsive", "May 20","fa-desktop")
-                            +sample_dummy_text
-                        +highlight_box("third-title", "Fully Responsive", "May 20","fa-desktop")
-                            +sample_dummy_text
-        a.anchor#about-me(name="about-me")
-        section.about-me.text-block
-            .container
-                .row
-                    .col-sm-6.col-sm-offset-3
-                        h2.section-title.about-me-title.font-alt About Me
-                p.about-me-content   Lorem ipsum dolor sit amet, vel ad melius argumentum honestatis, ea cum amet alii phaedrum, in has congue omnium. Vis timeam ornatus eu, duo quis corrumpit cotidieque cu, ei sed sonet philosophia. Nam recteque contentiones at, iuvaret volutpat ei sed, has ea delectus reprimique. No labore platonem voluptatum sea, his mazim aliquip cu, porro lucilius mel an. Nobis choro adolescens no vel, possim scriptorem usu at, conceptam neglegentur ne est. Prompta luptatum definitiones est in. Eam ne postulant voluptatum.
-                    Eu homero ubique trac
-                    tatos mea. Veri nostrum contentiones eam in, cum hinc insolens volutpat eu. Tale prima denique ne vis, duo eirmod aliquid ut. Diceret mentitum ius ne, cu nisl dolore tamquam ius. Praesent corrumpit cu mel.
-                    Homero prompta percipit est at, sea utinam adversarium ad, volumus adipisci eos te. An amet clita disputando pri, ferri dicta id ius. Ius no clita offendit, in quo etiam debet consectetuer. Id similique interesset his, ut modus molestiae vix, vix virtute recteque eu. Vis quaeque tractatos ea, pri ex mundi impedit percipit.
-                    Ut putent scaevola expetenda nec. Sea natum probo dicat ei, eam cu invenire corrumpit. Solet expetenda voluptatibus has te. Rebum iusto salutandi an est, mel amet suas mediocrem ad. Enim persequeris conclusionemque in qui, sea at idque quidam referrentur, sea dicta denique ut. Ad quo summo oporteat torquatos, id graece verear vix, at ceteros habemus vulputate vix.
-                    Harum repudiare ne pri, ut mel nobis verear luptatum. Verear persius ei pro, mea ei brute accusam consectetuer. Pro at reque maluisset ullamcorper, malis aliquando inciderint vim id, has quas falli maiestatis cu. Duo ea vero munere, cu nec homero dolorem admodum, ut dicat labores vel. Molestie salutandi instructior sed an, sea inani tantas laudem ad, ea esse debet mea. Nominati consectetuer vel id, dicam scripta denique est ei.
-        a.anchor#contact-me(name="contact-me")
-        section.contact-me.text-block
-            .container
-                .row
-                    .col-sm-6.col-sm-offset-3
-                        h2.section-title.about-me-title.font-alt Contact and Comment
-                p.about-me-content Some Contact information, will add soon. labore platonem voluptatum sea, his mazim aliquip cu, porro lucilius mel an. Nobis choro adolescens no vel, possim scriptorem usu at, conceptam neglegentur ne est. Prompta luptatum definitiones est in. Eam ne postulant voluptatum. homero ubique tractatos mea. Veri nostrum contentiones eam in, cum hinc insolens volutpat eu. Tale prima denique ne vis, duo eirmod aliquid ut. Diceret mentitum ius ne, cu nisl dolore tamquam ius. Praesent corrumpit cu mel. prompta percipit est at, sea utinam adversarium ad, volumus adipisci eos te. An amet clita disputando pri, ferri dicta id ius. Ius no clita offendit, in quo etiam debet consectetuer. Id similique interesset his, ut modus molestiae vix, vix virtute recteque eu. Vis quaeque tractatos ea, pri ex mundi impedit percipit. putent scaevola expetenda nec. Sea natum probo dicat ei, eam cu invenire corrumpit. Solet expetenda voluptatibus has te. Rebum iusto salutandi an est, mel amet suas mediocrem ad. Enim persequeris conclusionemque in qui, sea at idque quidam referrentur, sea dicta denique ut. Ad quo summo oporteat torquatos, id graece verear vix, at ceteros habemus vulputate vix. repudiare ne pri, ut mel nobis verear luptatum. Verear persius ei pro, mea ei brute accusam consectetuer. Pro at reque maluisset ullamcorper, malis aliquando inciderint vim id, has quas falli maiestatis cu. Duo ea vero munere, cu nec homero dolorem admodum, ut dicat labores vel. Molestie salutandi instructior sed an, sea inani tantas laudem ad, ea esse debet mea. Nominati consectetuer vel id, dicam scripta denique est ei.
-        section.copy-right.text-block
-            .container
-                .copy-right
-                    p 2015 Ruogu Qin
+        .hlt-container(style="position:relative;")
+          .rq-p-col
+            each post, i in posts
+              - var date = new Date(post.timestamp);
+              +highlight_box("title" + i, post.title, date.toDateString(),"fa-desktop")
+                h4.more!= post.content
+            +highlight_box("second-title", "Fully Responsive", "May 20", "fa-desktop")
+              +sample_dummy_text
+            +highlight_box("third-title", "Fully Responsive", "May 20","fa-desktop")
+              +sample_dummy_text
+            +highlight_box("third-title", "Fully Responsive", "May 20","fa-desktop")
+              +sample_dummy_text
+            +highlight_box("third-title", "Fully Responsive", "May 20","fa-desktop")
+              +sample_dummy_text
+            +highlight_box("third-title", "Fully Responsive", "May 20","fa-desktop")
+              +sample_dummy_text
+            +highlight_box("third-title", "Fully Responsive", "May 20","fa-desktop")
+              +sample_dummy_text
+            +highlight_box("third-title", "Fully Responsive", "May 20","fa-desktop")
+              +sample_dummy_text
+    a.anchor#about-me(name="about-me")
+    section.about-me.text-block
+      .container
+        .row
+          .col-sm-6.col-sm-offset-3
+            h2.section-title.about-me-title.font-alt About Me
+        p.about-me-content   Lorem ipsum dolor sit amet, vel ad melius argumentum honestatis, ea cum amet alii phaedrum, in has congue omnium. Vis timeam ornatus eu, duo quis corrumpit cotidieque cu, ei sed sonet philosophia. Nam recteque contentiones at, iuvaret volutpat ei sed, has ea delectus reprimique. No labore platonem voluptatum sea, his mazim aliquip cu, porro lucilius mel an. Nobis choro adolescens no vel, possim scriptorem usu at, conceptam neglegentur ne est. Prompta luptatum definitiones est in. Eam ne postulant voluptatum.
+          Eu homero ubique trac
+          tatos mea. Veri nostrum contentiones eam in, cum hinc insolens volutpat eu. Tale prima denique ne vis, duo eirmod aliquid ut. Diceret mentitum ius ne, cu nisl dolore tamquam ius. Praesent corrumpit cu mel.
+          Homero prompta percipit est at, sea utinam adversarium ad, volumus adipisci eos te. An amet clita disputando pri, ferri dicta id ius. Ius no clita offendit, in quo etiam debet consectetuer. Id similique interesset his, ut modus molestiae vix, vix virtute recteque eu. Vis quaeque tractatos ea, pri ex mundi impedit percipit.
+          Ut putent scaevola expetenda nec. Sea natum probo dicat ei, eam cu invenire corrumpit. Solet expetenda voluptatibus has te. Rebum iusto salutandi an est, mel amet suas mediocrem ad. Enim persequeris conclusionemque in qui, sea at idque quidam referrentur, sea dicta denique ut. Ad quo summo oporteat torquatos, id graece verear vix, at ceteros habemus vulputate vix.
+          Harum repudiare ne pri, ut mel nobis verear luptatum. Verear persius ei pro, mea ei brute accusam consectetuer. Pro at reque maluisset ullamcorper, malis aliquando inciderint vim id, has quas falli maiestatis cu. Duo ea vero munere, cu nec homero dolorem admodum, ut dicat labores vel. Molestie salutandi instructior sed an, sea inani tantas laudem ad, ea esse debet mea. Nominati consectetuer vel id, dicam scripta denique est ei.
+    a.anchor#contact-me(name="contact-me")
+    section.contact-me.text-block
+      .container
+        .row
+          .col-sm-6.col-sm-offset-3
+            h2.section-title.about-me-title.font-alt Contact and Comment
+        p.about-me-content Some Contact information, will add soon. labore platonem voluptatum sea, his mazim aliquip cu, porro lucilius mel an. Nobis choro adolescens no vel, possim scriptorem usu at, conceptam neglegentur ne est. Prompta luptatum definitiones est in. Eam ne postulant voluptatum. homero ubique tractatos mea. Veri nostrum contentiones eam in, cum hinc insolens volutpat eu. Tale prima denique ne vis, duo eirmod aliquid ut. Diceret mentitum ius ne, cu nisl dolore tamquam ius. Praesent corrumpit cu mel. prompta percipit est at, sea utinam adversarium ad, volumus adipisci eos te. An amet clita disputando pri, ferri dicta id ius. Ius no clita offendit, in quo etiam debet consectetuer. Id similique interesset his, ut modus molestiae vix, vix virtute recteque eu. Vis quaeque tractatos ea, pri ex mundi impedit percipit. putent scaevola expetenda nec. Sea natum probo dicat ei, eam cu invenire corrumpit. Solet expetenda voluptatibus has te. Rebum iusto salutandi an est, mel amet suas mediocrem ad. Enim persequeris conclusionemque in qui, sea at idque quidam referrentur, sea dicta denique ut. Ad quo summo oporteat torquatos, id graece verear vix, at ceteros habemus vulputate vix. repudiare ne pri, ut mel nobis verear luptatum. Verear persius ei pro, mea ei brute accusam consectetuer. Pro at reque maluisset ullamcorper, malis aliquando inciderint vim id, has quas falli maiestatis cu. Duo ea vero munere, cu nec homero dolorem admodum, ut dicat labores vel. Molestie salutandi instructior sed an, sea inani tantas laudem ad, ea esse debet mea. Nominati consectetuer vel id, dicam scripta denique est ei.
+    section.copy-right.text-block
+      .container
+        .copy-right
+          p 2015 Ruogu Qin
 
-        .scroll-up
-            a.back-to-top(href="#totop" style="display:block")
-                i.fa.fa-angle-double-up
+    .scroll-up
+      a.back-to-top(href="#totop" style="display:block")
+        i.fa.fa-angle-double-up
