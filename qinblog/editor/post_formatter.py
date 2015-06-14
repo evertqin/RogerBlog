@@ -3,19 +3,25 @@
 from logger import FileGenLogger
 import os
 import argparse
-
+import markdown
 
 BASE_FOLDER = "/media/ruogu/empty/post/"
 
-def validate_input_folder(postFolder):
-    checker = [False, False]
+def validate_input_folder(postFolder, checker):
+
     for file in os.listdir(postFolder):
         if file.endswith(".json"):
-            checker[0] = True
+            if len(checker[0]) == 0:
+                checker[0] = file
+            else:
+                logger.warn("Found another json file???")
         elif file.endswith(".md"):
-            checker[1] = True
+            if len(checker[1]) == 0:
+                checker[1] = file
+            else:
+                logger.warn("Found another markdown file???")
 
-    if all(item == True for item in checker):
+    if all(len(item) > 0 for item in checker):
         logger.info("We got all the files we need")
         return True
     else:
@@ -25,9 +31,20 @@ def validate_input_folder(postFolder):
         
 
 def read_input_file(filename):
-    pass
+    with open(filename, 'r') as f:
+        for line in f.readlines():
+            yield line
 
-    
+def generate_doc(filenames):
+    # Read the markdown file
+    markdownContent = read_input_file(filenames[1])
+
+    markdownContent = ''.join([line for line in markdownContent])
+#    print(markdownContent.strip())    
+    html = markdown.markdown(markdownContent);
+    print(html)
+
+    ## Read Template
             
 
 if __name__ == "__main__":
@@ -39,7 +56,15 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
     postName = os.path.join(BASE_FOLDER, args.post)
+
+    checker = ["", ""]
+    if not validate_input_folder(postName, checker):
+        logger.warn("Exiting")
+        exit
+
+    filenames = [os.path.join(postName, file) for file in checker]
     
-    validate_input_folder(postName)
+    generate_doc(filenames)
+    
 
 

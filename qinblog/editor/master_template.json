@@ -1,0 +1,17 @@
+// json
+{
+    "ID": "{id}"
+    , "title": "SVG File Manipulation"
+    , "timestamp": "{datetime}"
+    ,  "content": "{content}"
+    ,  "photo": "http://localhost:8000/Clouds.svg"
+    , "comments" : [
+        {
+        "author" :""
+        , "timestamp": ""
+        , "content": ""
+        , "upvote": 0
+        , "downvote": 0
+        }
+    ]
+}
