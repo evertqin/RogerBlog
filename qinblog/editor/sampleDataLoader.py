@@ -1,4 +1,3 @@
-###!/cygdrive/c/Python34/python
 #!/usr/bin/local/python3.4
 
 from datetime import datetime
@@ -71,10 +70,10 @@ for data in dataList:
     if  posts.find({"title": data["title"]}).count() == 0:
         posts.insert_one(data)
     else:
-        posts.update({"title": data["title"]}, data)
+        #posts.update({"title": data["title"]}, data)
         
        # posts.remove(data);
-       # pass
+        pass
        #posts.remove({});
 
 for post in posts.find():

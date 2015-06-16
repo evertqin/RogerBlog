@@ -47,22 +47,40 @@
             }
         });
 
-        (function () {
-            var showChar = 50; //
-            var ellipsestext = '...';
-            var moretext = 'more';
-            var lesstext = 'less';
+        function hideLongLine(tag, showChar) {
+          var ellipsestext = '...';
+          var moretext = 'more';
+          var lesstext = 'less';
+          $(tag).each(function() {
+            var content = $(this).html();
+            if (content.length > showChar) {
+                var c = content.substr(0, showChar);
+                var h = content.substr(showChar - 1, content.length - showChar);
+                var html = c + '<span class="moreellipses">' + ellipsestext + ' </span>';
+                $(this).html(html);
+            }
+          });
+        }
+        hideLongLine('.more', 50);
+        hideLongLine('.box-title', 25);
 
-            $('.more').each(function () {
-              // first need to remove special tags
-                var content = $(this).html();
-                if (content.length > showChar) {
-                    var c = content.substr(0, showChar);
-                    var h = content.substr(showChar - 1, content.length - showChar);
-                    var html = c + '<span class="moreellipses">' + ellipsestext + ' </span>';
-                    $(this).html(html);
-                }
-            });
-        }());
+        // (function () {
+        //     var showChar = 50; //
+        //     var ellipsestext = '...';
+        //     var moretext = 'more';
+        //     var lesstext = 'less';
+        //
+        //     $('.more').each(function () {
+        //       // first need to remove special tags
+        //         var content = $(this).html();
+        //         if (content.length > showChar) {
+        //             var c = content.substr(0, showChar);
+        //             var h = content.substr(showChar - 1, content.length - showChar);
+        //             var html = c + '<span class="moreellipses">' + ellipsestext + ' </span>';
+        //             $(this).html(html);
+        //         }
+        //     });
+        //
+        // }());
     });
 })(jQuery);

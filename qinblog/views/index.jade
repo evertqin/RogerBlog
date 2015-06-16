@@ -4,7 +4,7 @@ mixin highlight_box(id, name, date, icon)
   .col-lg-3.col-md-4.col-sm-5
     .box
       .box-gray.aligncenter
-        h4(id=id)= name
+        h4.box-title(id=id)= name
         .icon
           i.fa.fa3x(class=icon)
         .box-stat-info
@@ -51,20 +51,7 @@ block content
               - var date = new Date(post.timestamp);
               +highlight_box("title" + i, post.title, date.toDateString(),"fa-desktop")
                 h4.more!= post.content
-            +highlight_box("second-title", "Fully Responsive", "May 20", "fa-desktop")
-              +sample_dummy_text
-            +highlight_box("third-title", "Fully Responsive", "May 20","fa-desktop")
-              +sample_dummy_text
-            +highlight_box("third-title", "Fully Responsive", "May 20","fa-desktop")
-              +sample_dummy_text
-            +highlight_box("third-title", "Fully Responsive", "May 20","fa-desktop")
-              +sample_dummy_text
-            +highlight_box("third-title", "Fully Responsive", "May 20","fa-desktop")
-              +sample_dummy_text
-            +highlight_box("third-title", "Fully Responsive", "May 20","fa-desktop")
-              +sample_dummy_text
-            +highlight_box("third-title", "Fully Responsive", "May 20","fa-desktop")
-              +sample_dummy_text
+      
     a.anchor#about-me(name="about-me")
     section.about-me.text-block
       .container

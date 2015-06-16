@@ -1,4 +1,4 @@
-#!/cygdrive/c/Python34/python
+#!/usr/local/bin/python3.4
 
 # the purpose of this script is to help loading blog entries into the mongodb
 # will support following actions
