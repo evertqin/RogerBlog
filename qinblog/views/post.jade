@@ -10,6 +10,7 @@ block post_content
       .container
         .row
           .col-md-9
+            iframe(src='/blog/post/svg?id='+post._id marginwidth='0' merginheight='0' scrolling='no')
             .article(id="article"+i)
               .post-content
                 .post-heading
@@ -18,10 +19,12 @@ block post_content
                     - var date = new Date(post.timestamp);
                     span#posted-time!= date.toDateString()
                     span  /
-                    span#num-comments 3
+                    - var count = post.comments == undefined ? 0 :post.comments.count();
+                    span#num-comments= count
                     span &nbsp;comm.
                   h5#title
                     a(href="#")!= post.title
                     i.fa.fa-pencil-square-o.edit-button
                 .post-entry
                   .content.more!= post.content
+                  

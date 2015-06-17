@@ -25,15 +25,6 @@ router.get('/raw', function(req, res) {
     });
 });
 
-router.get('/test', function(req, res, next) {
-   console.log(req.query.test);
-});
-
-router.get('/trial', function(req, res, next) {
-   console.log(req.query.sample);
-    res.send({iii:"dsds"});
-});
-
 router.get('/blog_entries', function(req, res, next) {
     //console.log("Requesting blog entries");
     var collection = db.get('posts');

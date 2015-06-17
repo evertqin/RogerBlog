@@ -3,6 +3,7 @@ from logger import FileGenLogger
 import os
 import argparse
 import markdown
+import pprint
 from datetime import datetime
 
 logger = FileGenLogger().getLogger()
@@ -30,6 +31,11 @@ def getGID():
             f.write('0')
             
     with open(GLOBAL_FILENAME, 'r') as f:
+        value = f.readline()
+        print(value)
+        if value=="":
+            return 0
+        
         return int(f.readline())
     
 def updateGID():
@@ -83,8 +89,7 @@ def read_input_file(filename):
 
 
 
-
-def generate_doc(filenames):
+def generate_doc(filenames, id, folder_name):
     # Read the markdown file
     markdownContent = read_input_file(filenames[0])
 
@@ -100,13 +105,13 @@ def generate_doc(filenames):
 #        template = GLOBAL_TEMPLATE
 #    result = ''.join([line for line in template])
     #print(result)
-
     dict = {
-        "id": getGID()
+        "id": id
         , "title": md.Meta["title"][0]
         , "author": md.Meta["author"][0]
         , "date" : md.Meta["date"][0]
         , "timestamp" : datetime.now()
+        , "folder_name": folder_name
         , "content" : html
         , "read": []
         , "comments:" : []
@@ -115,7 +120,7 @@ def generate_doc(filenames):
     #print(result % dict)
     return dict
 
-def process(postName):
+def process(postName, id):
     postName = os.path.join(BASE_FOLDER, postName)
 
     checker = [""]
@@ -125,7 +130,7 @@ def process(postName):
 
     filenames = [os.path.join(postName, file) for file in checker]
     
-    return generate_doc(filenames)
+    return generate_doc(filenames, id, postName)
     
 
 
@@ -138,9 +143,9 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="Process blog entry, you need to have all of the following files: post.json, post.md in the given folder")
     parser.add_argument('--post', '-p', required=True, type=str, help='The name of the post, must present in the root folder')
-
+    parser.add_argument('--id', type=str, required=True, help='The id of the post, if not specified, a global id will be assigned.')
     args = parser.parse_args()
-    process(args.post)
+    pprint.PrettyPrinter(indent=4).pprint(process(args.post, args.id, args.post))
     
 
 

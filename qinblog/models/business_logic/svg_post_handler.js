@@ -6,9 +6,9 @@ String.prototype.endsWith = function(suffix) {
 };
 
 // This function search the posts path and get the svg file
-module.exports = {svg_post_handler : function (postName, func) {
-    var filePath = '/home/ruogu/posts/' + postName;
-    var dirList = fs.readdir(filePath, function(err,res) {
+module.exports = {svg_post_handler : function (filePath, func) {
+  filePath = path.join(filePath, 'SVG');
+    fs.readdir(filePath, function(err,res) {
       var retJSON = retJSON || {} ;
       var counter = 0;
 
@@ -22,22 +22,21 @@ module.exports = {svg_post_handler : function (postName, func) {
       var i = 0;
       while(i < res.length) {
         var extname = path.extname(res[i]);
-        console.log(extname);
         if('.svg' == extname) {
           fs.readFile(filePath + '/' + res[i],'utf8', function(error, data) {
             retJSON.html = data;
-            retValCallback(data, func);
+            retValCallback(retJSON, func);
           });
         } else if('.css' == extname) {
           fs.readFile(filePath + '/' + res[i],'utf8', function(error, data) {
             retJSON.css = data;
-            retValCallback(data, func);
+            retValCallback(retJSON, func);
 
           });
         } else if('.js' == extname) {
           fs.readFile(filePath + '/' + res[i],'utf8', function(error, data) {
             retJSON.js = data;
-            retValCallback(data, func);
+            retValCallback(retJSON, func);
           });
         }
         i++;

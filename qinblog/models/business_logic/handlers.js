@@ -24,7 +24,7 @@ handlers.handlers_map = (function(filename){
 })('../constants/handlers_map');
 //require('svg_post_handler');
 handlers.routePost = function(postName) {
-  console.log(this.handlers_map[postName]);
+  console.log("using " + this.handlers_map[postName]);
   return require('./' + this.handlers_map[postName])[this.handlers_map[postName]];
 };
 

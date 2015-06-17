@@ -35,16 +35,7 @@ function loadjscssfile(filename, filetype){
             });
         }());
 
-        var svgs = d3.select('svg');
-        //console.log(svgs);
-        if(svgs.length > 0) {
 
-
-        //   var head = $('head');
-        //    head.append('<script src="http://localhost:8000/main.js"</script>');
-        //    head.append('<link rel="stylesheet" href="http://localhost:8000/main.css"</link>')
-        //
-        }
 
     });
 })(jQuery);

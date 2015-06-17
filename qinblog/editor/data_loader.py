@@ -2,8 +2,10 @@
 from post_formatter import *
 from dbloader import MongoConnector
 from logger import FileGenLogger
+import sys
 import os
 import argparse
+import pprint
 from datetime import datetime
 
 logger = FileGenLogger().getLogger()
@@ -12,22 +14,33 @@ logger.info("Start generating file")
 mongoDB = MongoConnector("nodetest1")
 posts = mongoDB.getCollection("posts")
 
+def get_largest_post_id():
+    result = posts.find().sort("id", -1)
+    if result is not None and result.count() > 0:
+        return(result[0]["id"])
+    else:
+        return 0
+
 def insert_into_db(data):
-    
     if  posts.find({"title": data["title"]}).count() == 0 and posts.find({"id": data["id"]}).count() == 0:
         posts.insert_one(data)
         logger.info("Just inserted data\n" + str(data))
         updateGID()
     else:
-        posts.update({"id": data["id"]}, data)
-        logger.info("Just updated data\n" + str(data))
+        logger.warn("The given post was already in the db")
+        confirm = input("Are you sure you want to override the current content? id" + str(data["id"]) +": y/N")
+        if confirm == 'y':
+            posts.update({"id": data["id"]}, data)
+            logger.info("Just updated data\n" + str(data))
+        else:
+            logger.info("Canceling...")
 
 
 def update_db_content(id, data):
     if posts.find({"id": data["id"]}).count() != 0:
         posts.update({"id": data["id"]}, data)
     else:
-        logger.warn("Cannot file post id: " + str(id) + ". Do you mean to insert?")
+        logger.error("Cannot file post id: " + str(id) + ". Do you mean to insert?")
 
 def show_db_content():
     for post in posts.find():
@@ -47,32 +60,50 @@ def remove_all_db_entries():
     else:
         logger.info("Cancel...")
         
-
-
-
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Process blog entry, you need to have all of the following files: post.json, post.md in the given folder")
     parser.add_argument('--post', '-p', type=str, help='The name of the post, must present in the root folder')
-    parser.add_argument('--update','-u', help="Flag to indicate that this will update the correspoing entry, need to enter the id as argument. You must specify post to use this option")
+    parser.add_argument('--id', type=int, help='The id of the post, if not specified, a global id will be assigned.')
+    parser.add_argument('--update','-u', action='store_true', help="Flag to indicate that this will update the correspoing entry, need to enter the id as argument. You must specify post to use this option")
     parser.add_argument('--show', '-s', action='store_true', help="Show all the entries currently in the db")
+    parser.add_argument('--preview', '-v', action='store_true', help="Flag to indicate that we want to see the parsed json")
     parser.add_argument('--delete', '-d', type=int, help="Delete one entry")
     parser.add_argument('--deleteALL', action='store_true', help="Delete ALL entries(USE CAUTION!)")
     
     args = parser.parse_args()
+    if len(sys.argv) == 1:
+        print("No argument specified, printing help")
+        parser.print_help()
+        sys.exit(1)
+
     if args.show:
+        specifiedAnyArg = True
         show_db_content()
         
-        
     if args.post is not None:
-        data = process(args.post)
-        if args.update is not None:
-            update_db_content(args.update, data)
+        id = 'error'
+        if args.id is None:
+            logger.warn("going to use the largest id in the db plus 1")
+            id = get_largest_post_id() + 1
+        else:
+            id = args.id
+            
+        data = process(args.post, id)
+        if args.preview is True:
+            pprint.PrettyPrinter(indent=4).pprint(data)
+            exit(1)
+            
+        if args.update is True:
+            update_db_content(args.id, data)
         else:
             insert_into_db(data)
 
+            
     if args.delete is not None:
         remove_db_entry(args.delete)
 
     if args.deleteALL is True:
         remove_all_db_entries()
-    
+
+
+
