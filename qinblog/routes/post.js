@@ -13,6 +13,7 @@ var collection = db.get('posts');
 var handlers = require('../models/business_logic/handlers.js');
 
 
+
 router.get('/', function (req, res, next) {
   var urlParts = url.parse(req.url, true);
   var query = urlParts.query;
@@ -23,21 +24,28 @@ router.get('/', function (req, res, next) {
   });
 });
 
+router.get('/item/*', function(req, res, next){
+  var pathname = url.parse(req.url).pathname;
+  var id = pathname.substring(pathname.lastIndexOf('/') + 1);
+  collection.findById(id, function(err, doc) {
+    res.render('post', {post: doc});
+  });
+
+});
 
 //var svg_post_handler = require('../models/business_logic/svg_post_handler.js');
 
 
-router.get('/svg', function(req, res, next) {
-  var urlParts = url.parse(req.url, true);
-  var query = urlParts.query;
+router.get('/raw/*', function(req, res, next) {
+  var pathname = url.parse(req.url).pathname;
+  var id = pathname.substring(pathname.lastIndexOf('/') + 1);
 
-  collection.findById(query.id, function(err, doc) {
+  collection.findById(id, function(err, doc) {
     handlers.routePost(path.basename(doc.folder_name))(doc.folder_name, function(data) {
       res.send(data);
     });
   });
 
-  next();
 });
 
 

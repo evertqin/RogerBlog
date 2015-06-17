@@ -36,7 +36,7 @@ block blog_content
                         a(href="#")!= post.title
                     .post-entry
                       .content.more!= post.content
-                    button(type="submit", onclick="location.href='/blog/post?id=" + post._id + "'").btn.btn-default#read-more Read More
+                    button(type="submit", onclick="location.href='/blog/post/item/" + post._id + "'").btn.btn-default#read-more Read More
             .blog-metas.col-sm-3.m-t-sm-60
               .blog-entries-list
                 .post-heading
