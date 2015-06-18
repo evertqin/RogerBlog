@@ -7,15 +7,18 @@ var monk = require('monk');
 var db = monk('localhost:27017/nodetest1');
 var router = express.Router();
 var post = require('./post');
+var utils = require('../models/business_logic/utils/utils.js');
 
 router.get('/',function(req, res, next) {
     var collection = db.get('posts');
-    collection.find({},{sort:{id: -1}},function(e, docs) {
-        res.render('blog', {posts:docs});
+    collection.find({},{sort:{id: -1}},function(e, data) {
+        for(var i = 0; i < data.length; ++i) {
+          data[i].imgUrls = utils.extract_image_href(data[i].content);
+          console.log(data[i].imgUrls);
+        }
+        res.render('blog', {posts:data});
     });
 });
-
-
 
 
 router.get('/raw', function(req, res) {

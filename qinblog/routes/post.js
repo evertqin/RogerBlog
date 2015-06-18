@@ -28,7 +28,10 @@ router.get('/item/*', function(req, res, next){
   var pathname = url.parse(req.url).pathname;
   var id = pathname.substring(pathname.lastIndexOf('/') + 1);
   collection.findById(id, function(err, doc) {
-    res.render('post', {post: doc});
+    handlers.routePost(path.basename(doc.folder_name))(doc.folder_name, function(data) {
+      doc.raw = data != null && data.length > 0;
+      res.render('post', {post: doc});
+    });
   });
 
 });

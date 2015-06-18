@@ -10,12 +10,16 @@ module.exports = {generic_handler : function (filePath, func) {
   fs.readdir(filePath, function(err,res) {
     var retJSON = retJSON || {} ;
     var counter = 0;
-
-
+    var isFound = false;
+    if(res == null) {
+      func();
+      return;
+    }
     var i = 0;
     while(i < res.length) {
       var extname = path.extname(res[i]);
       if('.html' == path.extname(res[i])) {
+        isFound = true;
         fs.readFile(filePath + '/' + res[i],'utf8', function(error, data) {
           func(data);
         });
@@ -23,6 +27,8 @@ module.exports = {generic_handler : function (filePath, func) {
       }
       i++;
     }
-
+    if(!isFound) {
+      func();
+    }
   });
 }};

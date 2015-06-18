@@ -48,7 +48,7 @@
 
     var DEFAULT_EASING = 'linear';
     var DEFAULT_DURATION = 1000;//ms
-    var DEFAULT_MOBILE_DECELERATION = 0.004;//pixel/ms²
+    var DEFAULT_MOBILE_DECELERATION = 0.004;//pixel/msï¿½
 
     var DEFAULT_SKROLLRBODY = 'skrollr-body';
 
@@ -1524,7 +1524,7 @@
 
         if(_forceHeight && !_isMobile) {
             //"force" the height.
-            body.style.height = (_maxKeyFrame + documentElement.clientHeight) + 'px';
+            //body.style.height = (_maxKeyFrame + documentElement.clientHeight) + 'px';
         }
 
         //The scroll offset may now be larger than needed (on desktop the browser/os prevents scrolling farther than the bottom).

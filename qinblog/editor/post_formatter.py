@@ -36,7 +36,7 @@ def getGID():
         if value=="":
             return 0
         
-        return int(f.readline())
+        return f.readline()
     
 def updateGID():
     gid = getGID()
@@ -105,6 +105,7 @@ def generate_doc(filenames, id, folder_name):
 #        template = GLOBAL_TEMPLATE
 #    result = ''.join([line for line in template])
     #print(result)
+    print(md.Meta)
     dict = {
         "id": id
         , "title": md.Meta["title"][0]
@@ -113,10 +114,11 @@ def generate_doc(filenames, id, folder_name):
         , "timestamp" : datetime.now()
         , "folder_name": folder_name
         , "content" : html
+        , "tag": [tag for tag in md.Meta["tag"]]
         , "read": []
         , "comments:" : []
     }
-    
+
     #print(result % dict)
     return dict
 
