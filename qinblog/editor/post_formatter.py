@@ -25,24 +25,24 @@ GLOBAL_TEMPLATE = """
 }
 """
 
-def getGID():
-    if not os.path.isfile(GLOBAL_FILENAME):
-        with open(GLOBAL_FILENAME, 'w') as f:
-            f.write('0')
+# def getGID():
+#     if not os.path.isfile(GLOBAL_FILENAME):
+#         with open(GLOBAL_FILENAME, 'w') as f:
+#             f.write('0')
             
-    with open(GLOBAL_FILENAME, 'r') as f:
-        value = f.readline()
-        print(value)
-        if value=="":
-            return 0
+#     with open(GLOBAL_FILENAME, 'r') as f:
+#         value = f.readline()
+#         print(value)
+#         if value=="":
+#             return 0
         
-        return f.readline()
+#         return f.readline()
     
-def updateGID():
-    gid = getGID()
-    with open(GLOBAL_FILENAME, 'w') as f:
-        gid = gid + 1
-        f.write(str(gid))
+# def updateGID():
+#     gid = getGID()
+#     with open(GLOBAL_FILENAME, 'w') as f:
+#         gid = gid + 1
+#         f.write(str(gid))
 
 
 def validate_input_folder(postFolder, checker):

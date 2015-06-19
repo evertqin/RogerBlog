@@ -1,19 +1,30 @@
 extends layout
 
-mixin highlight_box(id, name, date, icon)
+mixin highlight_box(id, name, date, icon, post)
+  - var image;
+  - if (post.imgUrls != null && post.imgUrls.length > 0){
+  -  image=post.imgUrls[Math.floor(Math.random() * post.imgUrls.length)];
+  - } else {
+  -  image='/images/background.png';
+  -}
   .col-lg-3.col-md-4.col-sm-5
-    .box
-      .box-gray.aligncenter
+    .box(href="#")
+      .aligncenter
         h4.box-title(id=id)= name
-        .icon
-          i.fa.fa3x(class=icon)
+      .box-gray(style='background-image:url("' + image + '");background-size: 100%;-webkit-filter: grayscale(50%);')
+        //.icon
+        //  i.fa.fa3x(class=icon)
+        //.box-stat-info
+          //span#publish-date= date
+          //span#comments
+          //  i.fa.fa-comments= post.comments == null ? 0 : post.comments
+          //span#shares
+          //  i.fa.fa-heart 15
+      .title-block
         .box-stat-info
           span#publish-date= date
           span#comments
-            i.fa.fa-comments 1
-          span#shares
-            i.fa.fa-heart 15
-      .title-block
+            i.fa.fa-comments= post.comments == null ? 0 : post.comments
         if block
           block
         else
@@ -49,8 +60,8 @@ block content
         .hlt-container(style="position:relative;")
           .rq-p-col
             each post, i in posts
-              - var date = new Date(post.timestamp);
-              +highlight_box("title" + i, post.title, date.toDateString(),"fa-desktop")
+              - var date = new Date(post.date);
+              +highlight_box("title" + i, post.title, date.toDateString(),"fa-desktop", post)
                 h4.more!= post.content
       
     a.anchor#about-me(name="about-me")
