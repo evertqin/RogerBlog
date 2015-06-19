@@ -38,5 +38,12 @@ function loadjscssfile(filename, filetype){
 
   });
 
+  $.ajax({
+    url:"/blog/post/tag_list",
+
+  }).done(function(data){
+    console.log(data);
+  });
+
 
 })(jQuery);

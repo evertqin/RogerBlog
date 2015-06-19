@@ -12,9 +12,24 @@ h1, h2, h3, h4, h5, h6 {
   font-weight:normal;
 }
 
+.bcg h2 {
+  font-size: 50px;
+  margin-top: 0;
+  padding-top: 0;
+  position: relative;
+  top:-40px;
+}
+
+.bcg p {
+  position: relative;
+  top:-40px;
+
+}
+
 a.anchor {
   display:block;
   position: relative; top: -40px; visibility: hidden;
+
 }
 
 // This section contains parallax configurations
@@ -46,7 +61,7 @@ a.anchor {
 
 }
 #slide-1 .bcg {
-  background-image:url('../images/background_1.png')
+  background-image:url('../images/background_1.png');
 }
 
 .scroll-up>a {
@@ -83,7 +98,7 @@ h2.section-title {
 }
 
 .about-me-content {
-  font-size:18px;
+  font-size:16px;
 }
 
 
@@ -132,11 +147,14 @@ h2.section-title {
   }
 }
 
-section.contact-me p {
-  font-size: 14px;
-}
 
-section.copy-right .copy-right {
+
+section.copy-right {
+  background-color:lightgray;
+   height:100px;
+  .copy-right {
   padding-top: 20px;
   text-align: center;
+  line-height: 70px;
+ }
 }

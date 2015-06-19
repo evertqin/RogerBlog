@@ -51,4 +51,11 @@ block blog_content
                   ul
                     each post in posts
                       li
-                        a(href="#")= "Link to post " + post.title
+                        a(href="/blog/post/item/" + post._id)=  post.title
+              .blog-category-list
+                .post-heading
+                  h4 Categories
+                .list-body
+                  ul
+                                
+              

@@ -27,6 +27,10 @@
 }
 .social-network-above-navbar .social-network-inner .social-network-right-panel .social-network-icon a {
   color: #808080;
+  -webkit-transition: color 0.3s ease;
+}
+.social-network-above-navbar .social-network-inner .social-network-right-panel .social-network-icon a:hover {
+  color: #f8f8f8;
 }
 .sticky-top {
   height: 0;

@@ -57,15 +57,18 @@ a.anchor {
 .post-heading button {
   margin-top: 20px;
 }
-.blog-metas .blog-entries-list .post-heading {
+.blog-metas .post-heading {
   margin: 0 0 0 20px;
 }
-.blog-metas .blog-entries-list h4 {
+.blog-metas h4 {
   color: black;
 }
-.blog-metas .blog-entries-list ul a {
+.blog-metas ul a {
   color: #777777;
 }
-.blog-metas .blog-entries-list ul a:hover {
+.blog-metas ul a:hover {
   color: black;
+}
+.blog-category-list ul a {
+  color: #777777;
 }

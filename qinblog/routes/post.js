@@ -19,6 +19,7 @@ router.get('/', function (req, res, next) {
   var query = urlParts.query;
 
   collection.findById(query.id, function(err, doc) {
+
     res.render('post', {post: doc});
 
   });

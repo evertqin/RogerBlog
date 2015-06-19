@@ -26,6 +26,12 @@
         //    });
         //});
 
+        if(typeof String.prototype.firstLetterCapitalize != 'function') {
+          String.prototype.firstLetterCapitalize = function() {
+            return this.charAt(0).toUpperCase() + this.slice(1);
+          }
+        }
+
         if(typeof String.prototype.startsWith != 'function') {
             String.prototype.startsWith = function(str) {
                 return this.slice(0, str.length) == str;
@@ -73,6 +79,13 @@
         $(".edit-button").on('click', function() {
           console.log("This is called");
         });
+
+        $.ajax('/blog/tag_list').done(function(data) {
+                for(var k in data.tag_list) {
+                  $('.blog-category-list .list-body ul').append('<li><a href="#">' +k.firstLetterCapitalize() + '</a></li>');
+                }
+
+            });
 
 
     });

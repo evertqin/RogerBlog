@@ -14,9 +14,9 @@ router.get('/',function(req, res, next) {
     collection.find({},{sort:{id: -1}},function(e, data) {
         for(var i = 0; i < data.length; ++i) {
           data[i].imgUrls = utils.extract_image_href(data[i].content);
-          console.log(data[i].imgUrls);
         }
         res.render('blog', {posts:data});
+
     });
 });
 
@@ -35,6 +35,15 @@ router.get('/blog_entries', function(req, res, next) {
         res.render('blog_entries', { title: 'Hey', message: 'Hello there!'});
         //res.render('blog_entries', {posts:docs, title:"Hello"});
     });
+});
+
+router.get('/tag_list', function(req, res, next){
+  var collection = db.get('posts');
+  collection.find({},function(e, docs) {
+    var tags = utils.summary_category(docs);
+      res.send( {tag_list:tags});
+  });
+
 });
 
 router.use('/post', post);

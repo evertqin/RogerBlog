@@ -13,6 +13,17 @@ h6 {
   font-family: 'Raleway', sans-serif;
   font-weight: normal;
 }
+.bcg h2 {
+  font-size: 50px;
+  margin-top: 0;
+  padding-top: 0;
+  position: relative;
+  top: -40px;
+}
+.bcg p {
+  position: relative;
+  top: -40px;
+}
 a.anchor {
   display: block;
   position: relative;
@@ -77,7 +88,8 @@ h2.section-title {
   text-align: center;
 }
 .about-me-content {
-  font-size: 18px;
+  font-size: 16px;
+  text-indent: 50px;
 }
 .rq-p-col .box {
   width: 100%;
@@ -115,10 +127,12 @@ h2.section-title {
 .rq-p-col .title-block h4 p {
   color: white;
 }
-section.contact-me p {
-  font-size: 14px;
+section.copy-right {
+  background-color: lightgray;
+  height: 100px;
 }
 section.copy-right .copy-right {
   padding-top: 20px;
   text-align: center;
+  line-height: 70px;
 }
