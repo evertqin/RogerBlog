@@ -18,7 +18,7 @@ block blog_content
         .container
           .row
             // blog columns
-            .blog-posts.col-sm-8
+            .blog-posts.col-sm-6.col-md-8
               each post, i in posts
                 .article(id="article"+i)
                   .post-image
@@ -43,7 +43,7 @@ block blog_content
                     .post-entry
                       .content.more!= post.content
                     button(type="submit", onclick="location.href='/blog/post/item/" + post._id + "'").btn.btn-default#read-more Read More
-            .blog-metas.col-sm-3.m-t-sm-60
+            .blog-metas.col-sm-3.col-md-4
               .blog-entries-list
                 .post-heading
                   h4 Blog Entries

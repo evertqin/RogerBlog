@@ -1,7 +1,6 @@
 extends layout
 
 mixin highlight_box(id, name, date, icon, post)
-
   - var image;
   - if (post.imgUrls != null && post.imgUrls.length > 0){
   -  image=post.imgUrls[Math.floor(Math.random() * post.imgUrls.length)];
@@ -99,10 +98,11 @@ block content
           p     
           | You can reach me through linkedin. I don't use twitter or facebook too much
           | except for occasinal checking in at great restaurants or places of interest during travelling.
-    section.copy-right.text-block
-      .container
-        .copy-right
-          p Ruogu Qin
+    footer
+      section.copy-right.text-block
+        .container
+          .copy-right
+            p Ruogu Qin
     .scroll-up
       a.back-to-top(href="#totop" style="display:block")
         i.fa.fa-angle-double-up
