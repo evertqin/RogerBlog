@@ -4,12 +4,13 @@ import os
 import argparse
 import markdown
 import pprint
+import re
 from datetime import datetime
 
 logger = FileGenLogger().getLogger()
 logger.info("Start generating file")
 
-BASE_FOLDER = "/media/ruogu/empty/post/"
+BASE_FOLDER = "/home/ruogu/post/"
 GLOBAL_FILENAME = 'gId';
 GLOBAL_TEMPLATE = """
 // json
@@ -119,10 +120,20 @@ def generate_doc(filenames, id, folder_name):
         , "comments:" : []
     }
 
-    #print(result % dict)
     return dict
 
+def getID(postName):
+    regex = re.compile(r"(?<=post)\d.*")
+    m = regex.search(postName)
+    if m is not None:
+        return m.group(0)
+    else:
+        raise Exception("Cannot parse id from post name, are you should your post name is correct?")
+    
+
 def process(postName, id):
+    if id is None:
+        id = getID(postName)
     postName = os.path.join(BASE_FOLDER, postName)
 
     checker = [""]
@@ -145,9 +156,8 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="Process blog entry, you need to have all of the following files: post.json, post.md in the given folder")
     parser.add_argument('--post', '-p', required=True, type=str, help='The name of the post, must present in the root folder')
-    parser.add_argument('--id', type=str, required=True, help='The id of the post, if not specified, a global id will be assigned.')
+    parser.add_argument('--id', type=str, help='The id of the post, if not specified, a global id will be assigned.')
     args = parser.parse_args()
-    pprint.PrettyPrinter(indent=4).pprint(process(args.post, args.id, args.post))
-    
+    pprint.PrettyPrinter(indent=4).pprint(process(args.post, args.id))
 
 
