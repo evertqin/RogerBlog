@@ -10,6 +10,7 @@ router.get('/', function (req, res, next) {
   collection.find({},{limit:8, sort:{id: -1}},function(e, data) {
     for(var i = 0; i < data.length; ++i) {
       data[i].imgUrls = utils.extract_image_href(data[i].content);
+      data[i].content = data[i].content.substr(0, 50); // reduce the data to send to front end
     }
       res.render('index', {posts:data});
   });

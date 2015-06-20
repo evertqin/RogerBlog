@@ -1,6 +1,7 @@
 extends layout
 
 mixin highlight_box(id, name, date, icon, post)
+
   - var image;
   - if (post.imgUrls != null && post.imgUrls.length > 0){
   -  image=post.imgUrls[Math.floor(Math.random() * post.imgUrls.length)];
@@ -10,7 +11,8 @@ mixin highlight_box(id, name, date, icon, post)
   .col-lg-3.col-md-4.col-sm-5
     .box(href="#")
       .aligncenter
-        h4.box-title(id=id)= name
+        a(id=id href='/blog/post/item/' + post._id )
+          h4.box-title= name
       .box-gray(style='background-image:url("' + image + '");background-size: 100%;-webkit-filter: grayscale(50%);')
         //.icon
         //  i.fa.fa3x(class=icon)

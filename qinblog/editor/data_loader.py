@@ -36,11 +36,11 @@ def insert_into_db(data):
             logger.info("Canceling...")
 
 
-def update_db_content(id, data):
+def update_db_content(data):
     if posts.find({"id": data["id"]}).count() != 0:
         posts.update({"id": data["id"]}, data)
     else:
-        logger.error("Cannot file post id: " + str(id) + ". Do you mean to insert?")
+        logger.error("Cannot fild post id: " + data["id"] + ". Do you mean to insert?")
 
 def show_db_content():
     for post in posts.find():
@@ -77,27 +77,29 @@ if __name__ == "__main__":
         sys.exit(1)
 
     if args.show:
-        specifiedAnyArg = True
         show_db_content()
         
     if args.post is not None:
-        id = 'error'
-        if args.id is None:
-            logger.warn("going to use the largest id in the db plus 1")
-            id = get_largest_post_id() + 1
+        if args.update is True:
+            data = process(args.post)
+
         else:
-            id = args.id
+            id = None
+            if args.id is None:
+                logger.warn("going to use the largest id in the db plus 1")
+                id = get_largest_post_id() + 1
+            else:
+                id = args.id
+            data = process(args.post, id)
             
-        data = process(args.post, id)
         if args.preview is True:
             pprint.PrettyPrinter(indent=4).pprint(data)
             exit(1)
-            
+
         if args.update is True:
-            update_db_content(args.id, data)
+            update_db_content(data)
         else:
             insert_into_db(data)
-
             
     if args.delete is not None:
         remove_db_entry(args.delete)

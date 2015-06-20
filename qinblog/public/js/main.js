@@ -62,7 +62,8 @@
           });
         }
         hideLongLine('.more', 50);
-        hideLongLine('.box-title', 20);
+        hideLongLine('.box-title', 25);
+
 
         // (function () {
         //     var showChar = 50; //

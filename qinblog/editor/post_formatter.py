@@ -126,12 +126,12 @@ def getID(postName):
     regex = re.compile(r"(?<=post)\d.*")
     m = regex.search(postName)
     if m is not None:
-        return m.group(0)
+        return int(m.group(0))
     else:
         raise Exception("Cannot parse id from post name, are you should your post name is correct?")
     
 
-def process(postName, id):
+def process(postName, id=None):
     if id is None:
         id = getID(postName)
     postName = os.path.join(BASE_FOLDER, postName)

@@ -35,10 +35,5 @@ function loadjscssfile(filename, filetype){
         }
       });
     }());
-
   });
-
-
-
-
 })(jQuery);
