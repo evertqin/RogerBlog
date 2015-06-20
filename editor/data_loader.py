@@ -11,7 +11,7 @@ from datetime import datetime
 logger = FileGenLogger().getLogger()
 logger.info("Start generating file")
 
-mongoDB = MongoConnector("nodetest1")
+mongoDB = MongoConnector("blog")
 posts = mongoDB.getCollection("posts")
 
 def get_largest_post_id():
@@ -25,7 +25,6 @@ def insert_into_db(data):
     if  posts.find({"title": data["title"]}).count() == 0 and posts.find({"id": data["id"]}).count() == 0:
         posts.insert_one(data)
         logger.info("Just inserted data\n" + str(data))
-        updateGID()
     else:
         logger.warn("The given post was already in the db")
         confirm = input("Are you sure you want to override the current content? id" + str(data["id"]) +": y/N")

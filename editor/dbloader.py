@@ -22,7 +22,7 @@ class MongoConnector:
     def __init__(self, dbname):
         try:
             logger.info("Connecting to mongo client")
-            self._client = MongoClient('mongodb://localhost:27017/')
+            self._client = MongoClient('mongodb://evertqin:QG3VGLyZlRWm@ds047632.mongolab.com:47632/blog')
             logger.info("Successfully conntect to mongodb")
         except e:
             print(e)
@@ -45,7 +45,7 @@ class MongoConnector:
 
 
 if __name__ == "__main__":
-    mongodb = MongoConnector("nodetest1")
+    mongodb = MongoConnector("blog")
     mongodb.listAllDBCollection()
 #mongodb.listAllDBEntries()
 

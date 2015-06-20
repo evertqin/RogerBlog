@@ -5,7 +5,7 @@ var express = require('express');
 var mongo = require('mongodb');
 var monk = require('monk');
 var url = require('url');
-var db = monk('localhost:27017/nodetest1');
+var db = monk('mongodb://evertqin:QG3VGLyZlRWm@ds047632.mongolab.com:47632/blog')
 var router = express.Router();
 var path = require('path');
 

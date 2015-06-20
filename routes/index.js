@@ -3,7 +3,8 @@ var router = express.Router();
 var mongo = require('mongodb');
 var monk = require('monk');
 var utils = require('../models/business_logic/utils/utils.js');
-var db = monk('localhost:27017/nodetest1');
+//var db = monk('localhost:27017/nodetest1');
+var db = monk('mongodb://evertqin:QG3VGLyZlRWm@ds047632.mongolab.com:47632/blog')
 /* GET home page. */
 router.get('/', function (req, res, next) {
   var collection = db.get('posts');
