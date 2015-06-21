@@ -1,0 +1,11 @@
+// json
+{
+    "ID": "%(id)s"
+    , "title": "%(title)s"
+    , "author": "%(author)s"
+    , "date" : "%(date)s"
+    , "timestamp": "%(timestamp)s"
+    , "content": "%(content)s"
+    , "read": []
+    , "comments" : []
+}

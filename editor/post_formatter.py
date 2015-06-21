@@ -10,7 +10,8 @@ from datetime import datetime
 logger = FileGenLogger().getLogger()
 logger.info("Start generating file")
 
-BASE_FOLDER = "/home/ruogu/post/"
+BASE_FOLDER = "/home/ruogu/projects/RogerBlog/post/"
+EXTRA_DATA_FOLDER = "../post/"
 GLOBAL_FILENAME = 'gId';
 GLOBAL_TEMPLATE = """
 // json
@@ -93,7 +94,6 @@ def read_input_file(filename):
 def generate_doc(filenames, id, folder_name):
     # Read the markdown file
     markdownContent = read_input_file(filenames[0])
-
     markdownContent = ''.join([line for line in markdownContent])
     md = markdown.Markdown(extensions = ['markdown.extensions.meta'])
     html = md.convert(markdownContent)
@@ -134,8 +134,8 @@ def getID(postName):
 def process(postName, id=None):
     if id is None:
         id = getID(postName)
+    fileFolder = os.path.join(EXTRA_DATA_FOLDER, postName)
     postName = os.path.join(BASE_FOLDER, postName)
-
     checker = [""]
     if not validate_input_folder(postName, checker):
         logger.warn("Exiting")
@@ -143,7 +143,7 @@ def process(postName, id=None):
 
     filenames = [os.path.join(postName, file) for file in checker]
     
-    return generate_doc(filenames, id, postName)
+    return generate_doc(filenames, id, fileFolder)
     
 
 

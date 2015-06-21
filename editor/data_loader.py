@@ -22,14 +22,22 @@ def get_largest_post_id():
         return 0
 
 def insert_into_db(data):
-    if  posts.find({"title": data["title"]}).count() == 0 and posts.find({"id": data["id"]}).count() == 0:
+    cursor = posts.find({"id": data["id"]})
+    if cursor.count() == 0:
+        cursor = posts.find({"title": data["title"], "date" : data["date"]})
+
+    if cursor.count == 0:
         posts.insert_one(data)
         logger.info("Just inserted data\n" + str(data))
+    elif cursor.count() > 1:
+        raise Exception("Got more than one existing entries, did you submit two blogs with same content in the same day?")
     else:
         logger.warn("The given post was already in the db")
-        confirm = input("Are you sure you want to override the current content? id" + str(data["id"]) +": y/N")
+        result = cursor[0]
+        confirm = input("Are you sure you want to override the current content? id: " + str(result["id"]) +": y/N")
+        data["id"] = result["id"] # reset the id
         if confirm == 'y':
-            posts.update({"id": data["id"]}, data)
+            posts.update({"id": result["id"]}, data)
             logger.info("Just updated data\n" + str(data))
         else:
             logger.info("Canceling...")
@@ -81,7 +89,6 @@ if __name__ == "__main__":
     if args.post is not None:
         if args.update is True:
             data = process(args.post)
-
         else:
             id = None
             if args.id is None:

@@ -1,0 +1,28 @@
+/* DEFAULTS
+----------------------------------------------------------*/
+
+
+#svgcontainer {
+	width:100%;
+}
+svg {
+	width:100%;
+}
+/* #svgContainer > svg > circle ~ text {
+	visibility: hidden;
+}
+
+ #svgContainer > svg > polygon ~ text {
+ 	visibility: visible;
+ }*/
+ #svgContainer > svg > text[font-family="Consolas"] {
+ 	visibility: hidden;
+ }
+
+ circle {
+ 	pointer-events:all;
+ }
+
+ polygon {
+ 	pointer-events: none;
+ }

@@ -7,6 +7,7 @@ String.prototype.endsWith = function(suffix) {
 
 
 module.exports = {generic_handler : function (filePath, func) {
+  var filePath = path.normalize(__dirname + "/../" + filePath);
   fs.readdir(filePath, function(err,res) {
     var retJSON = retJSON || {} ;
     var counter = 0;
