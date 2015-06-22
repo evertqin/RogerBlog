@@ -2,7 +2,7 @@ body,
 html {
   width: 100%;
   height: 100%;
-  font: 400 14px/1.8 "Lato", sans-serif;
+  font: 400 14px/1.8 "Dejavu Sans", sans-serif;
   color: #777777;
 }
 h1,
@@ -29,12 +29,8 @@ a.anchor {
   visibility: hidden;
 }
 .blog-wrapper {
-  position: absolute;
-  top: 100px;
-}
-.blog-wrapper .container {
-  margin: 20px 20px 20px 90px;
-  width: 100%;
+  position: relative;
+  top: 120px;
 }
 .blog-wrapper .post-image {
   margin: 0 0 20px;
@@ -43,7 +39,14 @@ a.anchor {
   width: 100%;
 }
 .article {
-  margin: 0 0 20px 45px;
+  margin: 0 0 20px 0;
+  text-align: justify;
+}
+.article p {
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
 }
 .post-heading {
   font-family: "Lato", sans-serif;

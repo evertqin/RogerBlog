@@ -19,7 +19,6 @@ a {
   -webkit-transition: color 0.3s ease;
 }
 a:hover {
-  color: #777777;
   text-decoration: none;
 }
 a.anchor {
@@ -40,7 +39,13 @@ img {
   padding-top: 100px;
 }
 #post-body .article {
-  margin: 0 0 0px 45px;
+  text-align: justify;
+}
+#post-body .article p {
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
 }
 #post-body .article .post-image img {
   width: 100%;

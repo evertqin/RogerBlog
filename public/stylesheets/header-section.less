@@ -98,10 +98,17 @@
     background-color: @box-background-color;
   }
 
-
 }
 
-@media only screen and (max-width:768px) {
+
+
+@media (min-width:768px) {
+  #navigation > nav > div > div {
+    padding-left:0;
+  }
+}
+
+@media (max-width:768px) {
   .social-network-above-navbar {
     height:0;
   }

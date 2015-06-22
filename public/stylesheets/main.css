@@ -84,6 +84,13 @@ a.anchor {
 }
 .text-block {
   margin-top: 20px;
+  text-align: justify;
+}
+.text-block p {
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
 }
 section.highlight {
   padding-top: 10px;

@@ -4,9 +4,10 @@
 doctype html
 html
    head
-      title= 'Blog'
-      include ./includes/common_includes
-      link(rel='stylesheet', href='/stylesheets/blog.css')
-      script(src='/js/blog/blog.main.js')
-   body
-      block blog_content
+    meta(name='viewport' content="width=device-width, initial-scale=1")
+    title= 'Blog'
+    include ./includes/common_includes
+    link(rel='stylesheet', href='/stylesheets/blog.css')
+    script(src='/js/blog/blog.main.js')
+  body
+    block blog_content
