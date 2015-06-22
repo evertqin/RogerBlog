@@ -38,15 +38,6 @@ img {
 #post-body {
   padding-top: 100px;
 }
-#post-body .article {
-  text-align: justify;
-}
-#post-body .article p {
-  -webkit-hyphens: auto;
-  -moz-hyphens: auto;
-  -ms-hyphens: auto;
-  hyphens: auto;
-}
 #post-body .article .post-image img {
   width: 100%;
 }
@@ -61,4 +52,40 @@ img {
 }
 #post-body .article .post-heading button {
   margin-top: 20px;
+}
+.sc_divider {
+  height: 10px;
+}
+.sc_text_seperator {
+  display: table;
+}
+.sc_text_seperator .line {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  vertical-align: middle;
+  padding: 0;
+  display: table-cell;
+}
+.sc_text_seperator .line:before {
+  content: "";
+  height: 1px;
+  display: block;
+  width: 100%;
+  margin: 1px 0 0;
+  background-color: #777777;
+  min-width: 20px;
+  opacity: 0.3;
+}
+.sc_text_seperator .line-text {
+  padding-left: 10px;
+  font-size: 20px;
+  display: inline-block;
+  text-transform: uppercase;
+}
+.sc_text_seperator .line-left {
+  width: 20px;
+}
+.sc_text_seperator .line-right {
+  padding-left: 10px;
 }

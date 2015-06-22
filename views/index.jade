@@ -38,8 +38,9 @@ mixin put_content(content)
 
 
 block content
-  body(test="de")
+  body
     include ./includes/header-navbar-section.jade
+    #skrollr-body
     section.homeSlide#slide-1
       .bcg(data-center="background-position: 50% 0px;"
          data-top-bottom="background-position: 50% -100px;"
@@ -51,7 +52,7 @@ block content
             h2 Think before you speak. Read before you think.
             p ― Fran Lebowitz, The Fran Lebowitz Reader    
     a.anchor#highlight-section(name="hightlight-section")
-    section.highlight.text-block
+    section.highlight.article
       .container
         .row
           .col-sm-6.col-sm-offset-3
@@ -64,7 +65,7 @@ block content
                 +highlight_box("title" + i, post.title, date.toDateString(),"fa-desktop", post)
                   h4.more!= post.content
     a.anchor#about-me(name="about-me")
-    section.about-me.text-block
+    section.about-me.article
       .container
         .row
           .col-sm-6.col-sm-offset-3
@@ -87,7 +88,7 @@ block content
             | replacing the WCF services. Also, I am developing a library for real-time data visualization using several open source JavaScript libraries
             | such as d3.js, three.js, etc.
     a.anchor#contact-me(name="contact-me")
-    section.contact-me.text-block
+    section.contact-me.article
       .container
         .row
           .col-sm-6.col-sm-offset-3
@@ -97,10 +98,7 @@ block content
           | You can reach me through linkedin. I don't use twitter or facebook too much
           | except for occasinal checking in at great restaurants or places of interest during travelling.
     footer
-      section.copy-right.text-block
-        .container
-          .copy-right
-            p 2015 Ruogu Qin
+      include ./includes/footer_section.jade
     .scroll-up
       a.back-to-top(href="#totop" style="display:block")
         i.fa.fa-angle-double-up

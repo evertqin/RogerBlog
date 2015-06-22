@@ -30,5 +30,13 @@ block post_content
                     i.fa.fa-pencil-square-o.edit-button
                 .post-entry
                   .content.more!= post.content
-    footer      
+            .comments
+              .sc_wrapper
+                .sc_element.sc_divider
+                .sc_element.sc_text_seperator(style="white-space:nowrap;")
+                  span.line.line-left
+                  span.line-text comments
+                  span.line.line-right
+  footer
+    include ./includes/footer_section.jade  
         

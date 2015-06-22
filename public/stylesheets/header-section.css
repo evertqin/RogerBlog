@@ -106,3 +106,22 @@
     background-color: white;
   }
 }
+.article {
+  margin-top: 20px;
+  text-align: justify;
+}
+.article p {
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+}
+section.copy-right {
+  background-color: lightgray;
+  height: 100px;
+}
+section.copy-right .copy-right {
+  padding-top: 20px;
+  text-align: center;
+  line-height: 70px;
+}

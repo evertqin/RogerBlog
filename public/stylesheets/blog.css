@@ -38,16 +38,6 @@ a.anchor {
 .blog-wrapper .post-image img {
   width: 100%;
 }
-.article {
-  margin: 0 0 20px 0;
-  text-align: justify;
-}
-.article p {
-  -webkit-hyphens: auto;
-  -moz-hyphens: auto;
-  -ms-hyphens: auto;
-  hyphens: auto;
-}
 .post-heading {
   font-family: "Lato", sans-serif;
   text-transform: uppercase;

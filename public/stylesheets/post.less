@@ -38,13 +38,7 @@ img {
 #post-body {
   padding-top:100px;
   .article {
-    text-align: justify;
-    p {
-      -webkit-hyphens: auto;
-      -moz-hyphens: auto;
-      -ms-hyphens: auto;
-      hyphens: auto;
-    }
+
 
     .post-image {
       img {
@@ -68,4 +62,48 @@ img {
       }
     }
   }
+}
+
+
+
+.sc_divider {
+  height: 10px;
+}
+
+.sc_text_seperator {
+  display: table;
+  .line {
+    &:before {
+      content:"";
+      height:1px;
+      display:block;
+      width:100%;
+      margin: 1px 0 0;
+      background-color:@text-default-color;
+      min-width:20px;
+      opacity:0.3;
+    }
+
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    vertical-align: middle;
+    padding: 0;
+    display: table-cell;
+  }
+}
+.sc_text_seperator .line-text {
+  padding-left: 10px;
+  font-size: 20px;
+  display: inline-block;
+  text-transform: uppercase;
+
+}
+
+.sc_text_seperator .line-left {
+  width: 20px;
+}
+
+.sc_text_seperator .line-right {
+  padding-left: 10px;
 }
