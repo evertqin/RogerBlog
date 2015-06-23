@@ -14,7 +14,6 @@ var srcRe = /src=\"(.*?(?=\"))/;
     imgs = re.exec(content);
 
   }
-  console.log(links);
   return links;
 }
 

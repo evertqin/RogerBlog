@@ -117,7 +117,7 @@ def generate_doc(filenames, id, folder_name):
         , "content" : html
         , "tag": [tag for tag in md.Meta["tag"]]
         , "read": []
-        , "comments:" : []
+        , "comments" : []
     }
 
     return dict
