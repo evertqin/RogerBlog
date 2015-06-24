@@ -20,7 +20,7 @@ block post_content
                     - var date = new Date(post.timestamp);
                     span#posted-time!= date.toDateString()
                     span  /
-                    - var count = post.comments == undefined ? 0 :post.comments.count();
+                    - var count = post.comments == undefined ? 0 :post.comments.length;
                     span#num-comments= count
                     span &nbsp;comm.
                   h5#title
@@ -37,13 +37,17 @@ block post_content
                   span.line.line-right
               form.input_wrapper(action='/blog/post/comments' method='POST')
                 .inner
+                  .alert.alert-danger(role='alert')
+                    span.glyphicon.glyphicon-exclamation-sign(aria-hidden='true')
+                    span.sr-only Error:
+                    | Enter a valid sign
                   input(type='hidden' name='id' value=post._id)
                   .input_name
                     h5 Name (*)
-                    input#commenter_name(type='text' name='commenter_name')
+                    input#commenter_name(type='text' name='commenter_name' ng-model="name")
                   .input_content
                     h5 Content (*)
-                    textarea#commenter_content(type='text' rows=5 name='commenter_content')
+                    textarea#commenter_content(type='text' rows=5 name='commenter_content') {{name}}
                   button#submit_comment.btn.btn-default(type='submit' value='Submit') Post
   footer
     include ./includes/footer_section.jade

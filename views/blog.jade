@@ -35,7 +35,7 @@ block blog_content
                         - var date = new Date(post.date);
                         span#posted-time!= date.toDateString()
                         span  /
-                        -var numComm = post.comments == null ? 0 : post.comments.length();
+                        -var numComm = post.comments == null ? 0 : post.comments.length;
                         span#num-comments= numComm
                         span &nbsp;comm.
                       h5#title

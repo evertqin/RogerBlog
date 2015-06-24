@@ -23,10 +23,10 @@ def get_largest_post_id():
 
 def insert_into_db(data):
     cursor = posts.find({"id": data["id"]})
-    if cursor.count() == 0:
+    if cursor.count == 0:
         cursor = posts.find({"title": data["title"], "date" : data["date"]})
 
-    if cursor.count == 0:
+    if cursor.count() == 0:
         posts.insert_one(data)
         logger.info("Just inserted data\n" + str(data))
     elif cursor.count() > 1:
@@ -47,7 +47,7 @@ def update_db_content(data):
     if posts.find({"id": data["id"]}).count() != 0:
         posts.update({"id": data["id"]}, data)
     else:
-        logger.error("Cannot fild post id: " + data["id"] + ". Do you mean to insert?")
+        logger.error("Cannot fild post id: " + str(data["id"]) + ". Do you mean to insert?")
 
 def show_db_content():
     for post in posts.find():
