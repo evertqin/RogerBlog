@@ -36,10 +36,11 @@ mongoClient.connect(mongoUrl, function(err, db) {
     collection.findOne({_id:mongo.ObjectId(req.body.id)}, function(err, doc){
       if(err == null) {
         doc.comments.push({name:req.body.commenter_name, content: req.body.commenter_content});
-
-
-
       }
+
+      collection.update(doc, function(err) {
+          
+      });
 
 
     });
