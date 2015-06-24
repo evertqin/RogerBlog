@@ -11,45 +11,7 @@ from pymongo import MongoClient
 from bson.objectid import ObjectId
 from logger import MongoLogger
 
-logger = MongoLogger().getLogger()
-logger.info("Program started")
-
-class MongoConnector:
-    _client = None
-    _db = None
-    _posts = None
-    
-    def __init__(self, dbname):
-        try:
-            logger.info("Connecting to mongo client")
-            self._client = MongoClient('mongodb://evertqin:QG3VGLyZlRWm@ds047632.mongolab.com:47632/blog')
-            logger.info("Successfully conntect to mongodb")
-        except e:
-            print(e)
-        logger.info("Connecting to db")
-        self._db = self._client[dbname]
-        logger.info("Successfully connected to " + dbname)
-        self._posts = self._db.posts
-        
-    def listAllDBCollection(self):
-        print(self._db.collection_names(include_system_collections=False))
-
-    def listAllDBEntries(self):
-        for post in self._posts.find():
-            yield
-
-    def getCollection(self, name):
-        return self._db[name]
-
-
-
-
-if __name__ == "__main__":
-    mongodb = MongoConnector("blog")
-    mongodb.listAllDBCollection()
-#mongodb.listAllDBEntries()
-
-
+DB_CONNECTION_STRING = '
 
 
 

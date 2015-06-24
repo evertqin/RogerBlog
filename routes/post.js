@@ -38,6 +38,10 @@ mongoClient.connect(mongoUrl, function(err, db) {
         doc.comments.push({name:req.body.commenter_name, content: req.body.commenter_content});
       }
 
+      collection.update(doc, function(err) {
+          
+      });
+
 
     });
 
