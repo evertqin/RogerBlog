@@ -33,15 +33,16 @@ mongoClient.connect(mongoUrl, function(err, db) {
   });
 
   router.post('/comments', function(req, res, next) {
-    collection.findOne({_id:mongo.ObjectId(req.body.id)}, function(err, doc){
+
+    var id = mongo.ObjectId(req.body.id);
+    collection.findOne({_id: id}, function(err, doc){
       if(err == null) {
-        doc.comments.push({name:req.body.commenter_name, content: req.body.commenter_content});
+        doc.comments.push();
       }
 
-      collection.update(doc, function(err) {
-          
-      });
-
+      collection.update({_id: id},
+        {$push: {comments: {name:req.body.commenter_name,
+                  content: req.body.commenter_content}}});
 
     });
 
