@@ -6,11 +6,18 @@ import markdown
 import pprint
 import re
 from datetime import datetime
+import platform
 
 logger = FileGenLogger().getLogger()
 logger.info("Start generating file")
 
-BASE_FOLDER = "/home/ruogu/projects/RogerBlog/post/"
+PLATFORM = platform.system()
+BASE_FOLDER = ""
+if PLATFORM == 'Darwin':
+    BASE_FOLDER =  "/Users/ruoguqin/projects/RogerBlog/post/"
+elif PLATFORM == 'Linux':
+    BASE_FOLDER = "/home/ruogu/projects/RogerBlog/post/"
+
 EXTRA_DATA_FOLDER = "../post/"
 GLOBAL_FILENAME = 'gId';
 GLOBAL_TEMPLATE = """

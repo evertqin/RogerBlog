@@ -10,6 +10,7 @@ I have had a wonderful trip to Devil's path in upstate New York. We hiked the "c
 The day started at 5:30am for people living in the city as the drive from New York city to the trail is around 2 hours, and around 1 hour and a half from the place I live.
 
 We started around 9:45 after parking one car at the other end of the trail. I felt a bit sore on my legs from the tennis practice the day before, but the excitement of hiking this really scenic trail quickly makes me forget that. It didn't take us too long the get to the top of the first peak, aka. Indian Head because the first section was mainly even terrain. The height is around 3500ft which is quite remarkable.
+
 <img src="http://i.imgur.com/lBz48e1.jpg" alt="Scene from the top of the mountain"></img>
 
 We didn't stop too much before we were marching to the second peak, aka Twin Mountains. I couldn't exactly remove how we got there because we were pretty tired as the steep ascending followed by descending was quite challenging. We had to take several water breaks, and a relatively long lunch break.
