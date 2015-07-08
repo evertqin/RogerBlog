@@ -102,7 +102,7 @@ def generate_doc(filenames, id, folder_name):
     # Read the markdown file
     markdownContent = read_input_file(filenames[0])
     markdownContent = ''.join([line for line in markdownContent])
-    md = markdown.Markdown(extensions = ['markdown.extensions.meta'])
+    md = markdown.Markdown(extensions = ['markdown.extensions.meta','markdown.extensions.extra'])
     html = md.convert(markdownContent)
     validate_meta_data(md.Meta)
 

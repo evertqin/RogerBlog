@@ -1,6 +1,13 @@
 //
    Created by Roger on 6/3/2015.
 extends post_layout
+
+mixin comments_layout(avatar, name, content)
+  .comments
+    span.commenter_name <img src='/images/64_fantasy_avatar_0137_www.free-avatars.com.jpg'></img>
+        = name
+    p= content
+
 block post_content
   body
     include ./includes/header-navbar-section
@@ -28,40 +35,36 @@ block post_content
                     i.fa.fa-pencil-square-o.edit-button
                 .post-entry
                   .content.more!= post.content
-            .comments
-              .tel_wrapper
-                .tel_element.tel_divider
-                .tel_element.tel_text_seperator(style="white-space:nowrap;")
-                  span.line.line-left
-                  span.line-text comments
-                  span.line.line-right
-              form.input_wrapper(action='/blog/post/comments' method='POST'  target='dummyframe')
-                .inner
-                  .alert.alert-danger(role='alert')
-                    span.glyphicon.glyphicon-exclamation-sign(aria-hidden='true')
-                    span.sr-only Error:
-                    | Enter a valid sign
-                  input(type='hidden' name='id' value=post._id)
-                  .input_name
-                    h5 Name (*)
-                    input#commenter_name(type='text' name='commenter_name' ng-model="name")
-                  .input_content
-                    h5 Content (*)
-                    textarea#commenter_content(type='text' rows=5 name='commenter_content' ng-model="content") 
-                  button#submit_comment.btn.btn-default(type='submit' value='Submit') Post
-                  iframe(width='0' height='0' border='0' name='dummyframe' id='dummyframe')
-              h2 Comments
-              .container
-                each comment in post.comments
-                  .row
-                    .col-sm-3
-                      h4= comment.name
-                    .col-sm-8
-                      p= comment.content
-                .row
-                  .col-sm-3
-                    h4 {{name}}
-                  .col-sm-8
-                    p {{content}}
+            //- .comments
+            //-   .tel_wrapper
+            //-     .tel_element.tel_divider
+            //-     .tel_element.tel_text_seperator(style="white-space:nowrap;")
+            //-       span.line.line-left
+            //-       span.line-text comments
+            //-       span.line.line-right
+            //-   form.input_wrapper(action='/blog/post/comments' method='POST'  target='dummyframe')
+            //-     .inner
+            //-       //- .alert.alert-danger(role='alert')
+            //-       //-   span.glyphicon.glyphicon-exclamation-sign(aria-hidden='true')
+            //-       //-   span.sr-only Error:
+            //-       //-   | Enter a valid sign
+            //-       input(type='hidden' name='id' value=post._id)
+            //-       .input_name
+            //-         h5 Name (*)
+            //-         input#commenter_name(type='text' name='commenter_name' ng-model="name")
+            //-       //- .input_avatar
+            //-       //-   h5 Avatar
+            //-       //-   input#avatar-link(type='url' name='avatar_url' value='(paste link to your avatar here)')
+            //-       .input_content
+            //-         h5 Content (*)
+            //-         textarea#commenter_content(type='text' rows=5 name='commenter_content' ng-model="content") 
+            //-       button#submit_comment.btn.btn-default(type='submit' value='Submit') Post
+            //-       iframe(width='0' height='0' border='0' name='dummyframe' id='dummyframe')
+            //-   .comments-body
+            //-     .container
+            //-       +comments_layout(null,'{{name}}', '{{content}}')
+            //-       each comment in post.comments
+            //-         +comments_layout(null,comment.name, comment.content)
+                
   footer
     include ./includes/footer_section.jade

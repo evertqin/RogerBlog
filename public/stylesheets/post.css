@@ -85,7 +85,7 @@ img {
   opacity: 0.7;
 }
 .tel_wrapper .tel_text_seperator .line-left {
-  width: 30%;
+  width: 5px;
 }
 .tel_wrapper .tel_text_seperator .line-right {
   padding-left: 10px;
@@ -108,4 +108,8 @@ img {
 .input_wrapper button {
   text-transform: uppercase;
   width: 80px;
+}
+.comments img {
+  vertical-align: middle;
+  width: 1%;
 }

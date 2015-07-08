@@ -1,4 +1,4 @@
-Title: Three.js first trail
+Title: Three.js first trial
 Author: Ruogu Qin
 Date: 06/26/2015
 Tag: technology
@@ -19,7 +19,7 @@ This framework seems focus more on game development. I played it a bit before ju
 3. x3dom
 This one takes different approach compare to the previous two. Instead of creating a "cavas" then using javescript to "inject" plot into the canvas. This one is more like static svg -- you write html file then the framework will render it for you, like the example provided by their website.
 
-```html
+~~~~{.html}
 <html>
     <head>
         <title>My first X3DOM page</title>
@@ -33,6 +33,6 @@ This one takes different approach compare to the previous two. Instead of creati
         </p>
     </body>
 </html>
-```
+~~~~
 
 source: http://doc.x3dom.org/tutorials/basics/hello/index.html

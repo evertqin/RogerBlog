@@ -41,11 +41,15 @@
         });
 
         // For Parallax
-        var s = skrollr.init({
+        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+          // seems parallax does not work on mobile, I am diabling them now.
+        } else {
+          var s = skrollr.init({
             render: function (data) {
-                //console.log(data.curTop);
+              //console.log(data.curTop);
             }
-        });
+          });
+        }
 
         function hideLongLine(tag, showChar) {
           var ellipsestext = '...';
