@@ -3,8 +3,9 @@ var fs = require('fs');
 var path = require('path');
 
 var handlers = handlers || {};
+var DEFAULT_HANDLER = "generic_handler";
 
-handlers.handlers_map = (function(filename){
+var handlers_map = (function(filename){
   var filePath = path.resolve(__dirname, filename);
   var content = fs.readFileSync(filePath, 'utf8');
   var splitted = content.trim().split('\n');
@@ -22,10 +23,17 @@ handlers.handlers_map = (function(filename){
   }
   return map;
 })('../constants/handlers_map');
-//require('svg_post_handler');
+
+
 handlers.routePost = function(postName) {
-  console.log("using " + this.handlers_map[postName]);
-  return require('./' + this.handlers_map[postName])[this.handlers_map[postName]];
+  var foundHandler = handlers_map[postName];
+
+  if(foundHandler === undefined) {
+    foundHandler = DEFAULT_HANDLER;
+  }
+
+  console.log("using " + foundHandler);
+  return require('./' + foundHandler)[foundHandler];
 };
 
 // handlers.routePost('post1')('post1', function(data) {

@@ -26,7 +26,7 @@
 	function getSourceArray(source) {
 		var data = [];
 		for(var i = 0; i < source.length; ++i) {
-			data.push({cx:source[i].cx.baseVal.value, 
+			data.push({cx:source[i].cx.baseVal.value,
 				cy:source[i].cy.baseVal.value,
 				data: 1});
 		}
@@ -51,7 +51,7 @@
 	var chosenId = "null";
 	$(document).ready(function() {
 
-		var last = undefined;
+		var last;
 		svg.on("mouseout", function() {
 			last.css({"visibility":"hidden"});
 		}).on("mousemove", function() {
@@ -70,13 +70,12 @@
 			//console.log(distance);
 			//console.log(d3.mouse(this));
 			//console.log($("#" + chosenId)[0].cx.baseVal.value);
-			if(last != undefined) {
+			if(last !== undefined) {
 				last.css({"visibility":"hidden"});
 			}
 			last = $("#" + chosenId).nextUntil("circle", 'text[font-family="Consolas"]');
 			last.css({"visibility":"visible"});
-
-		})
+		});
 
 
 
@@ -96,9 +95,8 @@
 
 	});
 
-	
 
 
-	
+
+
 })(jQuery);
-

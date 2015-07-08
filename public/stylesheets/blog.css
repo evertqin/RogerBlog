@@ -1,2 +1,67 @@
-The compress option has been deprecated. We recommend you use a dedicated css minifier, for instance see less-plugin-clean-css.
-body,html{width:100%;height:100%;font:400 14px/1.8 "Dejavu Sans",sans-serif;color:#777}h1,h2,h3,h4,h5,h6{font-family:'Raleway',sans-serif;font-weight:normal}a{color:black;-webkit-transition:color .3s ease}a:hover{color:#777;text-decoration:none}a.anchor{display:block;position:relative;top:-40px;visibility:hidden}.blog-wrapper{position:relative;top:120px}.blog-wrapper .post-image{margin:0 0 20px}.blog-wrapper .post-image img{width:100%}.post-heading{font-family:"Lato",sans-serif;text-transform:uppercase;letter-spacing:2px}.post-heading h6{font-size:10px;margin:0 0 5px}.post-heading button{margin-top:20px}.blog-metas .post-heading{margin:0 0 0 20px}.blog-metas h4{color:black}.blog-metas ul a{color:#777}.blog-metas ul a:hover{color:black}.blog-category-list ul a{color:#777}
+body,
+html {
+  width: 100%;
+  height: 100%;
+  font: 400 14px/1.8 "Dejavu Sans", sans-serif;
+  color: #777777;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Raleway', sans-serif;
+  font-weight: normal;
+}
+a {
+  color: black;
+  -webkit-transition: color 0.3s ease;
+}
+a:hover {
+  color: #777777;
+  text-decoration: none;
+}
+a.anchor {
+  display: block;
+  position: relative;
+  top: -40px;
+  visibility: hidden;
+}
+.blog-wrapper {
+  position: relative;
+  top: 120px;
+}
+.blog-wrapper .post-image {
+  margin: 0 0 20px;
+}
+.blog-wrapper .post-image img {
+  width: 100%;
+}
+.post-heading {
+  font-family: "Lato", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+.post-heading h6 {
+  font-size: 10px;
+  margin: 0px 0 5px;
+}
+.post-heading button {
+  margin-top: 20px;
+}
+.blog-metas .post-heading {
+  margin: 0 0 0 20px;
+}
+.blog-metas h4 {
+  color: black;
+}
+.blog-metas ul a {
+  color: #777777;
+}
+.blog-metas ul a:hover {
+  color: black;
+}
+.blog-category-list ul a {
+  color: #777777;
+}
