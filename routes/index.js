@@ -10,6 +10,9 @@ var utils = require('../models/business_logic/utils/utils.js');
 
 /* GET home page. */
   mongoClient.connect(mongoUrl, function(err, db) {
+    if (err) {
+      throw "Error connecting to database.";
+    }
 router.get('/', function (req, res, next) {
     var collection = db.collection('posts');
     collection.find({}, {limit:8, sort:{id: -1}}).toArray(function(err, data) {
