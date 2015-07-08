@@ -35,7 +35,7 @@ block post_content
                   span.line.line-left
                   span.line-text comments
                   span.line.line-right
-              form.input_wrapper(action='/blog/post/comments' method='POST')
+              form.input_wrapper(action='/blog/post/comments' method='POST'  target='dummyframe')
                 .inner
                   .alert.alert-danger(role='alert')
                     span.glyphicon.glyphicon-exclamation-sign(aria-hidden='true')
@@ -49,6 +49,7 @@ block post_content
                     h5 Content (*)
                     textarea#commenter_content(type='text' rows=5 name='commenter_content' ng-model="content") 
                   button#submit_comment.btn.btn-default(type='submit' value='Submit') Post
+                  iframe(width='0' height='0' border='0' name='dummyframe' id='dummyframe')
               h2 Comments
               .container
                 each comment in post.comments
@@ -57,6 +58,10 @@ block post_content
                       h4= comment.name
                     .col-sm-8
                       p= comment.content
-                  
+                .row
+                  .col-sm-3
+                    h4 {{name}}
+                  .col-sm-8
+                    p {{content}}
   footer
     include ./includes/footer_section.jade

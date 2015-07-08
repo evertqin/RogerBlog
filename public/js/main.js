@@ -61,7 +61,7 @@
             }
           });
         }
-        hideLongLine('.more', 50);
+        hideLongLine('.more', 45);
         hideLongLine('.box-title', 25);
 
 
