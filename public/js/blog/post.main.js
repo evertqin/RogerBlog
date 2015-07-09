@@ -35,7 +35,10 @@ function loadjscssfile(filename, filetype){
         }
       });
     }());
-
+    
+    $('pre code').each(function(i, block) {
+       hljs.highlightBlock(block);
+     });
 
 
   });

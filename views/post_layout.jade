@@ -5,10 +5,10 @@ html(ng-app)
     title= 'blog post'
     include ./includes/common_includes
     link(rel='stylesheet', href='/stylesheets/post.css')
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/default.min.css')
     script(src='//cdn.jsdelivr.net/highlight.js/8.6/highlight.min.js')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.js')
     script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js')
     script(src='/js/blog/post.main.js')
-    script hljs.initHighlightingOnLoad();
   body
     block post_content
