@@ -1,0 +1,17 @@
+Title: Custom log4net appender for broadcasting log events
+Author: Ruogu Qin
+Date: 07/08/2015
+Tag: technology
+     programming
+     C#
+
+Recently, I was assigned a task to create a module that other modules can subscribe to and get updates 
+
+
+
+
+
+
+
+
+
