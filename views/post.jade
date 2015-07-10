@@ -10,8 +10,6 @@ mixin comments_layout(avatar, name, content)
 
 block post_content
   body
-    .loader-wrapper
-      .loader
     include ./includes/header-navbar-section
     section#post-body
       .container
@@ -29,21 +27,34 @@ block post_content
                     - var date = new Date(post.timestamp);
                     span#posted-time!= date.toDateString()
                     span  /
-                    - var count = post.comments == undefined ? 0 :post.comments.length;
-                    span#num-comments= count
+                    //- var count = post.comments == undefined ? 0 :post.comments.length;
+                    span#num-comments.disqus-comment-count(data-disqus-url= fullUrl)
                     span &nbsp;comm.
                   h5#title
                     a(href="#")!= post.title
                     i.fa.fa-pencil-square-o.edit-button
                 .post-entry
                   .content.more!= post.content
-            //- .comments
-            //-   .tel_wrapper
-            //-     .tel_element.tel_divider
-            //-     .tel_element.tel_text_seperator(style="white-space:nowrap;")
-            //-       span.line.line-left
-            //-       span.line-text comments
-            //-       span.line.line-right
+                  
+                  
+            .comments
+              .tel_wrapper
+                .tel_element.tel_divider
+                .tel_element.tel_text_seperator(style="white-space:nowrap;")
+                  span.line.line-left
+                  span.line-text comments
+                  span.line.line-right
+              #disqus_thread
+              script.
+                /* * * CONFIGURATION VARIABLES * * */
+                var disqus_shortname = 'tripplaninfo';
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+                (function() {
+                  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+              noscript. Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a> 
             //-   form.input_wrapper(action='/blog/post/comments' method='POST'  target='dummyframe')
             //-     .inner
             //-       //- .alert.alert-danger(role='alert')
@@ -67,6 +78,6 @@ block post_content
             //-       +comments_layout(null,'{{name}}', '{{content}}')
             //-       each comment in post.comments
             //-         +comments_layout(null,comment.name, comment.content)
-                
+    include ./includes/body_scripts.jade            
   footer
     include ./includes/footer_section.jade

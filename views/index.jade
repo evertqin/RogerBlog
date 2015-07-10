@@ -24,8 +24,9 @@ mixin highlight_box(id, name, date, icon, post)
       .title-block
         .box-stat-info
           span#publish-date= date
+          -var fullUrl = baseUrl + '/blog/post/item/' + post._id;
           span#comments
-            i.fa.fa-comments= post.comments == null ? 0 : post.comments.length
+            i.fa.fa-comments.disqus-comment-count(data-disqus-url= fullUrl)
         if block
           block
         else
@@ -99,8 +100,10 @@ block content
           p     
           | You can reach me through linkedin. I don't use twitter or facebook too much
           | except for occasinal checking in at great restaurants or places of interest during travelling.
+      include ./includes/body_scripts.jade
     footer
       include ./includes/footer_section.jade
     .scroll-up
       a.back-to-top(href="#totop" style="display:block")
         i.fa.fa-angle-double-up
+        

@@ -17,11 +17,12 @@ mongoClient.connect(mongoUrl, function(err, db) {
   var collection = db.collection('posts');
 
   router.get('/',function(req, res, next) {
+      var baseUrl = req.protocol + "://" + req.get('host');
       collection.find({},{sort:{id: -1}}).toArray(function(e, data) {
           for(var i = 0; i < data.length; ++i) {
             data[i].imgUrls = utils.extract_image_href(data[i].content);
           }
-          res.render('blog', {posts:data});
+          res.render('blog', {posts:data, baseUrl:baseUrl});
 
       });
   });
@@ -33,11 +34,6 @@ mongoClient.connect(mongoUrl, function(err, db) {
       });
   });
 
-  router.get('/blog_entries', function(req, res, next) {
-      collection.find({},{sort:{id: -1}}).toArray(function(e, docs) {
-          res.render('blog_entries', { title: 'Hey', message: 'Hello there!'});
-      });
-  });
 
   router.get('/tag_list', function(req, res, next){
     collection.find({}).toArray(function(e, docs) {

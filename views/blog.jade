@@ -37,8 +37,9 @@ block blog_content
                         - var date = new Date(post.date);
                         span#posted-time!= date.toDateString()
                         span  /
-                        -var numComm = post.comments == null ? 0 : post.comments.length;
-                        span#num-comments= numComm
+                        //-var numComm = post.comments == null ? 0 : post.comments.length;
+                        -var fullUrl = baseUrl + '/blog/post/item/' + post._id;
+                        span#num-comments.disqus-comment-count(data-disqus-url= fullUrl)
                         span &nbsp;comm.
                       h5#title
                         a(href="#")!= post.title
@@ -59,5 +60,6 @@ block blog_content
                   h4 Categories
                 .list-body
                   ul
+      include ./includes/body_scripts.jade
                                 
               
