@@ -20,7 +20,6 @@ mongoClient.connect(mongoUrl, function(err, db) {
 
   router.get('/item/*', function(req, res, next){
     var pathname = url.parse(req.url).pathname;
-    console.log("yes");
     var id = pathname.substring(pathname.lastIndexOf('/') + 1);
     collection.findOne({_id: mongo.ObjectId(id)}, function(err, doc) {
       handlers.routePost(path.basename(doc.folder_name))(doc.folder_name, function(data) {

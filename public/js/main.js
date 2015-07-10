@@ -3,6 +3,11 @@
  */
 
 (function ($) {
+    $(window).load(function() {
+      $(".loader").fadeOut("slow");
+    });
+
+
     $(document).ready(function () {
         $(window).scroll(function () {
             var height = $(window).scrollTop();

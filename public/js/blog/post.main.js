@@ -20,6 +20,11 @@ function loadjscssfile(filename, filetype){
 }
 
 (function ($) {
+
+  $(window).load(function() {
+    $(".loader").fadeOut("slow");
+  });
+
   $(document).ready(function () {
     if(typeof String.prototype.startsWith != 'function') {
       String.prototype.startsWith = function(str) {
@@ -35,7 +40,7 @@ function loadjscssfile(filename, filetype){
         }
       });
     }());
-    
+
     $('pre code').each(function(i, block) {
        hljs.highlightBlock(block);
      });

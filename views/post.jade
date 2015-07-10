@@ -10,6 +10,8 @@ mixin comments_layout(avatar, name, content)
 
 block post_content
   body
+    .loader-wrapper
+      .loader
     include ./includes/header-navbar-section
     section#post-body
       .container

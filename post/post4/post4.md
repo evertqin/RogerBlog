@@ -9,7 +9,8 @@ Recently, I was assigned a task to create a module that other modules can subscr
 
 To construct the whole process, we need at least 3 classes:
 
-1. BroadcastEventArgs
+* BroadcastEventArgs
+
 This is a class holding most of the data we wish to broadcast to clients. I could just reuse the LoggingEvent class provided by log4net, but since we might need more customization, creating a new class might be a better choice.
 
 ~~~~{.csharp}
@@ -28,7 +29,8 @@ namespace log4netEventBroadcast
 }
 ~~~~
 
-2. BroadcastEventService
+* BroadcastEventService
+
 This is a singleton class for event broadcasting and handling. Our broadcasters can call the functions (such as Start(), Broadcast(), etc) to signal some events. Clients can subscribe to several provided events provided by this class.
 
 ~~~~{.csharp}
@@ -76,10 +78,10 @@ namespace log4netEventBroadcast
 
 		public void Start()
 		{
-			if (BroadcastStart != null) 
+			if (BroadcastStart != null)
 			{
-				BroadcastStart (this, null);	
-			}	
+				BroadcastStart (this, null);
+			}
 		}
 
 		public void Broadcast(BroadcastEventArgs e)
@@ -101,7 +103,7 @@ namespace log4netEventBroadcast
 }
 ~~~~
 
-3. EventAppender
+* EventAppender
 This class implements AppenderSkeleton. It is used for log4net. We need to override the Append member function to broadcast events by calling functions provided by BroadcastEventService.
 
 ~~~~{.csharp}
@@ -127,7 +129,7 @@ namespace log4netEventBroadcast
 						ThreadName = loggingEvent.ThreadName,
 						Message = loggingEvent.MessageObject.ToString(),
 					});
-			} 
+			}
 
 		}
 	}
@@ -135,11 +137,3 @@ namespace log4netEventBroadcast
 ~~~~
 
 The complete project can be found on github: [https://github.com/evertqin/log4netEventBroadcast](https://github.com/evertqin/log4netEventBroadcast).
-
-
-
-
-
-
-
-

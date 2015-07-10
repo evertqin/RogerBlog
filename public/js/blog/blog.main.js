@@ -3,6 +3,10 @@
  */
 
 (function ($) {
+    $(window).load(function() {
+      $(".loader").fadeOut("slow");
+    });
+
     $(document).ready(function () {
         //$('input[name="submit"]').click(function() {
         //    // The following code snippet demonstrate how to send a get request to the server
