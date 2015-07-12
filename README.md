@@ -1,3 +1,6 @@
 # RogerBlog
-My Personal Blog, still improving!
-Will add more soon!
+Required packages (All can be installed through pip):
+* Python
+  ** pymongo
+  ** imgurpython
+  ** Pillow (Maintained fork of PIL)

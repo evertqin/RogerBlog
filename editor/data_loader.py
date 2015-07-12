@@ -1,5 +1,5 @@
 #!/usr/bin/local/python3.4
-from post_formatter import *
+from post_formatter import dataFormatter
 from dbloader import MongoConnector
 from logger import FileGenLogger
 import sys
@@ -45,7 +45,7 @@ def insert_into_db(data):
 
 def update_db_content(data):
     if posts.find({"id": data["id"]}).count() != 0:
-        posts.update({"id": data["id"]}, data)
+        logger.info(posts.update({"id": data["id"]}, data))
     else:
         logger.error("Cannot fild post id: " + str(data["id"]) + ". Do you mean to insert?")
 
@@ -88,7 +88,7 @@ if __name__ == "__main__":
         
     if args.post is not None:
         if args.update is True:
-            data = process(args.post)
+            data = dataFormatter(args.post)
         else:
             id = None
             if args.id is None:
@@ -96,7 +96,7 @@ if __name__ == "__main__":
                 id = get_largest_post_id() + 1
             else:
                 id = args.id
-            data = process(args.post, id)
+            data = dataFormatter(args.post, id)
             
         if args.preview is True:
             pprint.PrettyPrinter(indent=4).pprint(data)
