@@ -60,6 +60,9 @@
 
       $('.more').each(function () {
         var content = $(this).html();
+        var re = /<img.*?>/gi;
+        content = content.replace(re, '')
+        $(this).html(content);
         if (content.length > showChar) {
           var c = content.substr(0, showChar);
           var h = content.substr(showChar - 1, content.length - showChar);
@@ -69,17 +72,6 @@
       });
     }());
 
-    // This following is used to update the fontend posts
-    // now this is replaced by direct jade
-    //(function() {
-    //    $.ajax("/blog/blog_entries").done(function(data) {
-    //        for(var i = 0; i < data.length; ++i) {
-    //            $("#article" + i + " #title a").text(data[i].title);
-    //            $("#article" + i + " .post-entry .content").text(data[i].content);
-    //        }
-    //    })
-    //})();
-    //console.log(posts);
     $(".edit-button").on('click', function() {
       console.log("This is called");
     });
@@ -90,6 +82,22 @@
       }
 
     });
+
+    //info about pagination: http://flaviusmatis.github.io/simplePagination.js/
+    var POST_PER_PAGE = 4;
+    $.ajax('/blog/blog_count').done(function(data) {
+      $(function() {
+        $('.pagination').pagination({
+          items: data.count,
+          itemsOnPage: POST_PER_PAGE,
+          cssStyle: 'light-theme',
+          hrefTextPrefix:"",
+          displayedPages:10,
+          currentPage:window.location.href.substring(window.location.href.lastIndexOf('/') + 1)
+        });
+      });
+    });
+
 
 
 

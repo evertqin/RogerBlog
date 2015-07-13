@@ -87,8 +87,10 @@ if __name__ == "__main__":
         show_db_content()
         
     if args.post is not None:
+        isPreview = args.preview
+        print(isPreview)
         if args.update is True:
-            data = dataFormatter(args.post)
+            data = dataFormatter(args.post, None, isPreview)
         else:
             id = None
             if args.id is None:
@@ -96,9 +98,9 @@ if __name__ == "__main__":
                 id = get_largest_post_id() + 1
             else:
                 id = args.id
-            data = dataFormatter(args.post, id)
+            data = dataFormatter(args.post, id, isPreview)
             
-        if args.preview is True:
+        if isPreview is True:
             pprint.PrettyPrinter(indent=4).pprint(data)
             exit(1)
 

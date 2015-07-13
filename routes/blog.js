@@ -4,6 +4,7 @@
 var express = require('express');
 //var monk = require('monk');
 //var db = monk('mongodb://evertqin:QG3VGLyZlRWm@ds047632.mongolab.com:47632/blog');
+var url = require('url');
 var router = express.Router();
 var post = require('./post');
 var utils = require('../models/business_logic/utils/utils.js');
@@ -11,22 +12,35 @@ var utils = require('../models/business_logic/utils/utils.js');
 var mongo = require('mongodb');
 var mongoClient = mongo.MongoClient;
 var mongoUrl = 'mongodb://evertqin:QG3VGLyZlRWm@ds047632.mongolab.com:47632/blog';
-
+var POST_PER_PAGE = 4;
 
 mongoClient.connect(mongoUrl, function(err, db) {
   var collection = db.collection('posts');
 
-  router.get('/',function(req, res, next) {
+  router.get('/page/[1-9]+/',function(req, res, next) {
+      var pathname = url.parse(req.url).pathname;
+      var page = pathname.substring(pathname.lastIndexOf('/') + 1);
+      console.log(page)
       var baseUrl = req.protocol + "://" + req.get('host');
-      collection.find({},{sort:{id: -1}}).toArray(function(e, data) {
+      var options = {
+        sort:{id: -1},
+        limit : POST_PER_PAGE,
+        skip: (parseInt(page) - 1) * POST_PER_PAGE
+      };
+      collection.find({},options).toArray(function(e, data) {
           for(var i = 0; i < data.length; ++i) {
             data[i].imgUrls = utils.extract_image_href(data[i].content);
           }
           res.render('blog', {posts:data, baseUrl:baseUrl});
-
       });
   });
 
+
+  router.get('/blog_count', function(req, res, next) {
+    collection.count(function(err, count) {
+      res.send({count: count});
+    });
+  });
 
   router.get('/raw', function(req, res) {
       collection.find({}).toArray(function(e, docs) {

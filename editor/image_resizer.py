@@ -5,14 +5,14 @@ import os.path
 
 logger = Logger().getLogger()
 TEMP_DIR = "smallImage"
-HORIZONTAL_RESULTION = 1680
+HORIZONTAL_RESULTION = 820
 
 def imageProcess(sourceFile):
     orgFilePath = os.path.dirname(sourceFile)
     destFilePath = os.path.join(orgFilePath, TEMP_DIR)
     if not os.path.exists(destFilePath):
         logger.warn("The specified directory {0} is not found, creating..".format(destFilePath))
-        os.makedirs(TEMP_DIR)
+        os.makedirs(destFilePath)
 
     def readImage():
         if not os.path.isfile(sourceFile):
@@ -32,11 +32,13 @@ def imageProcess(sourceFile):
         targetFile = os.path.join(destFilePath, os.path.basename(sourceFile))
         im.save(targetFile)
         logger.info("{0} saved.".format(targetFile))
+        return targetFile
 
     def process():
         im = readImage()
         im = resizeImage(im)
-        saveImage(im)
+        return saveImage(im)
+
 
     return process()
 

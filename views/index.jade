@@ -13,14 +13,6 @@ mixin highlight_box(id, name, date, icon, post)
         a(id=id href='/blog/post/item/' + post._id )
           h4.box-title= name
       .box-gray(style='background-image:url("' + image + '");background-size: 100%;-webkit-filter: grayscale(50%);')
-        //.icon
-        //  i.fa.fa3x(class=icon)
-        //.box-stat-info
-          //span#publish-date= date
-          //span#comments
-          //  i.fa.fa-comments= post.comments == null ? 0 : post.comments
-          //span#shares
-          //  i.fa.fa-heart 15
       .title-block
         .box-stat-info
           span#publish-date= date

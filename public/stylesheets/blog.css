@@ -65,3 +65,10 @@ a.anchor {
 .blog-category-list ul a {
   color: #777777;
 }
+.pagination_wrapper {
+  position: relative;
+  margin: auto;
+  width: 60%;
+  padding: 25px 0 0 60px;
+  text-align: center;
+}

@@ -1,41 +1,46 @@
 from logger import Logger
 from imgurpython import ImgurClient
+from image_resizer import imageProcess
 import os.path, time
 import image_resizer
 import urllib.request
+import json
 
 logger = Logger().getLogger()
 logger.info("Start generating file")
 
-AUTH_TEMP_FILE = "auth.temp"
-PIN_EXP_THRES = 3600
-client_id = "b68d8e4eed40e56"
-client_secret = "16ff5353d62f52de67a1296267a2b23def1faf0d"
-client = ImgurClient(client_id, client_secret)
+
 
 #api.imgur.com/oauth2/authorize?client_id=b68d8e4eed40e56&response_type=pin&state=Add
 
 class ImageUploader:
     imageList = None #list of full path of image files in a single post
     imageUrlList = []
-
+    client_id = "b68d8e4eed40e56"
+    client_secret = "16ff5353d62f52de67a1296267a2b23def1faf0d"
+    client = ImgurClient(client_id, client_secret)
+    GLOBAL_HASH = "urlhash"
+    urlHash = None
+    
     def __init__(self, imageList):
         pin = None
 
-        authorization_url = client.get_auth_url('pin')
+        authorization_url = self.client.get_auth_url('pin')
         print("Go to the following link to obtain a pin: {0}".format(authorization_url))
         pin = input("Enter pin code: ")
-        credentials = client.authorize(pin, 'pin')
-        client.set_user_auth(credentials['access_token'], credentials['refresh_token'])
+        credentials = self.client.authorize(pin, 'pin')
+        self.client.set_user_auth(credentials['access_token'], credentials['refresh_token'])
         logger.info("Authentication successful! Here are the details:")
         logger.info("   Access token:  {0}".format(credentials['access_token']))
         logger.info("   Refresh token: {0}".format(credentials['refresh_token']))
-        logger.info("   Generating pin expiration indicator...")
-       # with open(AUTH_TEMP_FILE, 'w') as f: # do not consider racing
-       #     f.write(pin)
 
-                
+        if not os.path.isfile(self.GLOBAL_HASH):
+            raise Exception("Cannot find the local path to url hash file {0}".format(self.GLOBAL_HASH))
+
+        self.urlHash = json.load(open(self.GLOBAL_HASH))
+        
         self.imageList = imageList
+
 
     def checkAuthenticationStatus(self):
         isGettingNewPin = False
@@ -51,19 +56,20 @@ class ImageUploader:
         return False
 
     def getExistingPictures(self):
-        albums = client.get_account_album_ids("evertqin")
+        albums = self.client.get_account_album_ids("evertqin")
         for album in albums:
-            print(client.get_album(album))
-            print(client.get_album_images(album))
+            print(self.client.get_album(album))
+            print(self.client.get_album_images(album))
 
     def getAlbumId(self, albumName):
-        albums = client.get_account_album_ids("evertqin")
+        albums = self.client.get_account_album_ids("evertqin")
         for album in albums:
-            albumInfo = client.get_album(album)
+            albumInfo = self.client.get_album(album)
             if albumInfo.title == albumName:
                 return album
         raise Exception("Cannot find given album: {0}".format(albumName))
-        
+
+    
     def uploadImage(self):
         '''
         Here I am going to upload to my album
@@ -78,12 +84,22 @@ class ImageUploader:
         for path in self.imageList:
             if not os.path.isfile(path):
                 raise Exception("The given path {0} does not exist".format(path))
-            logger.info("Uploading image...")
-            result = client.upload_from_path(path, config=config, anon=False)
-
-            self.imageUrlList.append(result)
-            logger.info("Done")
-        print(self.imageUrlList)
+            
+            logger.info("Processing {0}".format(path))
+            if path in self.urlHash:
+                logger.info("Found image {0} was already uploaded as {1}".format(path, self.urlHash[path]))
+                self.imageUrlList.append(self.urlHash[path])
+            else:
+                logger.info("shinking image before uploading")
+                newpath = imageProcess(path) # update the path to use smaller image for faster uploading
+                self.urlHash[path] = newpath
+                logger.info("Uploading image...")
+                result = self.client.upload_from_path(newpath, config=config, anon=False)
+                self.imageUrlList.append(result["link"])
+            
+        json.dump(self.urlHash, open(self.GLOBAL_HASH, 'w'))
+        logger.info("Done, processed files, {0}".format(','.join(self.imageUrlList)))
+        
            
 
 
