@@ -20,7 +20,6 @@ mongoClient.connect(mongoUrl, function(err, db) {
   router.get('/page/[1-9]+/',function(req, res, next) {
       var pathname = url.parse(req.url).pathname;
       var page = pathname.substring(pathname.lastIndexOf('/') + 1);
-      console.log(page)
       var baseUrl = req.protocol + "://" + req.get('host');
       var options = {
         sort:{id: -1},
@@ -30,7 +29,9 @@ mongoClient.connect(mongoUrl, function(err, db) {
       collection.find({},options).toArray(function(e, data) {
           for(var i = 0; i < data.length; ++i) {
             data[i].imgUrls = utils.extract_image_href(data[i].content);
+            data[i].content = utils.remove_image_href(data[i].content).substr(0, 200);
           }
+
           res.render('blog', {posts:data, baseUrl:baseUrl});
       });
   });

@@ -19,7 +19,8 @@ mongoClient.connect(mongoUrl, function(err, db) {
     collection.find({}, {limit:8, sort:{id: -1}}).toArray(function(err, data) {
       for(var i = 0; i < data.length; ++i) {
         data[i].imgUrls = utils.extract_image_href(data[i].content);
-        data[i].content = data[i].content.substr(0, 50); // reduce the data to send to front end
+        // reduce the data to send to front end
+        data[i].content = utils.remove_image_href(data[i].content).substr(0, 100);
       }
       res.render('index', {posts:data, baseUrl:baseUrl});
     });

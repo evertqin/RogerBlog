@@ -112,6 +112,11 @@ h2.section-title {
   background: #f8f8f8;
   text-align: center;
 }
+.rq-p-col .box .box-title {
+  overflow: hidden;
+  height: 20px;
+  box-sizing: border-box;
+}
 .rq-p-col .box-gray {
   padding: 20px 20px 0;
   height: 140px;
@@ -134,7 +139,10 @@ h2.section-title {
   margin-top: 2px;
   padding: 15px 20px 15px 20px;
   background-color: #808080;
-  text-align: center;
+  text-align: left;
+  height: 130px;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 .rq-p-col .title-block h4 {
   color: white;

@@ -1,20 +1,27 @@
+var htmlparser = require("htmlparser2");
+
+
+
 var utils = utils || {}
 
 utils.extract_image_href = function(content) {
-  var re = /<img.*?(?=<\/)/g;
-  var imgs = re.exec(content);
-
-var srcRe = /src=\"(.*?(?=\"))/;
   var links = [];
-  while(imgs != null) {
-    var link = srcRe.exec(imgs[0]);
-    if(link != null) {
-      links.push(link[1]);
+  var parser = new htmlparser.Parser({
+    onopentag: function(name, attribs){
+      if(name === "img" ){
+        links.push(attribs.src);
+      }
     }
-    imgs = re.exec(content);
+  }, {decodeEntities: true});
 
-  }
+  parser.write(content);
+  parser.end();
   return links;
+}
+
+utils.remove_image_href = function(content) {
+  var result;
+  return content.replace(/<img.*?\/>/g, "");
 }
 
 utils.summary_category = function(posts) {
@@ -30,4 +37,3 @@ utils.summary_category = function(posts) {
 
 
 module.exports = utils;
-//utils.extract_image_href('<img src="dsds" dsds/></img><img src="dsddsdss" dsds/></img>');

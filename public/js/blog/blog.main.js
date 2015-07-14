@@ -60,8 +60,8 @@
 
       $('.more').each(function () {
         var content = $(this).html();
-        var re = /<img.*?>/gi;
-        content = content.replace(re, '')
+        //var re = /<img.*?>/gi;
+      //  content = content.replace(re, '')
         $(this).html(content);
         if (content.length > showChar) {
           var c = content.substr(0, showChar);

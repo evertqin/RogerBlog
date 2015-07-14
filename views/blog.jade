@@ -42,7 +42,7 @@ block blog_content
                         span#num-comments.disqus-comment-count(data-disqus-url= fullUrl)
                         span &nbsp;comm.
                       h5#title
-                        a(href="#")!= post.title
+                        a(href="/blog/post/item/" + post._id)!= post.title
                     .post-entry
                       .content.more!= post.content
                     button(type="submit", onclick="location.href='/blog/post/item/" + post._id + "'").btn.btn-default#read-more Read More

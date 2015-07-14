@@ -92,9 +92,10 @@ class ImageUploader:
             else:
                 logger.info("shinking image before uploading")
                 newpath = imageProcess(path) # update the path to use smaller image for faster uploading
-                self.urlHash[path] = newpath
+
                 logger.info("Uploading image...")
                 result = self.client.upload_from_path(newpath, config=config, anon=False)
+                self.urlHash[path] = result["link"]
                 self.imageUrlList.append(result["link"])
             
         json.dump(self.urlHash, open(self.GLOBAL_HASH, 'w'))
