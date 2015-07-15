@@ -18,7 +18,8 @@ mixin highlight_box(id, name, date, icon, post)
           span#publish-date= date
           -var fullUrl = baseUrl + '/blog/post/item/' + post._id;
           span#comments
-            i.fa.fa-comments.disqus-comment-count(data-disqus-url= fullUrl)
+            i.fa.fa-comments
+            span.disqus-comment-count(data-disqus-url= fullUrl)
         if block
           block
         else
