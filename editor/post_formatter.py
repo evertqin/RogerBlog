@@ -1,4 +1,5 @@
 #!/usr/bin/local/python3.4
+
 from logger import FileGenLogger
 import os
 import argparse
@@ -15,12 +16,12 @@ logger.info("Start generating file")
 PLATFORM = platform.system()
 BASE_FOLDER = ""
 if PLATFORM == 'Darwin':
-    BASE_FOLDER =  "/Users/ruoguqin/projects/RogerBlog/post/"
+    BASE_FOLDER = "/Users/ruoguqin/projects/RogerBlog/post/"
 elif PLATFORM == 'Linux':
     BASE_FOLDER = "/home/ruogu/projects/RogerBlog/post/"
 
 EXTRA_DATA_FOLDER = "../post/"
-GLOBAL_FILENAME = 'gId';
+GLOBAL_FILENAME = 'gId'
 GLOBAL_TEMPLATE = """
 // json
 {
@@ -34,7 +35,11 @@ GLOBAL_TEMPLATE = """
     , "comments" : []
 }
 """
-def dataFormatter(postName, id: 'You can either specify id if None, system will assign a new id for you' = None, preview = False):
+
+
+def dataFormatter(postName,
+                  id: 'You can either specify id if None, system will assign a new id for you'=None,
+                  preview=False):
     def getDocsFromInputFolder(postFolder):
         logger.info("Validating input folder")
         mdFileList = []
@@ -133,9 +138,8 @@ def dataFormatter(postName, id: 'You can either specify id if None, system will 
         mdFile = getDocsFromInputFolder(postFolder)
 
         filename = os.path.join(postFolder, mdFile)
-        
-        return generate_doc(convertImageToImgur(filename), id, fileFolder)
 
+        return generate_doc(convertImageToImgur(filename), id, fileFolder)
 
     return process()
 
@@ -148,5 +152,3 @@ if __name__ == "__main__":
     parser.add_argument('--id', type=str, help='The id of the post, if not specified, a global id will be assigned.')
     args = parser.parse_args()
     pprint.PrettyPrinter(indent=4).pprint(dataFormatter(args.post, args.id))
-
-
