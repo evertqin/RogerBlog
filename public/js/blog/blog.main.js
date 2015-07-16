@@ -78,7 +78,8 @@
 
     $.ajax('/blog/tag_list').done(function(data) {
       for(var k in data.tag_list) {
-        $('.blog-category-list .list-body ul').append('<li><a href="#">' +k.firstLetterCapitalize() + '</a></li>');
+        console.log(window.location.host);
+        $('.blog-category-list .list-body ul').append('<li><a href=http://' + window.location.host + '/blog/page/' + k + '/1'  +'>' +k.firstLetterCapitalize() + '</a></li>');
       }
 
     });

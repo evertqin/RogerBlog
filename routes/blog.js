@@ -32,10 +32,37 @@ mongoClient.connect(mongoUrl, function(err, db) {
             data[i].content = utils.remove_image_href(data[i].content).substr(0, 200);
           }
 
+        //  var tags = utils.summary_category(data);
+
           res.render('blog', {posts:data, baseUrl:baseUrl});
       });
   });
 
+  router.get('/page/[a-z]+/[1-9]+', function(req, res, next) {
+    var pathname = url.parse(req.url).pathname;
+    var baseUrl = req.protocol + "://" + req.get('host');
+    var tokens = pathname.split('/');
+    var category = tokens[2];
+    var page = tokens[3];
+
+    var options = {
+      sort : {id: -1},
+      limit:POST_PER_PAGE,
+      skip: (parseInt(page) - 1) * POST_PER_PAGE
+    };
+
+    var re = new RegExp("^" + category + "$", 'i');
+    collection.find({tag: re}, options).toArray(function(err, data) {
+      for(var i = 0; i < data.length; ++i) {
+        data[i].imgUrls = utils.extract_image_href(data[i].content);
+        data[i].content = utils.remove_image_href(data[i].content).substr(0, 200);
+      }
+
+
+        res.render('blog', {posts:data, baseUrl:baseUrl});
+
+    });
+  });
 
   router.get('/blog_count', function(req, res, next) {
     collection.count(function(err, count) {
