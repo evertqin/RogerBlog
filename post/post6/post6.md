@@ -2,7 +2,7 @@ Title: Atom and Emacs, how to support Chinese
 Author: Ruogu Qin
 Date: 07/13/2015
 Tag: Technology
-     Editor  
+     Editor
      Atom
      Emacs
 

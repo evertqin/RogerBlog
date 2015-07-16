@@ -17,7 +17,7 @@ block post_content
                 .post-heading
                   h6
                     span Posted:&nbsp;
-                    - var date = new Date(post.timestamp);
+                    - var date = new Date(post.date);
                     span#posted-time!= date.toDateString()
                     span  /
                     //- var count = post.comments == undefined ? 0 :post.comments.length;
@@ -25,7 +25,7 @@ block post_content
                     span &nbsp;comm.
                   h5#title
                     a(href="#")!= post.title
-                    i.fa.fa-pencil-square-o.edit-button
+                    //i.fa.fa-pencil-square-o.edit-button
                 .post-entry
                   .content.more!= post.content
             .comments
