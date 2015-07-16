@@ -133,16 +133,16 @@ h2.section-title {
 .rq-p-col .title-block {
   margin-top: 2px;
   padding: 15px 20px 15px 20px;
-  background-color: #808080;
+  background-color: #68a4c4;
   text-align: left;
   height: 130px;
   overflow: hidden;
   box-sizing: border-box;
 }
-.rq-p-col .title-block h4 {
+.rq-p-col .title-block h5 {
   color: white;
 }
-.rq-p-col .title-block h4 p {
+.rq-p-col .title-block h5 p {
   color: white;
 }
 section.copy-right {

@@ -56,12 +56,25 @@
           });
         }
 
+
+        // check if is chinese of not
+        function isChinese(value) {
+          var len = value.length;
+          var cnChar = value.match(/[^\x00-\x80]/g);
+          return cnChar !== null;
+        }
+
         function hideLongLine(tag, showChar) {
           var ellipsestext = '...';
           var moretext = 'more';
           var lesstext = 'less';
           $(tag).each(function() {
             var content = $(this).html();
+
+            if(isChinese(content)) {
+              showChar /= 2;
+            }
+
             if (content.length > showChar) {
                 var c = content.substr(0, showChar);
                 var h = content.substr(showChar - 1, content.length - showChar);
@@ -70,7 +83,7 @@
             }
           });
         }
-        hideLongLine('.more', 60);
+        hideLongLine('.more', 120);
         hideLongLine('.box-title', 40);
 
 

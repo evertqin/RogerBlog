@@ -59,7 +59,7 @@ block content
               each post, i in posts
                 - var date = new Date(post.date);
                 +highlight_box("title" + i, post.title, date.toDateString(),"fa-desktop", post)
-                  h4.more!= post.content
+                  h5.more!= post.content
     a.anchor#about-me(name="about-me")
     section.about-me.article
       .container
