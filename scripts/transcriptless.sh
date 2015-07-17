@@ -11,3 +11,6 @@ do
         lessc $stylesheet_folder/$file > $stylesheet_folder/${filename}.css
     fi
 done
+
+proj
+grunt

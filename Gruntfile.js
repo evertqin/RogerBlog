@@ -2,13 +2,19 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         uglify: {
-            options: {
-                banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n' },
-            build: {
-                src: 'src/<%= pkg.name %>.js',
-                dest: 'build/<%= pkg.name %>.min.js'
-            }
-        }
+            dynamic_mapping: {
+                files: [
+                    {
+                    expand: true,
+                    cwd:'public/js',
+                    src:'**/*.js',
+                    dest:'public/build/',
+                    ext:'.min.js',
+                        extDot: 'first'
+                    },
+                ],
+            },
+        },
     });
 
     // Load the plugin that provides the "uglify" task.
@@ -16,4 +22,4 @@ module.exports = function(grunt) {
 
     // Default task(s).
     grunt.registerTask('default', ['uglify']);
-}
+};
