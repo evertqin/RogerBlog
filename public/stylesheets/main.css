@@ -4,19 +4,24 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Raleway', sans-serif;
+  font-family: 'OpenSans', sans-serif;
   font-weight: normal;
+}
+.quote_wrapper {
+  margin: -50px 0 0 -100px;
+  position: absolute;
+  width: 100%;
+  background-color: white;
+  opacity: 0.9;
 }
 .bcg h2 {
   font-size: 50px;
-  margin-top: 0;
-  padding-top: 0;
   position: relative;
-  top: -40px;
+  color: #777777;
 }
 .bcg p {
+  color: #777777;
   position: relative;
-  top: -40px;
 }
 a {
   color: #777777;
@@ -54,7 +59,7 @@ a.anchor {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
-  height: 1080px;
+  height: 800px;
   width: 100%;
 }
 #slide-1 .bcg {
