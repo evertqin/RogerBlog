@@ -114,6 +114,8 @@ h2.section-title {
   box-sizing: border-box;
 }
 .rq-p-col .box-gray {
+  cursor: pointer;
+  cursor: hand;
   padding: 20px 20px 0;
   height: 140px;
   -webkit-transition: opacity 1s ease-in-out;

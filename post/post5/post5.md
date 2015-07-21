@@ -2,7 +2,7 @@ Title: 加拿大Banff, Yoho, Jasper游记(一)
 Author: Ruogu Qin
 Date: 07/12/2015
 Tag: travel
-     outdoor
+     routdoor
      hiking
 
 从加拿大回美国已一周有余， 一直计划着写这篇游记，无奈琐事甚多，一直拖到现在才有心情安心坐下来仔细回味那片国家公园令人窒息的美景。
@@ -10,7 +10,7 @@ Tag: travel
 ![Beautiful Scene](/media/ruogu/Entertainment/Pictures/2015-07-05 banff_yoho_jasper/banff_yoho_jasper 186.JPG)
 
 
-###第一天 -- 初到卡尔加里
+####第一天————初到卡尔加里
 
 经过了半天的飞行，我们一行人在当地时间下午4时左右到达位于阿尔伯塔省西南的城市卡尔加里。卡城是加拿大中西部最大的城市，按照2011年的人口普查，市内人口有1,096,833人，照加拿大的城市规模，可真算是个巨无霸城市。飞机上的一个加拿大老人一路上不停向我介绍卡城各种景点，各种活动，他特别提到加拿大日（Canada Day）如今为期十天的[stampete（牛仔节）](http://www.calgarystampede.com/stampede)， 尤其引人注目的是活动期间每天早晨的早餐都是免费的。他还说这个节日不仅是卡城人热衷于参加，周围府镇郡乡，甚至外国的很多人都不远万里赶过来，就是为了体验一把在北国作南部牛仔的感觉。
 
@@ -32,8 +32,30 @@ Hoodoo trail一上一下只需要大约15分钟，离开时候天色尚早，我
 
 ![Peak of Tunnel Mountain](/home/ruogu/Pictures/IMG_20150627_232832.jpg)
 
-###第二天 -- Banff深度游
+####第二天————Banff深度游
 
 第二天的第一站是昨天没有找到的Grassi Lakes，其实这个景点是属于Canmore这个小镇的，所以不需要付钱就可以参观。从Canmore镇向西南方向就可以到达。我们到的时候还是清晨7点多，停车场基本是空荡荡的。上山有两条路，一条难度稍大，但是可以沿途欣赏隔壁水库的美景， 一条比较简单，但是没有什么风景。山上还有不少人在攀岩，就这这样秀美的风景攀岩，技术也会增长不少吧。
 
 ![Bird View of Grassi Lake](/home/ruogu/Pictures/IMG_20150628_094207.jpg)
+
+中午到达Banff镇，在一家叫做Maple Leaf Restaurant吃中饭。这顿算是这次旅行吃的最令人惊艳的一餐了。我们四个人都点了不同的Burger，面包烤得恰到好处，边缘金黄，里面酥软；肉饼煎得恰到好处，切开来香浓的肉质从淡淡的粉红色的肉间缓缓渗出，浸润着下面随意铺着的培根，紫色洋葱，牛油果， 番茄和生菜。配上外脆里嫩的炸红薯条，劳累和疲倦一扫而光。
+
+![Delicious Burger](/home/ruogu/Pictures/IMG_20150628_135347.jpg)
+
+饕餮盛宴一顿以后，已经下午两点多了，随后前往位于Banff镇东南方向的Bow Falls参观，顺便走一走昨天没有找到的的Bow River Trail。果然是有瀑布，车能到的地方印度人就多，比如说尼亚加拉大瀑布。同行的人说她问过印度同事，为什么他们那么喜欢瀑布，得到的结论是————瀑布对于印度人就像珠穆朗玛峰之于登山者一样，只要有机会，就一定要去朝圣的地方。Baff镇总体来说乏善可陈，和黄石周围的Jackson Hole，或者Cape Code周围的Province Town差不多，都是按照旅游小镇的模板人工堆砌起来的，大街上充斥着纪念品商店，以及为旅游者设计的路线牌，真正的Banff观光，只需将这里一笔带过。
+
+![乏善可陈的小镇](/home/ruogu/Pictures/IMG_20150628_141538.jpg)
+
+逛完瀑布，已经五点左右，虽然天没有黑，但是行程上爬Sulphur Mountain的任务大概是完不成了，于是坐了缆车上山。山上风景虽然不错，但是做缆车上来完全没有征服这座山的感觉，周围熙熙攘攘的人群，以及各种卖冰激凌纪念品的小店更是让人提不起兴趣。于是在上面逛了片刻，拍拍照片就原路缆车下山。
+
+![Sulphur Mountain山顶](/home/ruogu/Pictures/IMG_20150628_183210.jpg)
+
+景点列表：
+
+* Grassi Lake
+
+* Banff镇
+
+* Bow Fall and Bow River Trail
+
+* Sulphur Mountain
