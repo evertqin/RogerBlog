@@ -143,6 +143,10 @@ h2.section-title {
   overflow: hidden;
   box-sizing: border-box;
 }
+.rq-p-col .title-block .digest_container {
+  padding: 0 0 20px 0;
+  height: 50px;
+}
 .rq-p-col .title-block h5 {
   color: white;
 }

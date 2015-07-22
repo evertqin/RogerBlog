@@ -54,21 +54,18 @@
           var cnChar = value.match(/[^\x00-\x80]/g);
           return cnChar !== null;
         }
-
         function hideLongLine(tag, showChar) {
           var ellipsestext = '...';
           var moretext = 'more';
           var lesstext = 'less';
+
           $(tag).each(function() {
             var content = $(this).html();
+            var showCharLength = isChinese(content.substr(0, 100)) ? showChar /2 : showChar;
 
-            if(isChinese(content)) {
-              showChar /= 2;
-            }
-
-            if (content.length > showChar) {
-                var c = content.substr(0, showChar);
-                var h = content.substr(showChar - 1, content.length - showChar);
+            if (content.length > showCharLength) {
+                var c = content.substr(0, showCharLength);
+                var h = content.substr(showCharLength - 1, content.length - showCharLength);
                 var html = c + '<span class="moreellipses">' + ellipsestext + ' </span>';
                 $(this).html(html);
             }
