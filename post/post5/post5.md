@@ -2,7 +2,7 @@ Title: 加拿大Banff, Yoho, Jasper游记(一)
 Author: Ruogu Qin
 Date: 07/12/2015
 Tag: travel
-     routdoor
+     outdoor
      hiking
 
 从加拿大回美国已一周有余， 一直计划着写这篇游记，无奈琐事甚多，一直拖到现在才有心情安心坐下来仔细回味那片国家公园令人窒息的美景。
@@ -59,3 +59,5 @@ Hoodoo trail一上一下只需要大约15分钟，离开时候天色尚早，我
 * Bow Fall and Bow River Trail
 
 * Sulphur Mountain
+
+Link to second part: [http://blog.tripplan.info/blog/post/item/55adc7f457a0ae4736d8230c](http://blog.tripplan.info/blog/post/item/55adc7f457a0ae4736d8230c)

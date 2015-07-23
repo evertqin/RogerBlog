@@ -3,7 +3,7 @@ Author: Ruogu Qin
 Date: 07/08/2015
 Tag: technology
      programming
-     C#
+     CSharp
 
 Recently, I was assigned a task to create a module that other modules can subscribe to and get updates when message is logged. Naturally, one would think of using C# event to broadcast a message and client modules can subscribe to the event. Here I am leveraging the powerful log4net's custom appender to broadcast event whenever an info level message is logged.
 

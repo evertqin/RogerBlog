@@ -12,5 +12,4 @@ do
     fi
 done
 
-proj
 grunt

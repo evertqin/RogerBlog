@@ -22,10 +22,11 @@ block blog_content
             // blog columns
             .blog-posts.col-xs-9.col-sm-6.col-md-9.col-lg-9
               each post, i in posts
+                -var fullUrl = baseUrl + '/blog/post/item/' + post._id;
                 .article(id="article"+i)
                   .post-image
                     - if (post.imgUrls != null && post.imgUrls.length > 0){
-                      img(src=post.imgUrls[Math.floor(Math.random() * post.imgUrls.length)])
+                      img(onclick="location.href='" + fullUrl + "';" src=post.imgUrls[Math.floor(Math.random() * post.imgUrls.length)])
                     -}
                     - else {
                       img(src="/images/background.png")
@@ -38,7 +39,6 @@ block blog_content
                         span#posted-time!= date.toDateString()
                         span  /
                         //-var numComm = post.comments == null ? 0 : post.comments.length;
-                        -var fullUrl = baseUrl + '/blog/post/item/' + post._id;
                         span#num-comments.disqus-comment-count(data-disqus-url= fullUrl)
                         span &nbsp;comm.
                       h5#title
@@ -63,6 +63,8 @@ block blog_content
                   h4 Categories
                 .list-body
                   ul
+                    li
+                      a(href='/blog/page/1') All
                     //- each num, tag in tags
                     //-   li
                     //-     - var link = baseUrl +'/blog/page/' +  tag.toLowerCase() +'/1'; 

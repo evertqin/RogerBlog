@@ -21,10 +21,14 @@ def imageProcess(sourceFile):
         return Image.open(sourceFile)
 
     def resizeImage(im):
-        newResolution = (HORIZONTAL_RESULTION, int(HORIZONTAL_RESULTION / im.size[0] * im.size[1]))
+        if im.size[0] <= HORIZONTAL_RESULTION:
+            return im
+        newResolution = (HORIZONTAL_RESULTION,
+                         int(HORIZONTAL_RESULTION / im.size[0] * im.size[1]))
         logger.info("Resizing image to resultion {0}.".format(newResolution))
         resizedImg = im.resize(newResolution, Image.BILINEAR)
-        logger.info("Image Resizing done. New Size {0}".format(resizedImg.size))
+        logger.info("Image Resizing done. New Size {0}"
+                    .format(resizedImg.size))
         return resizedImg
 
     def saveImage(im):

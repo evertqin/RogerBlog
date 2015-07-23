@@ -85,7 +85,13 @@
 
     //info about pagination: http://flaviusmatis.github.io/simplePagination.js/
     var POST_PER_PAGE = 4;
-    $.ajax('/blog/blog_count').done(function(data) {
+    var url = '/blog/blog_count/';
+    var tokens = window.location.href.split('/');
+    if(tokens[tokens.length - 2] !== "page") {
+      url += tokens[tokens.length - 2];
+    }
+    if(window.location.href)
+    $.ajax(url).done(function(data) {
       $(function() {
         $('.pagination').pagination({
           items: data.count,
@@ -93,7 +99,7 @@
           cssStyle: 'light-theme',
           hrefTextPrefix:"",
           displayedPages:10,
-          currentPage:window.location.href.substring(window.location.href.lastIndexOf('/') + 1)
+          currentPage:window.location.href.substring(window.location.href.lastIndexOf('/') + 1),
         });
       });
     });
