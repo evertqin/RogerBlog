@@ -4,8 +4,6 @@
 
 Required packages (All can be installed through pip):
 * Python
-  ** pymongo
-  ** imgurpython
-  ** Pillow (Maintained fork of PIL)
-
-
+  * pymongo
+  * imgurpython
+  * Pillow (Maintained fork of PIL)
