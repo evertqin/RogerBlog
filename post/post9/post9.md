@@ -1,4 +1,4 @@
-Title: 加拿大Banff, Yoho, Jasper游记(三)
+Title: Canada Banff, Yoho, Jasper trip(3)
 Author: Ruogu Qin
 Date: 07/22/2015
 Tag: travel
@@ -35,3 +35,5 @@ As you go higher, you will notice the receding tree line and the last mile is en
 
 ![Map of Fairview Mountain](/home/ruogu/Pictures/PANO_20150630_155537.jpg)
 Pano view of the mountains, definitely breathtaking!. Considering this is a fairly moderate trail, I strongly suggest you take this route next time you visit Banff.
+
+Link to fourth part: [http://blog.tripplan.info/blog/post/item/55b072c357a0ae1c7186fa5a](http://blog.tripplan.info/blog/post/item/55b072c357a0ae1c7186fa5a)

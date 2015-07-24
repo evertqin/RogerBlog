@@ -22,10 +22,11 @@ mongoClient.connect(mongoUrl, function(err, db) {
     var pathname = url.parse(req.url).pathname;
     var id = pathname.substring(pathname.lastIndexOf('/') + 1);
     var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
-    collection.findOne({_id: mongo.ObjectId(id)}, function(err, doc) {
+
+    collection.findOne({id: parseInt(id)}, function(err, doc) {
       handlers.routePost(path.basename(doc.folder_name))(doc.folder_name, function(data) {
-        if(err == null) {
-          doc.raw = data != null && data.length > 0;
+        if(err === null) {
+          doc.raw = data !== undefined && data.length > 0;
           res.render('post', {post: doc, fullUrl : fullUrl});
         }
       });
@@ -34,14 +35,13 @@ mongoClient.connect(mongoUrl, function(err, db) {
   });
 
   router.post('/comments', function(req, res, next) {
-
-    var id = mongo.ObjectId(req.body.id);
-    collection.findOne({_id: id}, function(err, doc){
-      if(err == null) {
+    var id = req.body.id;
+    collection.findOne({id: id}, function(err, doc){
+      if(err === null) {
         doc.comments.push();
       }
 
-      collection.update({_id: id},
+      collection.update({id: id},
         {$push: {comments: {name:req.body.commenter_name,
                   content: req.body.commenter_content}}});
 
@@ -55,7 +55,7 @@ mongoClient.connect(mongoUrl, function(err, db) {
     var pathname = url.parse(req.url).pathname;
     var id = pathname.substring(pathname.lastIndexOf('/') + 1);
 
-    collection.findOne({_id: mongo.ObjectId(id)}, function(err, doc) {
+    collection.findOne({id: id}, function(err, doc) {
       handlers.routePost(path.basename(doc.folder_name))(doc.folder_name, function(data) {
         res.send(data);
       });

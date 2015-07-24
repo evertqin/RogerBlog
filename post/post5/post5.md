@@ -1,4 +1,4 @@
-Title: 加拿大Banff, Yoho, Jasper游记(一)
+Title: Canada Banff, Yoho, Jasper trip(1)
 Author: Ruogu Qin
 Date: 07/12/2015
 Tag: travel

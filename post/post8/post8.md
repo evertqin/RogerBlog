@@ -1,4 +1,4 @@
-Title: 加拿大Banff, Yoho, Jasper游记(二)
+Title: Canada Banff, Yoho, Jasper trip(2)
 Author: Ruogu Qin
 Date: 07/20/2015
 Tag: travel
@@ -29,3 +29,5 @@ Tag: travel
 * Vermillion Lake
 * Plains of Six Glaciers
 * Tea houses
+
+Link to third part: [http://blog.tripplan.info/blog/post/item/55af946c57a0ae627591b834](http://blog.tripplan.info/blog/post/item/55af946c57a0ae627591b834)

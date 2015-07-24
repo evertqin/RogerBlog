@@ -9,7 +9,7 @@ mixin highlight_box(id, name, date, icon, post)
   -}
   .col-lg-3.col-md-4.col-sm-5.col-xs-6
     .box(href="#")
-      -var postUrl = '/blog/post/item/' + post._id
+      -var postUrl = '/blog/post/item/' + post.id
       .aligncenter
         a(id=id href= postUrl)
           h4.box-title= name

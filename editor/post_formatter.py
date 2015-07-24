@@ -37,8 +37,7 @@ GLOBAL_TEMPLATE = """
 """
 
 
-def dataFormatter(postName,
-                  id: 'You can either specify id if None, system will assign a new id for you'=None,
+def dataFormatter(postName, id: 'You can either specify id if None, system will assign a new id for you'=None,
                   preview=False):
     def getDocsFromInputFolder(postFolder):
         logger.info("Validating input folder")
@@ -71,7 +70,6 @@ def dataFormatter(postName,
             for line in f.readlines():
                 yield line
 
-
     def convertImageToImgur(filename):
         logger.info("converting image to imgur")
         content = ''.join([line for line in read_input_file(filename)])
@@ -86,7 +84,7 @@ def dataFormatter(postName,
             path = path[1:path.rfind(')')]
             imagesToUpload.append(path)
 
-        nonlocal preview    
+        nonlocal preview
         if not preview and len(imagesToUpload) > 0:
             logger.info("Images to upload {0}".format(imagesToUpload))
             uploader = ImageUploader(imagesToUpload)
@@ -98,10 +96,11 @@ def dataFormatter(postName,
                 logger.info("{0} was replaced by {1}".format(path, uploadedImageUrls[index]))
         print(content)
         return content
-                
+
+
     def generate_doc(markdownContent:'content in string format', id, folder_name):
         # Read the markdown file
-        #markdownContent = ''.join([line for line in read_input_file(filename)])
+        # markdownContent = ''.join([line for line in read_input_file(filename)])
         md = markdown.Markdown(extensions = ['markdown.extensions.meta','markdown.extensions.extra'])
         html = md.convert(markdownContent)
         validate_meta_data(md.Meta)

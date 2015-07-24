@@ -22,7 +22,7 @@ block blog_content
             // blog columns
             .blog-posts.col-xs-9.col-sm-6.col-md-9.col-lg-9
               each post, i in posts
-                -var fullUrl = baseUrl + '/blog/post/item/' + post._id;
+                -var fullUrl = baseUrl + '/blog/post/item/' + post.id;
                 .article(id="article"+i)
                   .post-image
                     - if (post.imgUrls != null && post.imgUrls.length > 0){
@@ -42,10 +42,10 @@ block blog_content
                         span#num-comments.disqus-comment-count(data-disqus-url= fullUrl)
                         span &nbsp;comm.
                       h5#title
-                        a(href="/blog/post/item/" + post._id)!= post.title
+                        a(href="/blog/post/item/" + post.id)!= post.title
                     .post-entry
                       .content.more!= post.content
-                    button(type="submit", onclick="location.href='/blog/post/item/" + post._id + "'").btn.btn-default#read-more Read More
+                    button(type="submit", onclick="location.href='/blog/post/item/" + post.id + "'").btn.btn-default#read-more Read More
               .pagination_wrapper
                 .pagination
                 
@@ -57,7 +57,7 @@ block blog_content
                   ul
                     each post in posts
                       li
-                        a(href="/blog/post/item/" + post._id)=  post.title
+                        a(href="/blog/post/item/" + post.id)=  post.title
               .blog-category-list
                 .post-heading
                   h4 Categories

@@ -33,18 +33,19 @@
     if(typeof String.prototype.firstLetterCapitalize != 'function') {
       String.prototype.firstLetterCapitalize = function() {
         return this.charAt(0).toUpperCase() + this.slice(1);
-      }
+      };
     }
 
     if(typeof String.prototype.startsWith != 'function') {
       String.prototype.startsWith = function(str) {
         return this.slice(0, str.length) == str;
-      }
+      };
     }
 
     (function () {
       $('#navigation-items li>a').each(function() {
         var orgHref = $(this).attr('href');
+        console.log(orgHref);
         if(orgHref.startsWith('#')) {
           $(this).attr('href', '/' + orgHref);
         }
