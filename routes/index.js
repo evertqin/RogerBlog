@@ -1,9 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var utils = require('../models/business_logic/utils/utils.js');
-//var db = monk('localhost:27017/nodetest1');
-//var monk = require('monk');
-//var db = monk('mongodb://evertqin:QG3VGLyZlRWm@ds047632.mongolab.com:47632/blog')
 
 var mongoClient = require('mongodb').MongoClient;
 var mongoUrl = 'mongodb://evertqin:QG3VGLyZlRWm@ds047632.mongolab.com:47632/blog';

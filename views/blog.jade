@@ -19,7 +19,6 @@ block blog_content
       .blog-wrapper
         .container
           .row
-            // blog columns
             .blog-posts.col-xs-9.col-sm-6.col-md-9.col-lg-9
               each post, i in posts
                 -var fullUrl = baseUrl + '/blog/post/item/' + post.id;
@@ -38,7 +37,6 @@ block blog_content
                         - var date = new Date(post.date);
                         span#posted-time!= date.toDateString()
                         span  /
-                        //-var numComm = post.comments == null ? 0 : post.comments.length;
                         span#num-comments.disqus-comment-count(data-disqus-url= fullUrl)
                         span &nbsp;comm.
                       h5#title
@@ -48,7 +46,6 @@ block blog_content
                     button(type="submit", onclick="location.href='/blog/post/item/" + post.id + "'").btn.btn-default#read-more Read More
               .pagination_wrapper
                 .pagination
-                
             .blog-metas.col-xs-9.col-sm-3.col-md-3.col-lg-3
               .blog-entries-list
                 .post-heading
@@ -65,10 +62,6 @@ block blog_content
                   ul
                     li
                       a(href='/blog/page/1') All
-                    //- each num, tag in tags
-                    //-   li
-                    //-     - var link = baseUrl +'/blog/page/' +  tag.toLowerCase() +'/1'; 
-                    //-     a(href=link)=tag
         
           
       include ./includes/body_scripts.jade

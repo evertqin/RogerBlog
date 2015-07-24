@@ -9,13 +9,6 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var blog = require('./routes/blog');
-// var redis = require('redis');
-// var client = redis.createClient();
-//
-// client.on('connect', function() {
-//   console.log('connected');
-// });
-
 
 
 var app = express();
