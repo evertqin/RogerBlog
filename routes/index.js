@@ -10,6 +10,7 @@ mongoClient.connect(mongoUrl, function(err, db) {
   if (err) {
     throw "Error connecting to database.";
   }
+
   router.get('/', function (req, res, next) {
     var collection = db.collection('posts');
     var baseUrl = req.protocol + "://" + req.get('host');
@@ -18,14 +19,21 @@ mongoClient.connect(mongoUrl, function(err, db) {
         data[i].imgUrls = utils.extract_image_href(data[i].content);
         // reduce the data to send to front end
         data[i].content = utils.get_first_several_p_tags(data[i].content).substr(0, 200);
-      //  data[i].content = utils.remove_image_href(data[i].content).substr(0, 200);
-    }
+        //  data[i].content = utils.remove_image_href(data[i].content).substr(0, 200);
+      }
       res.render('index', {posts:data, baseUrl:baseUrl});
     });
-
   });
 
+  router.get('/ip', function(req, res, next) {
+    var clientIp = req.headers['x-forwarded-for'] ||
+    req.connection.remoteAddress ||
+    req.socket.remoteAddress ||
+    req.connection.socket.remoteAddress;
+    console.log(clientIp);
 
+    console.log(req);
+  });
 });
 
 module.exports = router;
