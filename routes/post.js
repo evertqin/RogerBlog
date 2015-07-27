@@ -55,7 +55,7 @@ mongoClient.connect(mongoUrl, function(err, db) {
     var pathname = url.parse(req.url).pathname;
     var id = pathname.substring(pathname.lastIndexOf('/') + 1);
 
-    collection.findOne({id: id}, function(err, doc) {
+    collection.findOne({id: parseInt(id)}, function(err, doc) {
       handlers.routePost(path.basename(doc.folder_name))(doc.folder_name, function(data) {
         res.send(data);
       });

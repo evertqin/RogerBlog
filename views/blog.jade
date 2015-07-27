@@ -28,7 +28,7 @@ block blog_content
                       img(onclick="location.href='" + fullUrl + "';" src=post.imgUrls[Math.floor(Math.random() * post.imgUrls.length)])
                     -}
                     - else {
-                      img(src="/images/background.png")
+                      img(onclick="location.href='" + fullUrl + "';" src="/images/background.png")
                     -}  
                   .post-content
                     .post-heading

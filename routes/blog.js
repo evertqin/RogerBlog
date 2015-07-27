@@ -67,10 +67,9 @@ mongoClient.connect(mongoUrl, function(err, db) {
     var baseUrl = req.protocol + "://" + req.get('host');
     var tokens = pathname.split('/');
     var category = tokens[2];
-    
+
     var re = new RegExp("^" + category + "$", 'i');
     collection.count({tag: re}, function(err, count) {
-      console.log(count);
       res.send({count: count});
     });
   });

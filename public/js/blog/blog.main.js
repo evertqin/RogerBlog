@@ -53,7 +53,9 @@
       console.log("This is called");
     });
 
+
     $.ajax('/blog/tag_list').done(function(data) {
+      console.log(data);
       for(var k in data.tag_list) {
         $('.blog-category-list .list-body ul').append('<li><a href=http://' + window.location.host + '/blog/page/' + k + '/1'  +'>' +k.firstLetterCapitalize() + '</a></li>');
       }

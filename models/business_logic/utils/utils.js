@@ -1,5 +1,5 @@
 var htmlparser = require("htmlparser2");
-
+var moment = require("moment");
 
 
 var utils = utils || {};
@@ -57,9 +57,20 @@ utils.summary_category = function(posts) {
   }
 
   for(var i = 0; i < posts.length; ++i) {
+    if(typeof posts[i].tag === 'undefined') {
+      console.log(posts[i]);
+      continue;
+    }
     posts[i].tag.forEach(loopTag);
   }
   return hashSet;
+};
+
+utils.get_current_date_time = function() {
+    var now = moment();
+    var formatted = now.format('YYYY-MM-DD HH:mm:ss Z');
+
+    return formatted;
 };
 
 
