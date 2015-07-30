@@ -136,4 +136,46 @@ namespace log4netEventBroadcast
 }
 ~~~~
 
+Create a folder "Configs" and add this log4net_config.xml to the folder
+
+~~~~{.xml}
+<?xml version="1.0" encoding="utf-8" ?>
+<log4net>
+  <!-- A1 is set to be a ConsoleAppender -->
+  <appender name="A1" type="log4net.Appender.ConsoleAppender">
+    <!-- A1 uses PatternLayout -->
+    <layout type="log4net.Layout.PatternLayout">
+      <conversionPattern value="%date [%thread] %-5level %logger - %message%newline" />
+    </layout>
+  </appender>
+  <appender name="logFile" type="log4net.Appender.RollingFileAppender">
+    <param name="File" value="c:\\drfa_log\\log_"/>
+    <param name="RollingStyle" value="Date"/>
+    <param name="DatePattern" value="yyyy-MM-dd.\tx\t" />
+    <param name="StaticLogFileName" value="false"/>
+    <layout type="log4net.Layout.PatternLayout">
+      <conversionPattern value="%date [%thread] %-5level %logger - %message%newline" />
+    </layout>
+    <threshold value="Info" />
+  </appender>
+  <!-- Specify the full path to the appender class, followed by comman, then the assembly name-->
+  <appender name="EventAppender" type="LogBroadcaster.Broadcast.EventAppender, LogBroadcaster">
+    <layout type="log4net.Layout.PatternLayout">
+      <conversionPattern value="%d [%thread] %-5level %logger [%ndc] - %message%newline%exception" />
+    </layout>
+  </appender>
+  <!-- Set root logger level to DEBUG and its only appender to A1 -->
+  <root>
+    <level value="INFO" />
+    <appender-ref ref="logFile">
+    </appender-ref>
+    <appender-ref ref="A1">
+    </appender-ref>
+    <appender-ref ref="EventAppender" />
+  </root>
+</log4net>
+~~~~
+
+finally, add the folling line to "Properties->AssemblyInfo.cs"` [assembly: XmlConfigurator(ConfigFile = @"Configs\log4net_config.xml", Watch = true)]`. You may need to add `using log4net.Config;`
+
 The complete project can be found on github: [https://github.com/evertqin/log4netEventBroadcast](https://github.com/evertqin/log4netEventBroadcast).
