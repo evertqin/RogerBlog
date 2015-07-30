@@ -15,17 +15,17 @@ mongoClient.connect(mongoUrl, function(err, db) {
   }
 
   router.get('/', function (req, res, next) {
-    // var visitorIp = req.headers['x-forwarded-for'] ||
-    // req.connection.remoteAddress ||
-    // req.socket.remoteAddress ||
-    // req.connection.socket.remoteAddress;
-    // if(visitorIp !== "127.0.0.1") {
-    //   var visitorStats = db.collection('visitor_stats');
-    //   visitorStats.insert({
-    //     ip: visitorIp,
-    //     timestamp: new Date(),
-    //   });
-    // }
+    var visitorIp = req.headers['x-forwarded-for'] ||
+    req.connection.remoteAddress ||
+    req.socket.remoteAddress ||
+    req.connection.socket.remoteAddress;
+    if(visitorIp !== "127.0.0.1") {
+      var visitorStats = db.collection('visitor_stats');
+      visitorStats.insert({
+        ip: visitorIp,
+        timestamp: new Date(),
+      });
+    }
 
 
     var collection = db.collection('posts');

@@ -19,13 +19,16 @@ module.exports = {generic_handler : function (filePath, func) {
     }
     var i = 0;
 
-    while(i < res.length) {
+
+    function callback(error, data) {
+      func(data);
+    }
+
+    while(typeof res !== 'undefined' && i < res.length) {
       var extname = path.extname(res[i]);
       if('.html' == path.extname(res[i])) {
         isFound = true;
-        fs.readFile(filePath + '/' + res[i],'utf8', function(error, data) {
-          func(data);
-        });
+        fs.readFile(filePath + '/' + res[i],'utf8', callback);
         break;
       }
       i++;

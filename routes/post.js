@@ -10,8 +10,7 @@ var handlers = require('../models/business_logic/handlers.js');
 
 var mongo = require('mongodb');
  var mongoClient = mongo.MongoClient;
- var mongoUrl = 'mongod' +
-     'b://evertqin:QG3VGLyZlRWm@ds047632.mongolab.com:47632/blog';
+ var mongoUrl = 'mongodb://evertqin:QG3VGLyZlRWm@ds047632.mongolab.com:47632/blog';
 
 
 
@@ -34,23 +33,6 @@ mongoClient.connect(mongoUrl, function(err, db) {
 
   });
 
-  router.post('/comments', function(req, res, next) {
-    var id = req.body.id;
-    collection.findOne({id: id}, function(err, doc){
-      if(err === null) {
-        doc.comments.push();
-      }
-
-      collection.update({id: id},
-        {$push: {comments: {name:req.body.commenter_name,
-                  content: req.body.commenter_content}}});
-
-    });
-
-    res.end();
-  });
-
-
   router.get('/raw/*', function(req, res, next) {
     var pathname = url.parse(req.url).pathname;
     var id = pathname.substring(pathname.lastIndexOf('/') + 1);
@@ -62,9 +44,6 @@ mongoClient.connect(mongoUrl, function(err, db) {
     });
   });
 
-
-
 });
-
 
 module.exports = router;

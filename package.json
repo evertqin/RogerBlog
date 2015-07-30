@@ -24,7 +24,6 @@
     "morgan": "~1.5.1",
     "serve-favicon": "~2.2.0",
     "mongodb": "~2.0.33",
-    "moment": "^2.10.5",
     "htmlparser2": "^3.8.3"
   },
   "main": "./bin/www",

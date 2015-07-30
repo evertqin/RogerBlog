@@ -1,5 +1,4 @@
 var htmlparser = require("htmlparser2");
-var moment = require("moment");
 
 
 var utils = utils || {};

@@ -2,7 +2,7 @@ Title: Combine WCF, ASP.NET, SignalR for event broadcasting (1)
 Author: Ruogu Qin
 Date: 07/29/2015
 Tag: Technology
-CSharp
+    CSharp
 
 Previously, I introduced a way to broadcast logging events from log4net. Today I'm taking it a step forward by enabling event broadcasting on website.
 
@@ -20,353 +20,351 @@ Luckily, there is a great technology called [SignalR](http://www.asp.net/signalr
 
 Let's start by creating the dummy business logic.
 
-1. Create an empty console application (we will change it to class library later but let's make it console application first for easier debugging)
+* Create an empty console application (we will change it to class library later but let's make it console application first for easier debugging)
 
-  ![Create a Console Application](G:\CSharp\Signal\create_a_console_app_log4net.png)
+  ![Create a Console Application](/home/ruogu/Pictures/SignalR/create_a_console_app_log4net.png)
 
-2. Add log4net through NuGet
+* Add log4net through NuGet
 
-3. Create EventAppender, BroadcastEventArgs and BroadcastEvetnService as introduced in my previous blog.
+* Create EventAppender, BroadcastEventArgs and BroadcastEvetnService as introduced in my previous blog.
 
-4. Make a new folder called "Configs" and add log4net_config.xml to that forlder, make sure for the line `<appender name="EventAppender" type="LogBroadcaster.Broadcast.EventAppender, LogBroadcaster">`, you use the correct classes. For the type attribute, the field before comma should be the full reference path to the EventAppender, the field after comma should be the assembly name containing the EventAppender.
+* Make a new folder called "Configs" and add log4net_config.xml to that forlder, make sure for the line `<appender name="EventAppender" type="LogBroadcaster.Broadcast.EventAppender, LogBroadcaster">`, you use the correct classes. For the type attribute, the field before comma should be the full reference path to the EventAppender, the field after comma should be the assembly name containing the EventAppender.
 
-5. Add a new folder called "Test" and add a new class "TestRunner"
+* Add a new folder called "Test" and add a new class "TestRunner"
 
-  ~~~~~{.cs}
-  using System;
-  using System.Timers;
-  using log4net;
+~~~~{.cs}
+using System;
+using System.Timers;
+using log4net;
 
-  namespace LogBroadcaster.Test
-  {
-      /// <summary>
-      /// This is a class to mimic events logged from business logic
-      /// </summary>
-      public class TestRunner
-      {
-          private static readonly ILog _log = LogManager.GetLogger(typeof (TestRunner));
+namespace LogBroadcaster.Test
+{
+    /// <summary>
+    /// This is a class to mimic events logged from business logic
+    /// </summary>
+    public class TestRunner
+    {
+        private static readonly ILog _log = LogManager.GetLogger(typeof (TestRunner));
 
-          private Timer timer;
+        private Timer timer;
 
-          public TestRunner()
-          {
-              timer = new Timer();
-          }
+        public TestRunner()
+        {
+            timer = new Timer();
+        }
 
-          public void GeneratingRandomLog()
-          {
-              Random rand = new Random();
-              double interval = rand.NextDouble()*10000;
+        public void GeneratingRandomLog()
+        {
+            Random rand = new Random();
+            double interval = rand.NextDouble()*10000;
 
-              timer.Interval = interval;
-              timer.Elapsed +=
-                  (sender, eventArgs) =>
-                  {
-                      _log.Warn(string.Format("This is a test. Now timer is {0}", eventArgs.SignalTime));
-                  };
-              timer.Start();
-          }
-      }
-  }
+            timer.Interval = interval;
+            timer.Elapsed +=
+                (sender, eventArgs) =>
+                {
+                    _log.Warn(string.Format("This is a test. Now timer is {0}", eventArgs.SignalTime));
+                };
+            timer.Start();
+        }
+    }
+}
+~~~~
 
-  ~~~~~~
+* Add the following code snippet to Main function:
 
-6. Add the following code snippet to Main function:
+~~~~{.cs}
+TestRunner testRunner = new TestRunner();
+testRunner.GeneratingRandomLog();
 
-  ~~~~{.cs}
-  TestRunner testRunner = new TestRunner();
-  testRunner.GeneratingRandomLog();
+Console.ReadKey();
+~~~~
 
-  Console.ReadKey();
-  ~~~~
-  Now run the project, and you should see some dummy log messages scrolling in the console
+Now run the project, and you should see some dummy log messages scrolling in the console
 
-7. Change the project property to dll by changing Application -> Output type to "Class Library". Compile the dll.
+* Change the project property to dll by changing Application -> Output type to "Class Library". Compile the dll.
 
 #### Create WCF Service and enabling asynchronous callback
 
-1. Start by creating a console application(We could have started with WCF class library, but still, a console application is easier to debug during development)
+* Start by creating a console application(We could have started with WCF class library, but still, a console application is easier to debug during development)
 
-2. Add a WCF service to the project (New Item... -> WCF Service). Here I named my service "MyWcfService". Visual Studio will automatically create IMyWcfService Interface and MyWcfService implementation.
+* Add a WCF service to the project (New Item... -> WCF Service). Here I named my service "MyWcfService". Visual Studio will automatically create IMyWcfService Interface and MyWcfService implementation.
 
-3. To make the project more interesting, I am adding another interface "IMyWcfServiceAsync" to the project. The idea behind this is that I want to put all my callbacks under a different interface so I can add different ServiceContract Attributes to them. The project will look like the following figure.
+* To make the project more interesting, I am adding another interface "IMyWcfServiceAsync" to the project. The idea behind this is that I want to put all my callbacks under a different interface so I can add different ServiceContract Attributes to them. The project will look like the following figure.
 
-  ![Create WCF console application](G:\CSharp\Signal\create_wcf_console_application.png)
+  ![Create WCF console application](/home/ruogu/Pictures/SignalR/create_wcf_console_application.png)
 
-4. Add the dll generated from last solution as reference.
+* Add the dll generated from last solution as reference.
 
-4. Add ServiceContracts and OperationContracts to the interfaces and classes.
+* Add ServiceContracts and OperationContracts to the interfaces and classes.
 
   * IMyWcfService
 
-  ~~~~{.cs}
-    using System.ServiceModel;
+~~~~{.cs}
+using System.ServiceModel;
 
-  namespace MyWcfServiceHost
-  {
-      // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IMyWcfService" in both code and config file together.
-      [ServiceContract]
-      public interface IMyWcfService
-      {
-          [OperationContract]
-          void DoWork();
-      }
-  }
-  ~~~~
+namespace MyWcfServiceHost
+{
+    [ServiceContract]
+    public interface IMyWcfService
+    {
+        [OperationContract]
+        void DoWork();
+    }
+}
+~~~~
 
   * IMyWcfServiceAsync
 
-  ~~~~{.cs}
-  using System.ServiceModel;
+~~~~{.cs}
+using System.ServiceModel;
 
-  namespace MyWcfServiceHost
-  {
+namespace MyWcfServiceHost
+{
 
-      [ServiceContract(Namespace = "mynamspace", SessionMode = SessionMode.Required)]
-      public interface IClientCallback
-      {
-          [OperationContract]
-          void NotifyClient(string message);
-      }
+    [ServiceContract(Namespace = "mynamspace", SessionMode = SessionMode.Required)]
+    public interface IClientCallback
+    {
+        [OperationContract]
+        void NotifyClient(string message);
+    }
 
-      [ServiceContract(Namespace = "mynamspace", SessionMode = SessionMode.Required,
-          CallbackContract = typeof (IClientCallback))]
-      public interface IMyWcfServiceAsync
-      {
-          [OperationContract(IsOneWay = true)]
-          void ListenToEvents();
-      }
-  }
-  ~~~~
+    [ServiceContract(Namespace = "mynamspace", SessionMode = SessionMode.Required,
+        CallbackContract = typeof (IClientCallback))]
+    public interface IMyWcfServiceAsync
+    {
+        [OperationContract(IsOneWay = true)]
+        void ListenToEvents();
+    }
+}
+~~~~
 
   The most importand part is `[ServiceContract(Namespace = "mynamspace", SessionMode = SessionMode.Required,
       CallbackContract = typeof (IClientCallback))]` attribute. This tells that this ServiceContract is a asynchronous callback contract and the client to provide a implementation of IClientCallback interface.
 
   * MyWcfService
 
-  ~~~~{.cs}
-  using System.ServiceModel;
-  using LogBroadcaster.Broadcast;
-  using LogBroadcaster.Test;
+~~~~{.cs}
+using System.ServiceModel;
+using LogBroadcaster.Broadcast;
+using LogBroadcaster.Test;
 
-  namespace MyWcfServiceHost
-  {
-      public class MyWcfService : IMyWcfService, IMyWcfServiceAsync
-      {
-          public void DoWork()
-          {
-              TestRunner testRunner = new TestRunner();
-              testRunner.GeneratingRandomLog();
-          }
+namespace MyWcfServiceHost
+{
+    public class MyWcfService : IMyWcfService, IMyWcfServiceAsync
+    {
+        public void DoWork()
+        {
+            TestRunner testRunner = new TestRunner();
+            testRunner.GeneratingRandomLog();
+        }
 
-          public void ListenToEvents()
-          {
-              // this call back is only valid in the context of this function
-              var callback = OperationContext.Current.GetCallbackChannel<IClientCallback>();
+        public void ListenToEvents()
+        {
+            // this call back is only valid in the context of this function
+            var callback = OperationContext.Current.GetCallbackChannel<IClientCallback>();
 
-              BroadcastEventService.Instance.BroadcastEvent +=
-                  (sender, eventArgs) => { callback.NotifyClient(eventArgs.Message); };
-          }
-      }
-  }
-  ~~~~
+            BroadcastEventService.Instance.BroadcastEvent +=
+                (sender, eventArgs) => { callback.NotifyClient(eventArgs.Message); };
+        }
+    }
+}
+~~~~
 
 5. Make a new folder called "Configs" and add log4net_config.xml to that forlder by copying from previous solution.
 
 6. Rename `Program.cs` to "WcfServiceHost" (or a name of your choice) and replace its content with following code:
-  ~~~~{.cs}
 
-  using System;
-  using System.Collections.Generic;
-  using System.IO;
-  using System.Linq;
-  using System.Reflection;
-  using System.ServiceModel;
-  using System.ServiceProcess;
-  using System.Threading;
+~~~~{.cs}
 
-  namespace MyWcfServiceHost
-  {
-      internal class WcfServiceHost : ServiceBase
-      {
-          private static readonly Dictionary<string, ServiceHost> _ServiceHosts = new Dictionary<string, ServiceHost>();
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.ServiceModel;
+using System.ServiceProcess;
+using System.Threading;
 
-          public static ServiceHost GetService(string sSrvName)
-          {
-              if (_ServiceHosts.ContainsKey(sSrvName)) return _ServiceHosts[sSrvName];
-              return null;
-          }
+namespace MyWcfServiceHost
+{
+    internal class WcfServiceHost : ServiceBase
+    {
+        private static readonly Dictionary<string, ServiceHost> _ServiceHosts = new Dictionary<string, ServiceHost>();
 
-          public WcfServiceHost()
-          {
-              this.ServiceName = "MyWcfService";
-              Directory.SetCurrentDirectory(AppDomain.CurrentDomain.BaseDirectory);
-          }
+        public static ServiceHost GetService(string sSrvName)
+        {
+            if (_ServiceHosts.ContainsKey(sSrvName)) return _ServiceHosts[sSrvName];
+            return null;
+        }
 
-          private static void RunInteractive(ServiceBase[] servicesToRun)
-          {
-              Console.WriteLine("Services running in interactive mode.");
-              Console.WriteLine();
+        public WcfServiceHost()
+        {
+            this.ServiceName = "MyWcfService";
+            Directory.SetCurrentDirectory(AppDomain.CurrentDomain.BaseDirectory);
+        }
 
-              MethodInfo onStartMethod = typeof (ServiceBase).GetMethod("OnStart",
-                  BindingFlags.Instance | BindingFlags.NonPublic);
-              foreach (ServiceBase service in servicesToRun)
-              {
-                  Console.Write("Starting {0}...", service.ServiceName);
-                  ((WcfServiceHost) service).OnStart(new string[] {});
-                  //onStartMethod.Invoke(service, new object[] { new string[] { } });
-                  Console.Write("Started");
-              }
+        private static void RunInteractive(ServiceBase[] servicesToRun)
+        {
+            Console.WriteLine("Services running in interactive mode.");
+            Console.WriteLine();
 
-              Console.WriteLine();
-              Console.WriteLine();
-              Console.WriteLine(
-                  "Press any key to stop the services and end the process...");
-              Console.ReadKey();
-              Console.WriteLine();
+            MethodInfo onStartMethod = typeof (ServiceBase).GetMethod("OnStart",
+                BindingFlags.Instance | BindingFlags.NonPublic);
+            foreach (ServiceBase service in servicesToRun)
+            {
+                Console.Write("Starting {0}...", service.ServiceName);
+                ((WcfServiceHost) service).OnStart(new string[] {});
+                //onStartMethod.Invoke(service, new object[] { new string[] { } });
+                Console.Write("Started");
+            }
 
-              MethodInfo onStopMethod = typeof (ServiceBase).GetMethod("OnStop",
-                  BindingFlags.Instance | BindingFlags.NonPublic);
-              foreach (ServiceBase service in servicesToRun)
-              {
-                  Console.Write("Stopping {0}...", service.ServiceName);
-                  //onStopMethod.Invoke(service, null);
-                  ((WcfServiceHost) service).OnStop();
-                  Console.WriteLine("Stopped");
-              }
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine(
+                "Press any key to stop the services and end the process...");
+            Console.ReadKey();
+            Console.WriteLine();
 
-              Console.WriteLine("All services stopped.");
-              // Keep the console alive for a second to allow the user to see the message.
-              Thread.Sleep(1000);
-          }
+            MethodInfo onStopMethod = typeof (ServiceBase).GetMethod("OnStop",
+                BindingFlags.Instance | BindingFlags.NonPublic);
+            foreach (ServiceBase service in servicesToRun)
+            {
+                Console.Write("Stopping {0}...", service.ServiceName);
+                //onStopMethod.Invoke(service, null);
+                ((WcfServiceHost) service).OnStop();
+                Console.WriteLine("Stopped");
+            }
 
-          protected int OpenAll()
-          {
-              OpenHost<MyWcfService>();
-              return _ServiceHosts.Count();
-          }
+            Console.WriteLine("All services stopped.");
+            // Keep the console alive for a second to allow the user to see the message.
+            Thread.Sleep(1000);
+        }
 
-          protected int CloseAll()
-          {
-              foreach (ServiceHost serviceHost in _ServiceHosts.Values)
-              {
-                  try
-                  {
-                      serviceHost.Close(new TimeSpan(0, 0, 10));
-                  }
-                  catch (Exception ex)
-                  {
-                      serviceHost.Abort();
-                  }
-              }
-              _ServiceHosts.Clear();
-              return 0;
-          }
+        protected int OpenAll()
+        {
+            OpenHost<MyWcfService>();
+            return _ServiceHosts.Count();
+        }
 
-          protected void OpenHost<T>()
-          {
-              Type type = typeof (T);
-              ServiceHost serviceHost = new ServiceHost(type);
-              serviceHost.Open();
-              _ServiceHosts[type.ToString()] = serviceHost;
-          }
+        protected int CloseAll()
+        {
+            foreach (ServiceHost serviceHost in _ServiceHosts.Values)
+            {
+                try
+                {
+                    serviceHost.Close(new TimeSpan(0, 0, 10));
+                }
+                catch (Exception ex)
+                {
+                    serviceHost.Abort();
+                }
+            }
+            _ServiceHosts.Clear();
+            return 0;
+        }
 
-          protected override void OnStart(string[] args)
-          {
-              // eventlog.WriteEntry("AnalysisWindowsService started.");
-              this.CloseAll();
-              this.OpenAll();
-          }
+        protected void OpenHost<T>()
+        {
+            Type type = typeof (T);
+            ServiceHost serviceHost = new ServiceHost(type);
+            serviceHost.Open();
+            _ServiceHosts[type.ToString()] = serviceHost;
+        }
 
-          protected override void OnStop()
-          {
-              this.CloseAll();
-          }
+        protected override void OnStart(string[] args)
+        {
+            // eventlog.WriteEntry("AnalysisWindowsService started.");
+            this.CloseAll();
+            this.OpenAll();
+        }
 
-          private static void Main(string[] args)
-          {
-              ServiceBase[] servicesToRun;
-              servicesToRun = new ServiceBase[]
-              {
-                  new WcfServiceHost()
-              };
-              if (Environment.UserInteractive)
-              {
-                  RunInteractive(servicesToRun);
-              }
-              else
-              {
-                  Run(servicesToRun);
-              }
-          }
-      }
-  }
+        protected override void OnStop()
+        {
+            this.CloseAll();
+        }
 
-  ~~~~
+        private static void Main(string[] args)
+        {
+            ServiceBase[] servicesToRun;
+            servicesToRun = new ServiceBase[]
+            {
+                new WcfServiceHost()
+            };
+            if (Environment.UserInteractive)
+            {
+                RunInteractive(servicesToRun);
+            }
+            else
+            {
+                Run(servicesToRun);
+            }
+        }
+    }
+}
 
-8. Update the app.config
+~~~~
 
-  ~~~~{.xml}
-  <?xml version="1.0" encoding="utf-8"?>
+* Update the app.config
 
-  <configuration>
-    <system.serviceModel>
-      <behaviors>
-        <serviceBehaviors>
-          <behavior name="">
-            <serviceMetadata httpGetEnabled="false" />
-            <serviceDebug includeExceptionDetailInFaults="false" />
-          </behavior>
-        </serviceBehaviors>
-        <endpointBehaviors>
-          <behavior name="MyEndpointBehavior">
-            <dataContractSerializer maxItemsInObjectGraph="2147483646" />
-          </behavior>
-        </endpointBehaviors>
-      </behaviors>
+~~~~{.xml}
+<?xml version="1.0" encoding="utf-8"?>
 
-      <bindings>
-        <netTcpBinding>
-          <binding name="BufferedNetTcpBindingConf" receiveTimeout="16:10:00" sendTimeout="16:10:00"
-                   transferMode="Buffered" maxBufferPoolSize="2147483647" maxBufferSize="2147483647"
-                   maxReceivedMessageSize="2147483647">
-            <readerQuotas maxArrayLength="2147483647" />
-            <security mode="None" />
-          </binding>
-        </netTcpBinding>
-      </bindings>
-      <services>
-        <service name="MyWcfServiceHost.MyWcfService">
-          <endpoint address="" behaviorConfiguration="MyEndpointBehavior" binding="netTcpBinding"
-                    bindingConfiguration="BufferedNetTcpBindingConf" contract="MyWcfServiceHost.IMyWcfService">
-            <identity>
-              <dns value="localhost" />
-            </identity>
-          </endpoint>
-          <endpoint address="" behaviorConfiguration="MyEndpointBehavior" binding="netTcpBinding"
-                    bindingConfiguration="BufferedNetTcpBindingConf" contract="MyWcfServiceHost.IMyWcfServiceAsync">
-            <identity>
-              <dns value="localhost" />
-            </identity>
-          </endpoint>
-          <endpoint address="mex" binding="mexTcpBinding" name="MexTcpBindingEndpoint" contract="IMetadataExchange" />
-          <host>
-            <baseAddresses>
-              <add baseAddress="net.tcp://localhost:8733/MyWcfService/" />
-            </baseAddresses>
-          </host>
-        </service>
-      </services>
-    </system.serviceModel>
-    <startup>
-      <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.5" />
-    </startup>
-  </configuration>
+<configuration>
+  <system.serviceModel>
+    <behaviors>
+      <serviceBehaviors>
+        <behavior name="">
+          <serviceMetadata httpGetEnabled="false" />
+          <serviceDebug includeExceptionDetailInFaults="false" />
+        </behavior>
+      </serviceBehaviors>
+      <endpointBehaviors>
+        <behavior name="MyEndpointBehavior">
+          <dataContractSerializer maxItemsInObjectGraph="2147483646" />
+        </behavior>
+      </endpointBehaviors>
+    </behaviors>
 
-  ~~~~
+    <bindings>
+      <netTcpBinding>
+        <binding name="BufferedNetTcpBindingConf" receiveTimeout="16:10:00" sendTimeout="16:10:00"
+                 transferMode="Buffered" maxBufferPoolSize="2147483647" maxBufferSize="2147483647"
+                 maxReceivedMessageSize="2147483647">
+          <readerQuotas maxArrayLength="2147483647" />
+          <security mode="None" />
+        </binding>
+      </netTcpBinding>
+    </bindings>
+    <services>
+      <service name="MyWcfServiceHost.MyWcfService">
+        <endpoint address="" behaviorConfiguration="MyEndpointBehavior" binding="netTcpBinding"  bindingConfiguration="BufferedNetTcpBindingConf" contract="MyWcfServiceHost.IMyWcfService">
+          <identity>
+            <dns value="localhost" />
+          </identity>
+        </endpoint>
+        <endpoint address="" behaviorConfiguration="MyEndpointBehavior" binding="netTcpBinding" bindingConfiguration="BufferedNetTcpBindingConf" contract="MyWcfServiceHost.IMyWcfServiceAsync">
+          <identity>
+            <dns value="localhost" />
+          </identity>
+        </endpoint>
+        <endpoint address="mex" binding="mexTcpBinding" name="MexTcpBindingEndpoint" contract="IMetadataExchange" />
+        <host>
+          <baseAddresses>
+            <add baseAddress="net.tcp://localhost:8733/MyWcfService/" />
+          </baseAddresses>
+        </host>
+      </service>
+    </services>
+  </system.serviceModel>
+  <startup>
+    <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.5" />
+  </startup>
+</configuration>
 
-  I am creating two endpoints for two of my interfaces. Also, I am setting "maxReceivedMessageSize" to max, although it is not necessary in this application. Also I am using net+tcp here. You can also use dualHttp binding, check the article here [Duplex Service](https://msdn.microsoft.com/en-us/library/ms731064(v=vs.110).aspx) 
+~~~~
+
+  I am creating two endpoints for two of my interfaces. Also, I am setting "maxReceivedMessageSize" to max, although it is not necessary in this application. Also I am using net+tcp here. You can also use dualHttp binding, check the article here [Duplex Service](https://msdn.microsoft.com/en-us/library/ms731064(v=vs.110).aspx)
 
   The above code will enable this wcf to run either under interactive mode or run as windows service. Hit F5 and you should be able to see the following screen.
 
-  ![WCF service successfully run under interactive mode](G:\CSharp\Signal\wcf_run.png)
+  ![WCF service successfully run under interactive mode](/home/ruogu/Pictures/SignalR/wcf_run.png)
