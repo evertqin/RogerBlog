@@ -60,4 +60,4 @@ Hoodoo trail一上一下只需要大约15分钟，离开时候天色尚早，我
 
 * Sulphur Mountain
 
-Link to second part: [http://blog.tripplan.info/blog/post/item/55adc7f457a0ae4736d8230c](http://blog.tripplan.info/blog/post/item/55adc7f457a0ae4736d8230c)
+Link to second part: [http://blog.tripplan.info/blog/post/item/8](http://blog.tripplan.info/blog/post/item/8)

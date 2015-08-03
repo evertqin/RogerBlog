@@ -38,7 +38,6 @@ mongoClient.connect(mongoUrl, function(err, db) {
       }
       res.render('index', {posts:data, baseUrl:baseUrl});
     });
-
   });
 
   router.get('/ip', function(req, res, next) {
@@ -49,6 +48,15 @@ mongoClient.connect(mongoUrl, function(err, db) {
     res.send({
       ip: clientIp,
       timestamp: new Date(),
+    });
+  });
+
+  router.get('/site_stats', function(req, res, next) {
+    var visitorStats = db.collection('visitor_stats');
+    visitorStats.find({}, {sort: {timestamp: -1}}).toArray(function(err, data) {
+      if(err === null) {
+        res.send(data);
+      }
     });
   });
 });

@@ -5,7 +5,7 @@ import os.path
 
 logger = Logger().getLogger()
 TEMP_DIR = "smallImage"
-HORIZONTAL_RESULTION = 820
+HORIZONTAL_RESULTION = 1280
 
 
 def imageProcess(sourceFile):
@@ -26,7 +26,7 @@ def imageProcess(sourceFile):
         newResolution = (HORIZONTAL_RESULTION,
                          int(HORIZONTAL_RESULTION / im.size[0] * im.size[1]))
         logger.info("Resizing image to resultion {0}.".format(newResolution))
-        resizedImg = im.resize(newResolution, Image.BILINEAR)
+        resizedImg = im.resize(newResolution, Image.NEAREST)
         logger.info("Image Resizing done. New Size {0}"
                     .format(resizedImg.size))
         return resizedImg

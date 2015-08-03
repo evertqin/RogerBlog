@@ -7,7 +7,7 @@ Tag: travel
 
 ####Day 5 -- Yoho National Park
 
-This is probabaly one of the most amazing days of this trip. Yesterday, we bumped into two elder couples, they told use iceline trail is one of their favorite trails and they were planning to visit it the next day. I came across this trail on TripAdvisor and saw it received 5 stars reviews, so it is on our original plan.
+This is probabaly one of the most amazing days of this trip. Yesterday, we bumped into two elder couples, they told us iceline trail is one of their favorite trails and they were planning to visit it the next day. I came across this trail on TripAdvisor and saw it received 5 stars reviews, so it is on our original plan.
 
 ![Iceline Trail Map](/home/ruogu/Pictures/066-iceline_map.gif)
 
@@ -33,4 +33,4 @@ For this trail, I suggest you start early because it is very long. Wear extra la
 
 ![magnificent!](/home/ruogu/Pictures/banff_yoho_jasper 993.JPG)
 
-Link to fifth part: [http://blog.tripplan.info/blog/post/item/55b18fd257a0ae5aeaaa3f84](http://blog.tripplan.info/blog/post/item/55b18fd257a0ae5aeaaa3f84)
+Link to fifth part: [http://blog.tripplan.info/blog/post/item/11](http://blog.tripplan.info/blog/post/item/11)

@@ -5,7 +5,7 @@ Tag: travel
      outdoor
      hiking
 
-####Day 5 -- Yoho and Jasper National Park
+####Day 6 -- Yoho and Jasper National Park
 
 第五天乏善可陈，因为前面连续三天长时间长距离hiking，所以大家都非常疲劳，而且因为Jasper相当大，所以一整天基本就在赶路。
 沿途到达第一个景点Columbia Icefield， 由于时间问题，我们这次只是远远的看了看，并没有停下来。继续赶路，前面停在一片叫做Athabasca Falls 的地方，比起昨天的Takakkaw 这个可以靠得更近，而且可以看到改道的河床。

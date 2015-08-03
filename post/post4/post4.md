@@ -149,7 +149,7 @@ Create a folder "Configs" and add this log4net_config.xml to the folder
     </layout>
   </appender>
   <appender name="logFile" type="log4net.Appender.RollingFileAppender">
-    <param name="File" value="c:\\drfa_log\\log_"/>
+    <param name="File" value="c:\\log_"/>
     <param name="RollingStyle" value="Date"/>
     <param name="DatePattern" value="yyyy-MM-dd.\tx\t" />
     <param name="StaticLogFileName" value="false"/>

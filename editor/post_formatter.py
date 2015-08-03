@@ -39,8 +39,8 @@ GLOBAL_TEMPLATE = """
 """
 
 
-def dataFormatter(postName, id: 'You can either specify id if None, system will assign a new id for you'=None,
-                  preview=False):
+def dataFormatter(postName, id=None, preview=False):
+    """You can either specify id if None, system will assign a new id for you"""
     def getDocsFromInputFolder(postFolder):
         logger.info("Validating input folder")
         mdFileList = []
@@ -52,7 +52,8 @@ def dataFormatter(postName, id: 'You can either specify id if None, system will 
             logger.info("We got all the files we need")
             return mdFileList[0]
         else:
-            raise Exception("Please check you files, only one md file is allowed under a post folder")
+            raise Exception("Please check you files, "
+                            "only one md file is allowed under a post folder")
 
     def validate_meta_data(meta):
         logger.info("Validating metadata generated from markdown")
@@ -99,25 +100,25 @@ def dataFormatter(postName, id: 'You can either specify id if None, system will 
         print(content)
         return content
 
-
-    def generate_doc(markdownContent:'content in string format', id, folder_name):
+    def generate_doc(markdownContent, id, folder_name):
         # Read the markdown file
         # markdownContent = ''.join([line for line in read_input_file(filename)])
-        md = markdown.Markdown(extensions = ['markdown.extensions.meta','markdown.extensions.extra'])
+        md = markdown.Markdown(extensions=['markdown.extensions.meta',
+                                           'markdown.extensions.extra'])
         html = md.convert(markdownContent)
         validate_meta_data(md.Meta)
 
         dict = {
-            "id": id
-            , "title": md.Meta["title"][0]
-            , "author": md.Meta["author"][0]
-            , "date" : md.Meta["date"][0]
-            , "timestamp" : datetime.now()
-            , "folder_name": folder_name
-            , "content" : html
-            , "tag": [tag for tag in md.Meta["tag"]]
-            , "read": []
-            , "comments" : []
+            "id": id,
+            "title": md.Meta["title"][0],
+            "author": md.Meta["author"][0],
+            "date": md.Meta["date"][0],
+            "timestamp": datetime.now(),
+            "folder_name": folder_name,
+            "content": html,
+            "tag": [tag for tag in md.Meta["tag"]],
+            "read": [],
+            "comments": []
         }
 
         return dict
@@ -128,7 +129,8 @@ def dataFormatter(postName, id: 'You can either specify id if None, system will 
         if m is not None:
             return int(m.group(0))
         else:
-            raise Exception("Cannot parse id from post name, are you should your post name is correct?")
+            raise Exception("Cannot parse id from post name,"
+                            " are you should your post name is correct?")
 
     def process():
         nonlocal id
@@ -148,8 +150,11 @@ def dataFormatter(postName, id: 'You can either specify id if None, system will 
 ########################################################
 ########################################################
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Process blog entry, you need to have all of the following files: post.json, post.md in the given folder")
-    parser.add_argument('--post', '-p', required=True, type=str, help='The name of the post, must present in the root folder')
-    parser.add_argument('--id', type=str, help='The id of the post, if not specified, a global id will be assigned.')
+    parser = argparse.ArgumentParser(description="Process blog entry, "
+                                     "you need to have post{num}.md in the given folder")
+    parser.add_argument('--post', '-p', required=True, type=str,
+                        help='The name of the post, must present in the root folder')
+    parser.add_argument('--id', type=str,
+                        help='The id of the post, if not specified, a global id will be assigned.')
     args = parser.parse_args()
     pprint.PrettyPrinter(indent=4).pprint(dataFormatter(args.post, args.id))

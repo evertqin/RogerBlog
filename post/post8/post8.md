@@ -30,4 +30,4 @@ Tag: travel
 * Plains of Six Glaciers
 * Tea houses
 
-Link to third part: [http://blog.tripplan.info/blog/post/item/55af946c57a0ae627591b834](http://blog.tripplan.info/blog/post/item/55af946c57a0ae627591b834)
+Link to third part: [http://blog.tripplan.info/blog/post/item/9](http://blog.tripplan.info/blog/post/item/9)

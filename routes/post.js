@@ -43,7 +43,6 @@ mongoClient.connect(mongoUrl, function(err, db) {
       });
     });
   });
-
 });
 
 module.exports = router;
