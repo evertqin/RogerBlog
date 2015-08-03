@@ -19,7 +19,7 @@ block blog_content
       .blog-wrapper
         .container
           .row
-            .blog-posts.col-xs-9.col-sm-6.col-md-9.col-lg-9
+            .blog-posts.col-xs-9.col-sm-9.col-md-9.col-lg-9
               each post, i in posts
                 -var fullUrl = baseUrl + '/blog/post/item/' + post.id;
                 .article(id="article"+i)
@@ -46,24 +46,22 @@ block blog_content
                     button(type="submit", onclick="location.href='/blog/post/item/" + post.id + "'").btn.btn-default#read-more Read More
               .pagination_wrapper
                 .pagination
-            .blog-metas.col-xs-9.col-sm-3.col-md-3.col-lg-3
-              .blog-entries-list
-                .post-heading
-                  h4 Blog Entries
-                .list-body
-                  ul
-                    each post in posts
-                      li
-                        a(href="/blog/post/item/" + post.id)=  post.title
-              .blog-category-list
-                .post-heading
-                  h4 Categories
-                .list-body
-                  ul
+           .blog-metas.col-xs-9.col-sm-3.col-md-3.col-lg-3
+             .blog-entries-list
+               .post-heading
+                 h4 Blog Entries
+               .list-body
+                 ul
+                  each post in posts
                     li
-                      a(href='/blog/page/1') All
-        
-          
+                      a(href="/blog/post/item/" + post.id)=  post.title
+             .blog-category-list
+               .post-heading
+                 h4 Categories
+               .list-body
+                 ul
+                  li
+                   a(href='/blog/page/1') All
       include ./includes/body_scripts.jade
                                 
               
