@@ -1,10 +1,10 @@
-Title: Transfering Data 
+Title: Transfering Data between ASP.NET Client and Server
 Author: Ruogu Qin
 Date: 08/03/2015
 Tag: Technology
      CSharp
 
-Here I am going to summarize commonly used ways to pass data between server and client.
+Here I am going to summarize commonly used ways to pass data between server and client. There are traditional ways along with some ASP.NET specific ways.
 
 - Ajax request, using jQuery Library, if you are using webforms, then:
 

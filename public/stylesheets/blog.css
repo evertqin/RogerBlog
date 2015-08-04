@@ -9,6 +9,7 @@ h6 {
 }
 a {
   color: black;
+  background-color: white;
   -webkit-transition: color 0.3s ease;
 }
 a:hover {
