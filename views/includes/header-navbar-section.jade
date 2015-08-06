@@ -42,9 +42,10 @@
                   a#nav-photography(href="#") Photography
                 li
                   a#nav-blog(href="/blog/page/1") Blog
+              ul.nav.navbar-nav.navbar-right    
                 form.navbar-form.navbar-right.form-inline(role="search")
                   a.fa.fa-search
                   span &nbsp;
                   span.form-group
-                    input.form-control(type="text" placeholder="Search")
+                    input.form-control(type="text" placeholder="Search" ng-model="query")
                   

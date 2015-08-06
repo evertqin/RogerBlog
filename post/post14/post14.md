@@ -17,6 +17,9 @@ $.ajax({
   dataType: "json",
   success: function (message) {
     console.log(message);
+  },
+  error: function(xhr, status, error) {
+    console.log(xhr);
   }
 });
 ~~~~

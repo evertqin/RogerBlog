@@ -59,6 +59,10 @@ mongoClient.connect(mongoUrl, function(err, db) {
       }
     });
   });
+
+  router.get("/search", function(req, res, next) {
+    
+  });
 });
 
 module.exports = router;

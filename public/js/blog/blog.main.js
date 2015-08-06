@@ -7,6 +7,18 @@
     $(".loader").fadeOut("slow");
   });
 
+  // angularjs controller
+  (function() {
+    var blog = angular.module('blogApp', ['ngRoute', 'ngResource']);
+    //
+    blog.controller('tagListCtrl', function($scope, $http) {
+      $http.get('/blog/tag_list').success(function(data) {
+        $scope.tagList = data.tag_list;
+        console.log(data.tag_list);
+      });
+    });
+  })();
+
   $(document).ready(function () {
     if(typeof String.prototype.firstLetterCapitalize != 'function') {
       String.prototype.firstLetterCapitalize = function() {
@@ -48,17 +60,12 @@
       });
     }());
 
-    $(".edit-button").on('click', function() {
-      console.log("This is called");
-    });
-
-
-    $.ajax('/blog/tag_list').done(function(data) {
-      for(var k in data.tag_list) {
-        $('.blog-category-list .list-body ul').append('<li><a href=http://' + window.location.host + '/blog/page/' + k + '/1'  +'>' +k.firstLetterCapitalize() + '</a></li>');
-      }
-
-    });
+    // $.ajax('/blog/tag_list').done(function(data) {
+    //   for(var k in data.tag_list) {
+    //     $('.blog-category-list .list-body ul').append('<li><a href=http://' + window.location.host + '/blog/page/' + k + '/1'  +'>' +k.firstLetterCapitalize() + '</a></li>');
+    //   }
+    //
+    // });
 
     //info about pagination: http://flaviusmatis.github.io/simplePagination.js/
     var POST_PER_PAGE = 4;

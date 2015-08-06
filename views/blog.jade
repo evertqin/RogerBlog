@@ -58,10 +58,12 @@ block blog_content
               .blog-category-list
                 .post-heading
                   h4 Categories
-                .list-body
+                .list-body(ng-controller="tagListCtrl").ng-scope
                   ul
-                   li
-                    a(href='/blog/page/1') All
+                    li
+                      a(href='/blog/page/1') All
+                    li(ng-repeat="(key, value) in tagList")
+                      a(href='/blog/page/' + "{{ key }}" + '/1') {{key}}
       include ./includes/body_scripts.jade
                                 
               

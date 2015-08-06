@@ -10,7 +10,7 @@ The C++ source files need to be specially wrapped to expose function interfaces 
 * Wrap all the function signatures in `extern "C"` because we don't want C++ compiler to mangle the function name.
 * append `__declspec(dllexport)` before function declearation.
 
-a basic example:
+a basic example, first creat an empty C++ dll project and add two files: headers.hh and source.cc. In header.hh file, add the following lines:
 
 ~~~~{.cpp}
 #ifndef CPPLIB_HEADERS_HH
@@ -24,7 +24,7 @@ extern "C"
 #endif
 ~~~~
 
-And in the implementation cpp file (source.cc)
+And in source.cc file, add the following lines:
 
 ~~~~{.cpp}
 #include "headers.hh"
@@ -38,7 +38,7 @@ void get_simple_type(int num) {
 
 Here we are passing a simple int from C# to C++ and print out.
 
-in our seperate C# project, add the folloing lines
+In a separate C# project, created in the same solution, add the following lines
 
 ~~~~{.cs}
 [DllImport("CppLib.dll", CallingConvention = CallingConvention.Cdecl)]
@@ -181,6 +181,4 @@ public void RetriveArrayType()
 ~~~~
 
 Run the whole project, you should see the following output.
-![Run Result](/home/ruogu/Pictures/Capture.PNG) 
-
-
+![Run Result](/home/ruogu/Pictures/Capture.PNG)

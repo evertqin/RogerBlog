@@ -61,6 +61,7 @@ a.anchor {
 }
 #slide-1 .bcg {
   background-image: url('../images/background_1.png');
+  background-size: auto;
 }
 .scroll-up > a {
   background-color: white;
