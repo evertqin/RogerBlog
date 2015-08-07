@@ -181,4 +181,5 @@ public void RetriveArrayType()
 ~~~~
 
 Run the whole project, you should see the following output.
+
 ![Run Result](/home/ruogu/Pictures/Capture.PNG)

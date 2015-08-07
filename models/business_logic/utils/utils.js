@@ -22,7 +22,7 @@ utils.remove_image_href = function(content) {
   return content.replace(/<img.*?>/g, "");
 };
 
-utils.get_first_several_p_tags = function(content) {
+utils.getFirstSeveralPTags = function(content) {
   var pContent = [];
   var ispTag = false;
   var parser = new htmlparser.Parser({
@@ -45,7 +45,15 @@ utils.get_first_several_p_tags = function(content) {
 
   parser.write(content);
   parser.end();
-  return pContent.join();
+  return utils.escapeHtml(pContent.join());
+};
+
+utils.escapeHtml = function(txt) {
+  txt = txt.replace('&', '&amp;');
+  txt = txt.replace('<', '&lt;');
+  txt = txt.replace('>', '&gt;');
+  txt = txt.replace('"', '&quot;');
+  return txt;
 };
 
 utils.summary_category = function(posts) {
