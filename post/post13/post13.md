@@ -175,3 +175,5 @@ From the client, we also call the server function `listenToStatus` which is also
 Run the program, you should be able to see the ticking time now!
 
 ![Ticking Timer](/home/ruogu/Pictures/SignalR/final_result.png)
+
+Source code can be found on [GitHub](https://github.com/evertqin/DotNetDemos/tree/master/SignalR_ASP_WCF)
