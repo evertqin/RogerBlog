@@ -16,9 +16,9 @@ logger.info("Start generating file")
 PLATFORM = platform.system()
 BASE_FOLDER = ""
 if PLATFORM == 'Darwin':
-    BASE_FOLDER = "/Users/ruoguqin/projects/RogerBlog/post/"
+    BASE_FOLDER = "../post/"
 elif PLATFORM == 'Linux':
-    BASE_FOLDER = "/home/ruogu/projects/RogerBlog/post/"
+    BASE_FOLDER = "../post/"
 elif PLATFORM == 'Windows':
     BASE_FOLDER = "G:\\RogerBlog\\post\\"
 
