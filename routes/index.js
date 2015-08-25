@@ -18,8 +18,8 @@ var CONTENT_LENGTH_LIMIT = 200;
 
 /* GET home page. */
 mongoClient.connect(mongoUrl, function(err, db) {
-  if (err) {
-    throw "Error connecting to database.";
+  if (err !== null) {
+    console.error(err);
   }
 
   router.get('/', function (req, res, next) {
