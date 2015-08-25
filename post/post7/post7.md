@@ -19,7 +19,7 @@ You can provide different parameters to this command such as:
 * -d don't wait the process to finish (This is especially helpful when you want to start some desktop application in interactive mode, such as notepad)l
 * -u -p to specify the username and password to connect to remote machine as this user;
 
-Above are commonly used parameters. Therefor, to run a notepad, we may write the following command on the host machine:
+Above are commonly used parameters. Therefore, to run a notepad, we may write the following command on the host machine:
 ~~~~
 psexec \\remote-machine -u username -p password -i -d "c:\windows\system32\notepad.exe"
 ~~~~
@@ -27,7 +27,7 @@ if you are logged in to the machine with the provided username and password, you
 
 However, it is possible to see "Access is denied" error when we try to run the above command. Often time, it is due to that the user does not have enough privilege on the remote machine. After searching internet for a long time without finding a good solution, i finally came up with a "maybe-work" solution, the steps are:
 
-1. Obtain a admin account and run `psexec \\remote-machine -u adminusername -i "c:\windows\system32\notepad.exe`. Enter the password as prompted. Leave the window there and open another cmd window;
+1. Obtain a admin account and run `psexec \\remote-machine -u adminusername -i "c:\windows\system32\cmd.exe"`. Enter the password as prompted. Leave the window there and open another cmd window;
 
 2. In the new cmd window, you should be able to run any psexec commands as less privileged user.
 

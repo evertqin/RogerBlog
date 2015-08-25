@@ -8,6 +8,14 @@ var mongoUrl = 'mongodb://evertqin:QG3VGLyZlRWm@ds047632.mongolab.com:47632/blog
 var PAGE_ITEM_LIMIT = 8;
 var CONTENT_LENGTH_LIMIT = 200;
 
+// make use of redis
+var redis = require('redis');
+var redisClient = redis.createClient();
+
+redisClient.on('connect', function(){
+  console.log("Redis server is connected");
+});
+
 /* GET home page. */
 mongoClient.connect(mongoUrl, function(err, db) {
   if (err) {
@@ -27,17 +35,47 @@ mongoClient.connect(mongoUrl, function(err, db) {
       });
     }
 
-
+    
     var collection = db.collection('posts');
     var baseUrl = req.protocol + "://" + req.get('host');
-    collection.find({}, {limit:PAGE_ITEM_LIMIT, sort:{id: -1}}).toArray(function(err, data) {
-      for(var i = 0; i < data.length; ++i) {
-        data[i].imgUrls = utils.extract_image_href(data[i].content);
-        // reduce the data to send to front end
-        data[i].content = utils.getFirstSeveralPTags(data[i].content).substr(0, CONTENT_LENGTH_LIMIT);
+    
+    redisClient.exists('front_page_highlight', function(err, reply){
+      var fetchFromDB = false;
+      if(err !== null){
+        console.error(err);
+        fetchFromDB = true;
+      } else {
+        if(reply === 1) {
+          // exist
+          res.render('index', {posts:reply, baseUrl:baseUrl});
+        } else {
+          fetchFromDB = true;
+        }
       }
-      res.render('index', {posts:data, baseUrl:baseUrl});
+      
+      if (fetchFromDB) {
+        collection.find({}, {
+          limit: PAGE_ITEM_LIMIT,
+          sort: {
+            id: -1
+          }
+        }).toArray(function(err, data) {
+          for (var i = 0; i < data.length; ++i) {
+            data[i].imgUrls = utils.extract_image_href(data[i].content);
+            // reduce the data to send to front end
+            data[i].content = utils.getFirstSeveralPTags(data[i].content).substr(0, CONTENT_LENGTH_LIMIT);
+          }
+          res.render('index', {
+            posts: data,
+            baseUrl: baseUrl
+          });
+        });
+
+      }
+      
     });
+    
+    
   });
 
   router.get('/ip', function(req, res, next) {

@@ -6,9 +6,9 @@ Tag: Technology
 
 Today I committed a modifed version of Python-Markdown. Previously, this pip library only supports fenced block at document root level. It is quite inconvenient as often times, we need to nest a code blog inside an ordered list. You can check my [previous post](http://blog.tripplan.info/blog/post/item/14) for a demo.
 
-You can install it via pip:
+You can install it via pip through my git repo:
 
-`pip install https://github.com/evertqin/Python-Markdown/raw/master/markdown.zip`
+`pip install -e git+https://github.com/evertqin/Python-Markdown#egg=markdown`
 
 After installation, you can start embedding code within `<li>` tags, start by indenting `~~~~` at the same level as the list. The indentation level of the embeded code control the indentation of the outputing html.
 Here I am aligning the code block at the root level. 

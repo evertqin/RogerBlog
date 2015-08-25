@@ -15,6 +15,12 @@ var mongo = require('mongodb');
 
 
 mongoClient.connect(mongoUrl, function(err, db) {
+  
+  if(err !== null){
+    console.error(err);
+    return;
+  }
+  
   var collection = db.collection('posts');
 
   router.get('/item/*', function(req, res, next){
@@ -38,6 +44,11 @@ mongoClient.connect(mongoUrl, function(err, db) {
     var id = pathname.substring(pathname.lastIndexOf('/') + 1);
 
     collection.findOne({id: parseInt(id)}, function(err, doc) {
+      if(error !== null){
+        console.error(err);
+        next();
+      }
+      
       handlers.routePost(path.basename(doc.folder_name))(doc.folder_name, function(data) {
         res.send(data);
       });
