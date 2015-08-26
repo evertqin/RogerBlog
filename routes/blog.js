@@ -1,21 +1,31 @@
 /**
  * Created by Roger on 5/29/2015.
  */
+ //#############################
+ //  Constants
+ //#############################
+ var POST_PER_PAGE = 4;
+ var CONTENT_LENGTH_LIMIT = 300;
+ var mongoUrl = 'mongodb://evertqin:QG3VGLyZlRWm@ds047632.mongolab.com:47632/blog';
+ //#############################
+ //  Imports
+ //#############################
 var express = require('express');
-//var monk = require('monk');
-//var db = monk('mongodb://evertqin:QG3VGLyZlRWm@ds047632.mongolab.com:47632/blog');
 var url = require('url');
 var router = express.Router();
 var post = require('./post');
 var utils = require('../models/business_logic/utils/utils.js');
-
+var logger = require('../models/logging/logger.js');
 var mongo = require('mongodb');
 var mongoClient = mongo.MongoClient;
-var mongoUrl = 'mongodb://evertqin:QG3VGLyZlRWm@ds047632.mongolab.com:47632/blog';
-var POST_PER_PAGE = 4;
-var CONTENT_LENGTH_LIMIT = 300;
+
 
 mongoClient.connect(mongoUrl, function(err, db) {
+  if(err !== null){
+      logger.error(err);
+      throw err;
+  }
+
   var collection = db.collection('posts');
 
   router.get('/page/[1-9]+/',function(req, res, next) {
@@ -56,7 +66,6 @@ mongoClient.connect(mongoUrl, function(err, db) {
         data[i].content = utils.remove_image_href(data[i].content).substr(0, 200);
       }
       res.render('blog', {posts:data, baseUrl:baseUrl});
-
     });
   });
 
