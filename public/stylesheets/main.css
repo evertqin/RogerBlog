@@ -10,7 +10,6 @@ h6 {
 .quote_wrapper {
   padding: 10px 10px 10px 10px;
   background-color: white;
-  opacity: 0.9;
 }
 .bcg h2 {
   font-size: 50px;
@@ -60,7 +59,7 @@ a.anchor {
   width: 100%;
 }
 #slide-1 .bcg {
-  background-image: url('../images/background_1.png');
+  background-image: url('../images/background_2.jpg');
   background-size: auto;
 }
 .scroll-up > a {
@@ -100,7 +99,7 @@ h2.section-title {
   text-align: center;
 }
 .about-me-content {
-  font-size: 16px;
+  font-size: 14px;
 }
 .rq-p-col .box {
   width: 100%;
@@ -138,7 +137,7 @@ h2.section-title {
 .rq-p-col .title-block {
   margin-top: 2px;
   padding: 15px 20px 15px 20px;
-  background-color: #68a4c4;
+  background-color: #81a83c;
   text-align: left;
   height: 130px;
   overflow: hidden;
