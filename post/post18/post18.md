@@ -167,5 +167,7 @@ firstDivApp.controller('thirdController', ['$scope', function($scope){}])
     We create a link function which takes `scope, element, attrs` as arguments. scope is the scope of current directive.
     The above function update the element text of the scope every second.
 
+4. Directive that wraps other contents
+    
     
     

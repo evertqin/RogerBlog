@@ -9,7 +9,7 @@
 
   // angularjs controller
   (function() {
-    var blog = angular.module('blogApp', ['ngRoute', 'ngResource']);
+    var blog = angular.module('blogApp', []);
     //
     blog.controller('tagListCtrl', function($scope, $http) {
       $http.get('/blog/tag_list').success(function(data) {
@@ -17,6 +17,7 @@
         console.log(data.tag_list);
       });
     });
+    
   })();
 
   $(document).ready(function () {
