@@ -5,6 +5,9 @@ Tag: Technology
      AngularJS
      Javascript
 
+I have been learning AngularJS recently. Although people say Angular might be okay for small scale websites, it becomes very slow as the website grow larger. Many people turn to React.js for better performace. But I do think it 
+is useful to learn the concept of Angular since it has been there for quite a while and there are a lot of cool concepts.
+
 1. Terminologies
 
     At a high level, directives are markers on a DOM element (such as an attribute, element name, comment or CSS class) that tell AngularJS's HTML compiler ($compile) to attach a specified behavior to that DOM element or even transform the DOM element and its children.([From Angular document](https://docs.angularjs.org/guide/directive))

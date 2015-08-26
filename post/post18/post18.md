@@ -4,11 +4,15 @@ Date: 08/25/2015
 Tag: Technology
      AngularJS
      Javascript
-     
+ 
+Other Random notes about angularjs, I will add more to this.     
      
 1. Customize directives
     
-    Let's continue the html from yesterday by adding a new controller.
+    Let's continue the html from yesterday by adding a new controller. In this controller, I tried to use directives.
+
+
+
 
     ~~~~{.html}
 <html ng-app="firstDiv">
@@ -22,7 +26,6 @@ Tag: Technology
     <input type="text" ng-model="happyInput" ng-init="happyInput='sample'"/>
     <p>input: {{ happyInput }}</p>
     <h3 ng-bind="happyInput"></h3>
-    <!-- NEW STUFF BELOW -->
     <div ng-controller="firstController">
       <p ng-bind="whereIsMyDataFrom"></p>
       <ul>
