@@ -23,13 +23,15 @@ block blog_content
               each post, i in posts
                 -var fullUrl = baseUrl + '/blog/post/item/' + post.id;
                 .article(id="article"+i)
-                  .post-image
+                  .post-image(ng-controller='blogImageController as bImage')
                     - if (post.imgUrls != null && post.imgUrls.length > 0){
                       img(onclick="location.href='" + fullUrl + "';" src=post.imgUrls[Math.floor(Math.random() * post.imgUrls.length)])
                     -}
                     - else {
-                      img(onclick="location.href='" + fullUrl + "';" src="/images/background.png")
+                      img(ng-src="{{defaultImgSrc}}")
+                      //img(onclick="location.href='" + fullUrl + "';" src="/images/background.png")
                     -}  
+                    
                   .post-content
                     .post-heading
                       h6

@@ -4,20 +4,33 @@
 
 (function ($) {
   $(window).load(function() {
-    $(".loader").fadeOut("slow");
+    $(".loader").fadeOut("fast");
   });
 
   // angularjs controller
   (function() {
     var blog = angular.module('blogApp', []);
     //
-    blog.controller('tagListCtrl', function($scope, $http) {
+    blog.controller('tagListCtrl', ['$scope','$http', function($scope, $http) {
       $http.get('/blog/tag_list').success(function(data) {
         $scope.tagList = data.tag_list;
-        console.log(data.tag_list);
       });
-    });
-    
+    }]);
+
+    blog.controller('blogImageController', ['$scope', 'getImage', function($scope, getImage){
+      this.imageUrls = constants.staticImageUrls; //from constants.js
+      $scope.defaultImgSrc = getImage(this.imageUrls);
+
+    }])
+    .factory('getImage', [function(imageUrls){
+      function getImage(imageUrls){
+        var selectedImageIdx = Math.floor(Math.random() * imageUrls.length);
+        return imageUrls[selectedImageIdx];
+      }
+
+      return getImage;
+    }]);
+
   })();
 
   $(document).ready(function () {
