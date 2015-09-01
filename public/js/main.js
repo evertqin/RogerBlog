@@ -1,12 +1,42 @@
 /**
  * Created by Roger on 5/23/2015.
  */
-
 (function ($) {
     $(window).load(function() {
       $(".loader").fadeOut("slow");
     });
 
+
+    (function(){
+      var staticImageUrls = constants.staticImageUrls;
+      var mainApp = angular.module('mainApp', []);
+
+      mainApp.controller('backgroundController', ['$scope', function($scope){
+      }])
+      .directive('randomImage', ['getImage',function(getImage){
+        this.staticImageUrls = staticImageUrls;
+        var link = function(scope, element, attrs){
+          var url = getImage(this.staticImageUrls);
+          element.css({
+            'background-image':'url(' + url + ')',
+          });
+        };
+        return {
+          restrict:'A',
+          link:link
+        };
+      }])
+      .factory('getImage', [function(imageUrls){
+        function getImage(imageUrls){
+          var selectedImageIdx = Math.floor(Math.random() * imageUrls.length);
+          return imageUrls[selectedImageIdx];
+        }
+
+        return getImage;
+      }]);
+
+
+    })();
 
     $(document).ready(function () {
         $(window).scroll(function () {
