@@ -185,3 +185,32 @@ Run the whole project, you should see the following output.
 ![Run Result](/home/ruogu/Pictures/Capture.PNG)
 
 You can find the source code on [GitHub](https://github.com/evertqin/DotNetDemos/tree/master/SharpCppInterop)
+
+<font color='red'>Comment (09/01/2015): I think there is something miss about releasing memory when I first wrote it. Now i think the correct way
+to do it is by using the follong Marshal functions: `Marshal.DestroyStructure`, `Marshal.FreeHGlobal`.
+</font>
+
+For example, in my previous example, I created a struct called `OneDimRetArray ` . To proper release the memory, I need the folling function:
+
+~~~~{cs}
+struct OneDimRetArray
+{
+    public IntPtr content;
+    public int size;
+    
+    public static void Free(OneDimRetArray result)
+    {
+        Marshal.FreeHGlobal(result.content);
+        result.content = IntPtr.Zero;
+    }
+
+    public static void Free(IntPtr ptr)
+    {
+        OneDimRetArray result = (OneDimRetArray) Marshal.PtrToStructure(ptr, typeof (OneDimRetArray));
+        Free(result);
+        Marshal.DestroyStructure(ptr, typeof (OneDimRetArray));
+        Marshal.FreeHGlobal(ptr);
+        ptr = IntPtr.Zero;
+    }
+};
+~~~~
