@@ -1,68 +1,61 @@
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
   font-family: 'OpenSans', sans-serif;
-  font-weight: normal;
-}
+  font-weight: normal; }
+
 .quote_wrapper {
   padding: 10px 10px 10px 10px;
   background-color: white;
-  opacity: 0.9;
-}
+  opacity: 0.9; }
+
 .bcg h2 {
   font-size: 50px;
   position: relative;
-  color: #777777;
-}
+  color: #777; }
 .bcg p {
-  color: #777777;
-  position: relative;
-}
+  color: #777;
+  position: relative; }
+
 a {
-  color: #777777;
-  -webkit-transition: color 0.5s ease;
-}
-a:hover {
-  color: black;
-  text-decoration: none;
-}
+  color: #777;
+  -webkit-transition: color 0.5s ease; }
+  a:hover {
+    color: black;
+    text-decoration: none; }
+
 a.anchor {
   display: block;
   position: relative;
   top: -40px;
-  visibility: hidden;
-}
+  visibility: hidden; }
+
 .hsContainer {
   display: table;
   table-layout: fixed;
   width: 100%;
   height: 100%;
   overflow: hidden;
-  position: relative;
-}
+  position: relative; }
+
 .hsContent {
   max-width: 450px;
   margin: -150px auto 0 auto;
   display: table-cell;
   vertical-align: middle;
   color: #ebebeb;
-  text-align: center;
-}
+  text-align: center; }
+
 .bcg {
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
   height: 800px;
-  width: 100%;
-}
+  width: 100%; }
+
 #slide-1 .bcg {
-  background-image: url('../images/background_2.jpg');
-  background-size: auto;
-}
+  background-image: url("../images/background_2.jpg");
+  background-size: auto; }
+
 .scroll-up > a {
   background-color: white;
   position: fixed;
@@ -77,43 +70,40 @@ a.anchor {
   color: black;
   opacity: 0.6;
   -webkit-border-radius: 2px;
-  z-index: 100;
-}
+  z-index: 100; }
+
 .text-block {
   margin-top: 20px;
-  text-align: justify;
-}
-.text-block p {
-  -webkit-hyphens: auto;
-  -moz-hyphens: auto;
-  -ms-hyphens: auto;
-  hyphens: auto;
-}
+  text-align: justify; }
+  .text-block p {
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto; }
+
 section.highlight {
-  padding-top: 10px;
-}
+  padding-top: 10px; }
+
 h2.section-title {
   text-transform: uppercase;
   letter-spacing: 10px;
   font-size: 18px;
   margin-bottom: 30px;
-  text-align: center;
-}
+  text-align: center; }
+
 .about-me-content {
-  font-size: 14px;
-}
+  font-size: 14px; }
+
 .rq-p-col .box {
   width: 100%;
   padding-bottom: 20px;
   padding-top: 20px;
   background: #f8f8f8;
-  text-align: center;
-}
-.rq-p-col .box .box-title {
-  overflow: hidden;
-  height: 20px;
-  box-sizing: border-box;
-}
+  text-align: center; }
+  .rq-p-col .box .box-title {
+    overflow: hidden;
+    height: 20px;
+    box-sizing: border-box; }
 .rq-p-col .box-gray {
   cursor: pointer;
   cursor: hand;
@@ -124,44 +114,37 @@ h2.section-title {
   -webkit-transition: opacity 1s ease-in-out;
   -moz-transition: opacity 1s ease-in-out;
   -o-transition: opacity 1s ease-in-out;
-  transition: opacity 1s ease-in-out;
-}
+  transition: opacity 1s ease-in-out; }
 .rq-p-col .aligncenter {
-  text-align: center;
-}
+  text-align: center; }
 .rq-p-col .icon {
-  font-size: 40px;
-}
+  font-size: 40px; }
 .rq-p-col .box-stat-info span {
   padding-left: 10px;
   padding-right: 10px;
-  color: black;
-}
+  color: black; }
 .rq-p-col .title-block {
   margin-top: 2px;
   padding: 15px 20px 15px 20px;
-  background-color: #81a83c;
+  background-color: #81A83C;
   text-align: left;
   height: 130px;
   overflow: hidden;
-  box-sizing: border-box;
-}
-.rq-p-col .title-block .digest_container {
-  padding: 0 0 20px 0;
-  height: 50px;
-}
-.rq-p-col .title-block h5 {
-  color: white;
-}
-.rq-p-col .title-block h5 p {
-  color: white;
-}
+  box-sizing: border-box; }
+  .rq-p-col .title-block .digest_container {
+    padding: 0 0 20px 0;
+    height: 50px; }
+  .rq-p-col .title-block h5 {
+    color: white; }
+    .rq-p-col .title-block h5 p {
+      color: white; }
+
 section.copy-right {
   background-color: lightgray;
-  height: 100px;
-}
-section.copy-right .copy-right {
-  padding-top: 20px;
-  text-align: center;
-  line-height: 70px;
-}
+  height: 100px; }
+  section.copy-right .copy-right {
+    padding-top: 20px;
+    text-align: center;
+    line-height: 70px; }
+
+/*# sourceMappingURL=main.css.map */
