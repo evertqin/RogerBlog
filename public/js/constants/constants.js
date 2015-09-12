@@ -1,8 +1,8 @@
 
   var constants = constants || {};
   constants.staticImageUrls = [
-    '/images/background.png',
-    '/images/background_1.jpg',
+    //'/images/background.png',
+   // '/images/background_1.jpg',
     '/images/IMG_9851_small.jpg',
     '/images/IMG_1822_small.jpg',
     '/images/IMG_3867_small.jpg',

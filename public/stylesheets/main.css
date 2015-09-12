@@ -50,11 +50,8 @@ a.anchor {
   background-attachment: fixed;
   background-size: cover;
   height: 800px;
-  width: 100%; }
-
-#slide-1 .bcg {
-  background-image: url("../images/background_2.jpg");
-  background-size: auto; }
+  width: 100%;
+  transition: background-image 1.5s ease; }
 
 .scroll-up > a {
   background-color: white;
@@ -71,6 +68,20 @@ a.anchor {
   opacity: 0.6;
   -webkit-border-radius: 2px;
   z-index: 100; }
+
+#moving-strip {
+  height: 4px;
+  width: 100%; }
+
+#bar {
+  height: 4px;
+  width: 0px;
+  max-width: 100%;
+  background: #7fc242; }
+
+#progressBar {
+  width: 100%;
+  background: #EDEDED; }
 
 .text-block {
   margin-top: 20px;
@@ -128,7 +139,7 @@ h2.section-title {
   padding: 15px 20px 15px 20px;
   background-color: #81A83C;
   text-align: left;
-  height: 130px;
+  height: 120px;
   overflow: hidden;
   box-sizing: border-box; }
   .rq-p-col .title-block .digest_container {

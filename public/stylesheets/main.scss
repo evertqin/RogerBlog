@@ -14,18 +14,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .bcg  {
-
   h2 {
   font-size: 50px;
   position: relative;
   color:$text-default-color;
-
   }
 
   p {
-
     color:$text-default-color;
-
     position: relative;
   }
 }
@@ -43,11 +39,9 @@ a {
 a.anchor {
   display:block;
   position: relative; top: -40px; visibility: hidden;
-
 }
 
 // This section contains parallax configurations
-
 .hsContainer {
   display: table;
   table-layout: fixed;
@@ -73,11 +67,9 @@ a.anchor {
   background-size: cover;
   height: 800px;
   width: 100%;
+  transition: background-image 1.5s ease;
 
-}
-#slide-1 .bcg {
-  background-image:url('../images/background_2.jpg');
-  background-size:auto;
+
 }
 
 .scroll-up>a {
@@ -95,6 +87,23 @@ a.anchor {
   opacity: 0.6;
   -webkit-border-radius: 2px;
   z-index: 100;
+}
+
+#moving-strip{
+ height:4px;
+ width: 100%;
+}
+
+#bar{
+  height:4px;
+  width:0px;
+  max-width: 100%;
+  //transition: width 2s ease;
+  background:#7fc242;
+}
+#progressBar{
+  width: 100%;
+  background: #EDEDED;
 }
 
 .text-block {
@@ -171,7 +180,7 @@ h2.section-title {
     padding: 15px 20px 15px 20px;
     background-color: $green-background-color;
     text-align: left;
-    height: 130px;
+    height: 120px;
     overflow:hidden;
     box-sizing: border-box;
 

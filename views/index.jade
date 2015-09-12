@@ -13,7 +13,7 @@ mixin highlight_box(id, name, date, icon, post)
       .box-gray(style='background-image:url("' + image + '");'
                 onclick="location.href='" + postUrl + "';")
     - } else {
-      .box-gray(random-image onclick="location.href='" + postUrl + "';")
+      .box-gray(random-fixed-image onclick="location.href='" + postUrl + "';")
     -}    
       .title-block
         .box-stat-info
@@ -48,7 +48,8 @@ block content
                  data-anchor-target="#slide-1 h2")
             .quote_wrapper     
               h2.quote Think before you speak. Read before you think.
-              p.quote ― Fran Lebowitz, The Fran Lebowitz Reader    
+              p.quote ― Fran Lebowitz, The Fran Lebowitz Reader
+    #moving-strip
     a.anchor#highlight-section(name="hightlight-section")
     section.highlight.article
       .container
