@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.2/marked.min.js"></script>
+    
+
+  </head>
+  <body>
+<div id="content">
+  <div id="pageTitle" class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <div id="leftlist"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  </body>
+  <footer>
+    <script type="text/jsx">
+     (function ($) {
+    var NamesList = React.createClass({
+        render: function () {
+            var namesList = this.props.names.map(function (name) {
+                return (
+                    <li>
+                        <a>{name.YLabel}</a>
+                    </li>
+                    );
+            });
+
+            return (
+                    <ul className="namesList">
+                    {namesList}
+                </ul>
+                );
+        }
+    });
+
+    var LeftListBox = React.createClass({
+          getInitialState: function () {
+            return { names: [ {YLabel:"Test1"},
+                {YLabel:"Test2"} ]};
+        },
+        componentDidMount: function () {
+            $.ajax({
+                url: this.props.url,
+                dataType: 'json',
+                cache: false,
+                success: function (names) {
+                    this.setState({ names: names });
+                }.bind(this),
+                error: function (xhr, status, err) {
+                    console.error(this.props.url, status, err.toString());
+                }.bind(this),
+            });
+        },
+         render: function () {
+                console.log(this.props.names);
+                return (
+
+                <div className="leftListBox">
+                    <NamesList names={this.state.names}></NamesList>
+                </div>
+                );
+        }
+
+    });
+
+
+
+
+    var url = 'Plot/AggregatedPlotHandler.ashx?name=all';
+    React.render(
+      <LeftListBox url={url}>Sample</LeftListBox>,
+      document.getElementById('leftlist')
+    );
+})(jQuery);
+
+
+
+    </script>
+  </footer>
+</html>

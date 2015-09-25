@@ -7,13 +7,20 @@ h1, h2, h3, h4, h5, h6 {
   background-color: white;
   opacity: 0.9; }
 
-.bcg h2 {
-  font-size: 50px;
-  position: relative;
-  color: #777; }
-.bcg p {
-  color: #777;
-  position: relative; }
+.bcg {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 800px;
+  width: 100%;
+  transition: background-image 1.5s ease; }
+  .bcg h2 {
+    font-size: 50px;
+    position: relative;
+    color: #777; }
+  .bcg p {
+    color: #777;
+    position: relative; }
 
 a {
   color: #777;
@@ -43,15 +50,6 @@ a.anchor {
   vertical-align: middle;
   color: #ebebeb;
   text-align: center; }
-
-.bcg {
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-  height: 800px;
-  width: 100%;
-  transition: background-image 1.5s ease; }
 
 .scroll-up > a {
   background-color: white;

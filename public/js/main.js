@@ -19,6 +19,7 @@
         var url = getImage(this.staticImageUrls);
         element.css({
           'background-image':'url(' + url + ')',
+          'background-repeat': 'no-repeat',
         });
 
         var $progressbar, $bar, $elem, tick, percentTime;
@@ -57,7 +58,7 @@
               'background-image':'url(' + url + ')',
             });
           }
-          
+
         }
 
         progressBar($('#moving-strip'));
@@ -162,7 +163,7 @@ $(document).ready(function () {
 
         (function(){
           // progress bar
-          
+
         })();
 
 
