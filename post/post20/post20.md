@@ -7,6 +7,7 @@ Tag: Technology
 
 
 I am doing a new project recently so I am trying to follow the react.js tutorial and make use of this new technology in my project. It is claimed that the concept of react.js is fondamentally different from AngularJS. For example AngularJS is a full MVC framework but ReactJS is only the View of the MVC. The following figure demonstrated the whole concept.
+
 ![Compare AngularJS with ReactJS](http://i1-news.softpedia-static.com/images/news2/Basic-Differences-Between-AngularJS-and-React-484781-2.jpg)
 
 I will add other things from time to time
