@@ -28,6 +28,7 @@ mongoClient.connect(mongoUrl, function(err, db) {
 
   var collection = db.collection('posts');
 
+  // This one is used to get certain page of all documents
   router.get('/page/[1-9]+/',function(req, res, next) {
       var pathname = url.parse(req.url).pathname;
       var page = pathname.substring(pathname.lastIndexOf('/') + 1);
@@ -46,6 +47,7 @@ mongoClient.connect(mongoUrl, function(err, db) {
       });
   });
 
+  // This one is used to get certain page of given category
   router.get('/page/[a-z]+/[1-9]+', function(req, res, next) {
     var pathname = url.parse(req.url).pathname;
     var baseUrl = req.protocol + "://" + req.get('host');
