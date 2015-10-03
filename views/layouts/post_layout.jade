@@ -3,11 +3,11 @@ html(ng-app)
    head
     meta(name='viewport' content="width=device-width, initial-scale=1")
     title= post.title
-    include ./includes/common_includes
+    include ../includes/common_includes
     link(rel='stylesheet', href='/stylesheets/post.css')
     link(rel='stylesheet', href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/styles/default.min.css')
     script(src='//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/highlight.min.js')
     //script(src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.js')
-    script(src='/js/blog/post.main.js')
+    //script(src='/js/blog/post.main.js')
   body
     block post_content

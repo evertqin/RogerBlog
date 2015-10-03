@@ -1,0 +1,9 @@
+extends ./layouts/photography_layout
+
+block photography_content
+  body
+    .loader-wrapper
+      .loader
+    include ./includes/header-navbar-section.jade
+    .__reactApp
+      img(src= images[0])

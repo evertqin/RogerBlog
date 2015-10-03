@@ -17,7 +17,7 @@ def imageProcess(sourceFile):
 
     def readImage():
         if not os.path.isfile(sourceFile):
-            raise Exception("The given path: {0} does not contain a valid file".format(source))
+            raise Exception("The given path: {0} does not contain a valid file".format(sourceFile))
         return Image.open(sourceFile)
 
     def resizeImage(im):
