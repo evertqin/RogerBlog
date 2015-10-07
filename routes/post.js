@@ -29,12 +29,14 @@ mongoClient.connect(mongoUrl, function(err, db) {
     var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
 
     collection.findOne({id: parseInt(id)}, function(err, doc) {
-      handlers.routePost(path.basename(doc.folder_name))(doc.folder_name, function(data) {
-        if(err === null) {
-          doc.raw = data !== undefined && data.length > 0;
-          res.render('post', {post: doc, fullUrl : fullUrl});
-        }
-      });
+      if(err === null){
+        handlers.routePost(path.basename(doc.folder_name))(doc.folder_name, function(data) {
+          if(err === null) {
+            doc.raw = data !== undefined && data.length > 0;
+            res.render('post', {post: doc, fullUrl : fullUrl});
+          }
+        });
+      } 
     });
 
   });

@@ -1,10 +1,7 @@
 /**
  * Created by Roger on 5/23/2015.
  */
- (function ($) {
-  $(window).load(function() {
-    $(".loader").fadeOut("slow");
-  });
+require(["jquery", "angular","skrollr"], function($, angular, skrollr) {
   (function(){
     var staticImageUrls = constants.staticImageUrls;
     var mainApp = angular.module('mainApp', []);
@@ -91,6 +88,9 @@
 })();
 
 $(document).ready(function () {
+  $(".loader").fadeOut("slow");
+
+
   $(window).scroll(function () {
     var height = $(window).scrollTop();
 
@@ -166,4 +166,4 @@ $(document).ready(function () {
 
 
       });
-})(jQuery);
+});
