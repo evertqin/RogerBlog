@@ -1,5 +1,6 @@
 var fs = require('fs');
 var path = require('path');
+var logger = require('../logging/logger');
 
 String.prototype.endsWith = function(suffix) {
   return this.indexOf(suffix, this.length - suffix.length) !== -1;
@@ -7,7 +8,7 @@ String.prototype.endsWith = function(suffix) {
 
 
 module.exports = {generic_handler : function (filePath, func) {
-  console.log("In generic_handler");
+  logger.info("In generic_handler with filePath " + filePath);
   filePath = path.normalize(__dirname + "/../" + filePath);
   fs.readdir(filePath, function(err,res) {
     var retJSON = retJSON || {} ;

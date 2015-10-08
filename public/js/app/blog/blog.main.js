@@ -1,45 +1,18 @@
 /**
 * Created by Roger on 5/29/2015.
 */
+require(['jquery',
+'/js/lib/jquery.simplePagination.js',
+'./blog/angular/blogApp'],
+function($, simplePagination,blogApp){
 
-(function ($) {
-  $(window).load(function() {
-    $(".loader").fadeOut("fast");
+  require(["./blog/angular/blogFilter"], function(){
+    blogApp.init();
   });
+  $(function () {
+    $(".loader").fadeOut("fast");
 
-  // angularjs controller
-  (function() {
-    var blog = angular.module('blogApp', []);
-    //
-    blog.controller('tagListCtrl', ['$scope','$http', function($scope, $http) {
-      $http.get('/blog/tag_list').success(function(data) {
-        $scope.tagList = data.tag_list;
-      });
-    }]);
 
-    blog.controller('blogImageController', ['$scope', 'getImage', function($scope, getImage){
-      this.imageUrls = constants.staticImageUrls; //from constants.js
-      $scope.defaultImgSrc = getImage(this.imageUrls);
-
-    }])
-    .factory('getImage', [function(imageUrls){
-      function getImage(imageUrls){
-        var selectedImageIdx = Math.floor(Math.random() * imageUrls.length);
-        return imageUrls[selectedImageIdx];
-      }
-
-      return getImage;
-    }]);
-
-    blog.filter('capitalize', function(){
-      return function(input) {
-        return (!!input) ? input.charAt(0).toUpperCase() + input.substr(1).toLowerCase() :'';
-      };
-    });
-
-  })();
-
-  $(document).ready(function () {
     if(typeof String.prototype.firstLetterCapitalize != 'function') {
       String.prototype.firstLetterCapitalize = function() {
         return this.charAt(0).toUpperCase() + this.slice(1);
@@ -100,5 +73,6 @@
         });
       });
     });
-  });
-})(jQuery);
+  } );
+
+})();

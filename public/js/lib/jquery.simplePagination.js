@@ -7,9 +7,7 @@
 * Released under the MIT license.
 * http://flaviusmatis.github.com/license.html
 */
-
-(function($){
-
+define(['jquery'], function($){
 	var methods = {
 		init: function(options) {
 			var o = $.extend({
@@ -338,5 +336,4 @@
 		}
 
 	};
-
-})(jQuery);
+});

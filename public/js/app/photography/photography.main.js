@@ -1,6 +1,4 @@
-document.addEventListener("DOMContentLoaded", function(event) {
-    console.log("DOM fully loaded and parsed");
-  });
+
 require(['jquery'], function ($) {
   "use strict";
 

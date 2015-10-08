@@ -1,4 +1,4 @@
-
+define(function(){
   var constants = constants || {};
   constants.staticImageUrls = [
     //'/images/background.png',
@@ -21,3 +21,6 @@
       author:'Charles Spurgeon'
     }
   ];
+
+  return constants;
+});

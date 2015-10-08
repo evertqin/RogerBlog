@@ -18,6 +18,7 @@ cloudinary.config({
 
 router.get('/', function(req, res, next){
   var imageUrl = cloudinary.url("sample.jpg", { width: 100, height: 150, crop: 'fill' } );
+  logger.info("this is called");
   res.render('photography',{images:[imageUrl]});
 });
 

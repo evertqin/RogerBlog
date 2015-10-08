@@ -7,6 +7,7 @@ var router = express.Router();
 var path = require('path');
 var bodyParser = require('body-parser');
 var handlers = require('../models/business_logic/handlers.js');
+var logger = require('../models/logging/logger.js');
 
 var mongo = require('mongodb');
  var mongoClient = mongo.MongoClient;
@@ -29,14 +30,30 @@ mongoClient.connect(mongoUrl, function(err, db) {
     var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
 
     collection.findOne({id: parseInt(id)}, function(err, doc) {
-      if(err === null){
-        handlers.routePost(path.basename(doc.folder_name))(doc.folder_name, function(data) {
-          if(err === null) {
-            doc.raw = data !== undefined && data.length > 0;
-            res.render('post', {post: doc, fullUrl : fullUrl});
-          }
-        });
-      } 
+      logger.info("Called " + id);
+      if(err !== null){
+        logger.error(err);
+        res.render('error', {error:err});
+        return;
+      }
+
+      if(!doc){
+        logger.error("Empty return value of database");
+        res.render('error');
+        return;
+      }
+
+      handlers.routePost(path.basename(doc.folder_name))(doc.folder_name, function(data) {
+        if(err !== null) {
+          logger.error(err);
+          res.render('error', {error:err});
+          return;
+        }
+        doc.raw = data !== undefined && data.length > 0;
+        res.render('post', {post: doc, fullUrl : fullUrl});
+
+      });
+
     });
 
   });
