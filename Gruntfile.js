@@ -9,12 +9,15 @@ module.exports = function(grunt) {
                     cwd:'public/js',
                     src:'**/*.js',
                     dest:'public/build/',
-                    ext:'.min.js',
+                    ext:'.js',
                         extDot: 'first'
                     },
                 ],
             },
         },
+        clean: {
+
+        }
     });
 
     // Load the plugin that provides the "uglify" task.

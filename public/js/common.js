@@ -6,7 +6,7 @@
 //except for 'app' ones, which are in a sibling
 //directory.
 require.config({
-    baseUrl: '/js/app',
+    baseUrl: '/build/js/app',
     paths: {
         app: '.',
         jquery : 'https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min',
@@ -15,9 +15,9 @@ require.config({
         hljs:"//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/highlight.min",
         bootstrap:"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min",
         simplePagination:"/js/lib/jquery.simplePagination",
-        count:"/js/lib/count",
-        smoothscroll:"/js/lib/smoothscroll",
-        'header-scroll': "/js/lib/header-scroll",
+        count:"../lib/count",
+        smoothscroll:"../lib/smoothscroll",
+        'header-scroll': "../lib/header-scroll",
         utils: "./lib/utils",
         constants: "../constants/constants"
     },

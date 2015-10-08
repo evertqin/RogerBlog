@@ -3,3 +3,4 @@ editor/__pycache__/
 node_modules
 smallImage
 .sass-cache/
+public/build
