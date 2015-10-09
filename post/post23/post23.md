@@ -6,7 +6,7 @@ Tag: Technology
      AngularJS
      Javascript
 
-Recently, I accidentally poked into the frontend development code of some company. That website does not use too many frontend 
+Recently, I accidentally poked into the frontend development code of some company. That website does not use too many frontend
 frameworks except for jQuery and another one I am going to talk about today -- RequireJS.
 
 I would say when I first saw it during interview, the structure looked very familiar to me.
@@ -17,10 +17,14 @@ define(['jquery', 'underscore'], function($, _) {
 });
 ~~~~
 
-I remember doing something similiar in AngularJS too. When we need to specify the dependencies, we put them
+I remember doing something similiar in AngularJS too.
+~~~~{.js}
+mainApp.controller('controller', ['$scope'], function($scope){});
+~~~~
+When we need to specify the dependencies, we put them
 in an array and pass them as arguments to the function. Similar as they appear, bringing them together is not entirely easy. The difficult is because of how those frameworks work:
 
-The concept of RequireJS is based on Asynchronous Module Loading (AMD). That is 
+The concept of RequireJS is based on Asynchronous Module Loading (AMD). That is
 modules are loaded in an async way by the order you specified but it is not guaranteed the order is still maintained due to asynchronous nature.[*](http://www.sitepoint.com/understanding-requirejs-for-effective-javascript-module-loading/). Some
 a `shim` option is provided to manage the dependencies.
 
@@ -32,7 +36,7 @@ Angular initializes automatically upon DOMContentLoaded event or when the angula
 * create the application injector
 * compile the DOM treating the ng-app directive as the root of the compilation. This allows you to tell it to treat only a portion of the DOM as an Angular application.
 
-If we use automatic initialization, our application will fail for some module not found error. 
+If we use automatic initialization, our application will fail for some module not found error.
 The conflict here is: RequireJS delays the loading of js after page is rendered but angular js needs define those directives before replacing portion of DOM as ng-app. So we have to use manual bootstrapping when document is ready.
 ~~~~
 .
@@ -84,7 +88,7 @@ common.js contains config for requirejs, because angular does not support AMD, w
 require.config({
     baseUrl: '/build/js/app',
     paths: {
-       
+
         angular: "https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular",
     },
     // angular does not support AMD out of the box, put it in a shim
@@ -167,8 +171,7 @@ require(["jquery","skrollr", "./index/angular/mainApp"], function($, skrollr, ap
   require(["./index/angular/randomFixedImage", "./index/angular/randomImage"], function(){
     app.init();
   });
-  
+
   ....
 });
 ~~~~
-

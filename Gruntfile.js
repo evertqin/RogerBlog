@@ -56,26 +56,65 @@ module.exports = function(grunt) {
       }
     },
 
-    copy:{
-      css:{
-        expand:true,
-        cwd:'public/stylesheets/lib',
-        src:['**/*.css'],
-        dest:'public/build/stylesheets',
+
+    watch:{
+      js: {
+        cwd:'public/js',
+        files: ['**/*.js'],
+        tasks: ['copy:dev:js'],
+        options: {
+          spawn: false,
+        },
       },
+      css: {
+        cwd:'public/stylesheets',
+        files: ['**/*.scss'],
+        tasks: ['sass'],
+        options: {
+          spawn: false,
+        },
+      }
+    },
+
+    copy:{
+      dev:{
+        css:{
+          expand:true,
+          cwd:'public/stylesheets/lib',
+          src:['**/*.css'],
+          dest:'public/build/stylesheets',
+        },
+        js: [
+          {
+            expand: true,
+            cwd:'public/js',
+            src:['**/*.js'],
+            dest:'public/build/js',
+          },
+        ],
+      },
+
+
       // images: {
       //   expand:true,
       //   cwd:'public/images',
       //   src:['**/*.*'],
       //   dest:'public/build/images',
       // },
-
-      production: {
-        expand:true,
-        cwd: '.',
-        src: ['*','**/*.*', '!/editor/**'],
-        dest: '../blog',
-      },
+      deploy:{
+        css:{
+          expand:true,
+          cwd:'public/stylesheets/lib',
+          src:['**/*.css'],
+          dest:'public/build/stylesheets',
+        },
+        copy_prod: {
+          expand:true,
+          cwd: '.',
+          src: ['*','**/*.*', '!/editor/**'],
+          dest: '../blog',
+        },
+      }
     },
 
     shell:{
@@ -88,6 +127,7 @@ module.exports = function(grunt) {
       }
     },
 
+
   });
 
   // Load the plugin that provides the "uglify" task.
@@ -96,11 +136,12 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-imagemin');
   grunt.loadNpmTasks('grunt-shell');
 
 
-  // Default task(s).
-  grunt.registerTask('default', ['clean','uglify','sass','cssmin','imagemin', 'copy','shell']);
+  grunt.registerTask('default', ['sass','copy:dev']);
+  grunt.registerTask('deploy', ['clean','uglify','sass','cssmin','imagemin','copy:deploy', 'shell']);
 
 };
