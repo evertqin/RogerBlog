@@ -47,12 +47,12 @@ module.exports = function(grunt) {
 
     imagemin:{
       dynamic: {                         // Another target
-      files: [{
-        expand: true,                  // Enable dynamic expansion
-        cwd: 'public/images',                   // Src matches are relative to this path
-        src: ['**/*.{png,jpg,gif}'],   // Actual patterns to match
-        dest: 'public/build/images'                  // Destination path prefix
-      }]
+        files: [{
+          expand: true,                  // Enable dynamic expansion
+          cwd: 'public/images',                   // Src matches are relative to this path
+          src: ['**/*.{png,jpg,gif}'],   // Actual patterns to match
+          dest: 'public/build/images'                  // Destination path prefix
+        }]
       }
     },
 
@@ -78,42 +78,44 @@ module.exports = function(grunt) {
 
     copy:{
       dev:{
-        css:{
-          expand:true,
-          cwd:'public/stylesheets/lib',
-          src:['**/*.css'],
-          dest:'public/build/stylesheets',
-        },
-        js: [
+        files:[
+          {
+            expand:true,
+            cwd:'public/stylesheets/lib',
+            src:['**/*.css'],
+            dest:'public/build/stylesheets',
+          },
           {
             expand: true,
             cwd:'public/js',
             src:['**/*.js'],
             dest:'public/build/js',
           },
-        ],
+          {
+            expand: true,
+            cwd:'public/images',
+            src:['**/*.*'],
+            dest:'public/build/images',
+          }
+        ]
+
       },
 
-
-      // images: {
-      //   expand:true,
-      //   cwd:'public/images',
-      //   src:['**/*.*'],
-      //   dest:'public/build/images',
-      // },
       deploy:{
-        css:{
-          expand:true,
-          cwd:'public/stylesheets/lib',
-          src:['**/*.css'],
-          dest:'public/build/stylesheets',
-        },
-        copy_prod: {
-          expand:true,
-          cwd: '.',
-          src: ['*','**/*.*', '!/editor/**'],
-          dest: '../blog',
-        },
+        files:[
+          {
+            expand:true,
+            cwd:'public/stylesheets/lib',
+            src:['**/*.css'],
+            dest:'public/build/stylesheets',
+          },
+          {
+            expand:true,
+            cwd: '.',
+            src: ['*','**/*.*', '!/editor/**'],
+            dest: '../blog',
+          },
+        ]
       }
     },
 
@@ -126,8 +128,6 @@ module.exports = function(grunt) {
 
       }
     },
-
-
   });
 
   // Load the plugin that provides the "uglify" task.
