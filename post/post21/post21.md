@@ -4,4 +4,4 @@ Date: 10/01/2015
 Tag: Technology
      Javascript
 
-List of 
+(PlaceHolder)
