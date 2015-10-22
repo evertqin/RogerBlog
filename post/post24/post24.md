@@ -4,7 +4,7 @@ Date: 10/20/2015
 Tag: Technology
      C++
 
-An interesting problem, given some numbers, group them into individual sets based on certain rules. For example, for numbers between, we group them into sets (0, 0), [1, 5), [5, 10), [10, 30), [30, 60), [60, 100]. I found this [article](https://www.topcoder.com/community/data-science/data-science-tutorials/disjoint-set-data-structures/) on topcode is very helpful. Below is an implementation in C++.
+An interesting problem, given some numbers, group them into individual sets based on certain rules. For example, for numbers between, we group them into sets (0, 0), [1, 5), [10, 30), [30, 60), [60, 100]. I found this [article](https://www.topcoder.com/community/data-science/data-science-tutorials/disjoint-set-data-structures/) on topcode is very helpful. Below is an implementation in C++.
 
 ~~~~{.cpp}
 #include <iostream>
@@ -38,8 +38,8 @@ public:
   DisjointSets(): _numElements(0), _numSets(0){}
 
   ~DisjointSets(){
-    for(int i = 0; i < _numElements; ++i){
-      delete _nodes[i];
+    for(auto it = _nodes.begin(); it != _nodes.end(); ++it){
+      delete it->second;
     }
     _nodes.clear();
   }
