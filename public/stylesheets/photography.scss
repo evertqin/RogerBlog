@@ -1,0 +1,30 @@
+@import "constants.scss";
+
+.top-text-container {
+
+  h2 {
+    margin:auto;
+    text-align: center;
+  }
+}
+
+.image-outer-container {
+  padding-top:200px;
+}
+
+.image-container{
+  width: 100%;
+  -webkit-clip-path: circle(50% at 50% 50%);
+  clip-path: circle(50% at 50% 50%);
+}
+
+img{
+  max-width: 100%;
+  position: relative;
+  opacity: 0.5;
+
+  &:hover{
+    opacity: 1;
+
+  }
+}
