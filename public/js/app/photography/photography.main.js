@@ -1,8 +1,8 @@
 
-require(['jquery'], function ($) {
+require(['jquery','constants'], function ($, constants) {
   "use strict";
 
-
+  var imageUrls = constants.staticImageUrls;
   $(window).ready(function(){
 
     $(".loader").fadeOut("fast");
