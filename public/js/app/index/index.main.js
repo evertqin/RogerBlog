@@ -1,7 +1,8 @@
 /**
 * Created by Roger on 5/23/2015.
 */
-require(["jquery","skrollr", "./index/angular/mainApp"], function($, skrollr, app) {
+require(["jquery","skrollr", "./index/angular/mainApp", 'utils', "constants"],
+        function($, skrollr, app, utils, constants) {
   "use strict";
 
   require(["./index/angular/randomFixedImage", "./index/angular/randomImage"], function(){
@@ -10,8 +11,6 @@ require(["jquery","skrollr", "./index/angular/mainApp"], function($, skrollr, ap
 
 $(function () {
   $(".loader").fadeOut("fast");
-
-
 
   $(window).scroll(function () {
     var height = $(window).scrollTop();
@@ -51,7 +50,6 @@ $(function () {
     });
   }
 
-
   // check if is chinese of not
   function isChinese(value) {
     var len = value.length;
@@ -77,6 +75,28 @@ $(function () {
   }
   hideLongLine('.more', 120);
   hideLongLine('.box-title', 40);
+
+
+  function addLoadEvent(func){
+    var oldonload = window.onload;
+
+    if(typeof window.onload != 'function'){
+      window.onload = func;
+    } else {
+      window.onload = function() {
+        if(!!oldonload) {
+          oldonload();
+        }
+        func();
+      };
+    }
+  }
+
+  //we preload images
+  addLoadEvent(function(){
+    utils.imagePreloader(constants.staticImageUrls);
+  });
+
 
 });
 

@@ -18,7 +18,7 @@ require.config({
         count:"../lib/count",
         smoothscroll:"../lib/smoothscroll",
         'header-scroll': "../lib/header-scroll",
-        utils: "./lib/utils",
+        utils: "../lib/utils",
         constants: "../constants/constants"
     },
     // angular does not support AMD out of the box, put it in a shim
