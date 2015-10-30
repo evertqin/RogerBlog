@@ -80,6 +80,17 @@ utils.get_current_date_time = function() {
     return formatted;
 };
 
+utils.summary_date = function(posts, type){
+  var hash = {};
+  var counter = 0;
+  for(var post in posts){
+    var date = new Date(posts[post].timestamp);
+    console.log(date.getMonth());
+    counter++;
+  }
+  console.log(counter);
+};
+
 
 
 module.exports = utils;

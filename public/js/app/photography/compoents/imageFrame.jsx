@@ -1,0 +1,3 @@
+var ImageHolder = React.createClass({
+	
+});

@@ -2,7 +2,6 @@ define(['angular'], function(angular){
   'use strict';
 
   var mainApp = angular.module('mainApp', []);
-
   // bootstrap angular here, notice we need to apply directive before bootstraping
   mainApp.init = function() {
       angular.bootstrap(document, ['mainApp']);

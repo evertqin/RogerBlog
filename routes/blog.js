@@ -103,6 +103,13 @@ mongoClient.connect(mongoUrl, function(err, db) {
     });
 
   });
+
+  router.get('/date_sorted_list', function(req, res, next){
+    collection.find({}).toArray(function(e, docs){
+      utils.summary_date(docs);
+    });
+  });
+
 });
 
 

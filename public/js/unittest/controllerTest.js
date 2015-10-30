@@ -1,5 +1,0 @@
-(function() {
-  describe('blogApp', function() {
-    
-  });
-})();
