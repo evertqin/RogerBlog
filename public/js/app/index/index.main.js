@@ -11,8 +11,6 @@ require(["jquery","skrollr", "./index/angular/mainApp"], function($, skrollr, ap
 $(function () {
   $(".loader").fadeOut("fast");
 
-
-
   $(window).scroll(function () {
     var height = $(window).scrollTop();
 

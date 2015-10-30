@@ -40,13 +40,11 @@ define(['./mainApp', 'constants'], function(mainApp,constants){
 
         if(percentTime >= 100){
           percentTime = 0;
-
           url = getImage(constants.staticImageUrls);
           element.css({
             'background-image':'url(' + url + ')',
           });
         }
-
       }
 
       progressBar($('#moving-strip'));
