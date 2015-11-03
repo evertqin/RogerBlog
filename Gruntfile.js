@@ -29,7 +29,22 @@ module.exports = function(grunt) {
         }]
       }
     },
-
+    "babel": {
+      options: {
+        sourceMap: true
+      },
+      dist: {
+        files: [{
+          expand: true,
+            cwd:'public/js',
+            src:['**/*.jsx'],
+          dest:'public/build/js/',
+          rename: function(dest, src) {
+              return dest + src.substring(0, src.indexOf('.jsx')) + '.js';
+            }
+        }]
+      }
+    },
     uglify: {
       dynamic_mapping: {
         files: [
@@ -58,14 +73,14 @@ module.exports = function(grunt) {
 
 
     watch:{
-      js: {
-        cwd:'public/js',
-        files: ['**/*.js'],
-        tasks: ['copy:dev:js'],
-        options: {
-          spawn: false,
-        },
-      },
+      // js: {
+      //   cwd:'public/js',
+      //   files: ['**/*.js'],
+      //   tasks: ['copy:dev:js'],
+      //   options: {
+      //     spawn: false,
+      //   },
+      // },
       css: {
         cwd:'public/stylesheets',
         files: ['**/*.scss'],
@@ -112,7 +127,7 @@ module.exports = function(grunt) {
           {
             expand:true,
             cwd: '.',
-            src: ['*','**/*.*', '!/editor/**'],
+            src: ['*','**/*.*', '!/editor/**', '!**/grunt*','!**/node_modules/*'],
             dest: '../blog',
           },
         ]
@@ -139,9 +154,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-imagemin');
   grunt.loadNpmTasks('grunt-shell');
+  grunt.loadNpmTasks('grunt-babel');
 
 
-  grunt.registerTask('default', ['sass','copy:dev']);
-  grunt.registerTask('deploy', ['clean','uglify','sass','cssmin','imagemin','copy:deploy', 'shell']);
+  grunt.registerTask('default', ['sass','copy:dev', 'babel']);
+  grunt.registerTask('deploy', ['clean','babel','uglify','sass','cssmin','imagemin','copy:deploy','shell']);
 
 };

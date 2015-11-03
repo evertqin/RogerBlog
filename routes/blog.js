@@ -18,6 +18,8 @@ var utils = require('../models/business_logic/utils/utils.js');
 var logger = require('../models/logging/logger.js');
 var mongo = require('mongodb');
 var mongoClient = mongo.MongoClient;
+var logger = require('../models/logging/logger.js');
+var entryUtiles = require('../models/business_logic/entries/entry_utils.js');
 
 
 mongoClient.connect(mongoUrl, function(err, db) {
@@ -82,6 +84,30 @@ mongoClient.connect(mongoUrl, function(err, db) {
       res.send({count: count});
     });
   });
+
+
+  router.get('/all_entries/organized/[a-z]*', function(req, res, next){
+    var pathname = url.parse(req.url).pathname;
+    logger.info("Getting the list ");
+    var tokens = pathname.split('/');
+
+    if(tokens.length  != 4){
+      res.render('error', {message:"Something is wrong"});
+      return;
+    }
+
+    switch(tokens[3]) {
+      case 'time':
+      entryUtiles.getAllEntries(collection, function(err, data){
+        res.send(data);
+      });
+        break;
+      default:
+        break;
+    }
+
+  });
+
 
   router.get('/blog_count', function(req, res, next) {
     collection.count(function(err, count) {

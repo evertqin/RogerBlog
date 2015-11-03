@@ -24,7 +24,7 @@ function($, simplePagination,blogApp){
         return this.slice(0, str.length) == str;
       };
     }
-
+ 
     (function () {
       $('#navigation-items li>a').each(function() {
         var orgHref = $(this).attr('href');

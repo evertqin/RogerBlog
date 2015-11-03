@@ -31,7 +31,6 @@ block blog_content
                       img(onclick="location.href='" + fullUrl + "';" ng-src="{{defaultImgSrc}}")
                       //img(onclick="location.href='" + fullUrl + "';" src="/images/background.png")
                     -}  
-                    
                   .post-content
                     .post-heading
                       h6
@@ -52,15 +51,11 @@ block blog_content
               .blog-entries-list
                 .post-heading
                   h4 Blog Entries
-                .list-body.blog-entries-list-body
-                  ul
-                   each post in posts
-                     li
-                       a(href="/blog/post/item/" + post.id)=  post.title
+                .list-body.blog-entries-list-body#entries-list
               .blog-category-list
                 .post-heading
                   h4 Categories
-                .list-body(ng-controller="tagListCtrl").ng-scope
+                .list-body(ng-controller="tagListCtrl").ng-scope#category-list
                   ul
                     li
                       a(href='/blog/page/1') All
