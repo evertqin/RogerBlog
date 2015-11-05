@@ -20,7 +20,7 @@ if PLATFORM == 'Darwin':
 elif PLATFORM == 'Linux':
     BASE_FOLDER = "../post/"
 elif PLATFORM == 'Windows':
-    BASE_FOLDER = "G:\\RogerBlog\\post\\"
+    BASE_FOLDER = "C:\\cygwin64\\home\\evert\\projects\\RogerBlog\\post\\"
 
 EXTRA_DATA_FOLDER = "../post/"
 GLOBAL_FILENAME = 'gId'
