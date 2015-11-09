@@ -1,190 +1,132 @@
-Title: Summary of tricks of ILNumerics.NET
+Title: ILNumerics.NET Best Practices
 Author: Ruogu Qin
-Date: 10/20/2015
+Date: 11/04/2015
 Tag: Technology
-     C++
+     CSharp
 
-An interesting problem, given some numbers, group them into individual sets based on certain rules. For example, for numbers between, we group them into sets (0, 0), [1, 5), [10, 30), [30, 60), [60, 100]. I found this [article](https://www.topcoder.com/community/data-science/data-science-tutorials/disjoint-set-data-structures/) on topcode is very helpful. Below is an implementation in C++.
+I have been working with [ILNumerics.NET](http://ilnumerics.net/) for quite a while. It is a fine piece of mathmatical library which provides better performance than most of the other .NET numeric libraries. Used properly, it's performance can also surpass that of MATLAB.
 
-~~~~{.cpp}
-#include <iostream>
-#include <vector>
-#include <unordered_map>
-#include <unordered_set>
-#include <set>
-#include <algorithm>
-#include <climits>
-#include <stack>
-#include <queue>
-#include <map>
-#include <iterator>
-#include <assert.h>
+However, since the user base for this library is quite small and it went commercial after version 3.3.3 , it is not very easy to get help. Moreover, the official guide is somewhat scattered around their instructions, tutorials and blog, sometimes, when you notice some problem, you are already late in the development cycle so you have to go back and do a lot of code refactoring, which, if known in the beginning, can be totally avoided. I am summarizing the best practices and tricks I have with this library so if you happen to start using this library, this guide can help you avoid some mistakes I made.
 
-using namespace std;
+1. Follow the function rule: 
+    * Use In Array type as input (such as ILInArray<T>) and do not mutate the value of this;
+    * Use Out Array type as output (such as ILOutArray<T>, comparable with out keyword in C#), use assigner (.a) notation to mutate the value, also make sure initialzing before passing in as Out Array;
+    * Use Ret Array for return value, this array will be distroyed after first use. [Reference](http://ilnumerics.net/FunctionRules.html)
+2. *Important* wrap everything within using(ILScope.Enter()), if you want to hold the input array refrence, put them as parameters inside Enter(); Consider wrapping the for loop for better performance;[Reference](http://ilnumerics.net/PerfMemoryOpt.html)
+3. if you want to use ILArray<T> as class member, declare it as readonly then initialze with ILMath.localMember. [Reference](http://ilnumerics.net/blog/using-ilarray-as-class-attributes/)
+4. Two Settings switches are very important: 
+Everything is summarized in the attached code `Settings.AllowInArrayAssignments = false;`, `Settings.MaxNumberThreads = 1;` Refer to the code for explaination.
 
-struct Node {
-  int rank;
-  int value;
-  Node * parent;
-};
+~~~~{.csharp}
+using System;
+using ILNumerics;
 
-class DisjointSets{
-private:
-  int _count;
-  int _numElements;
-  int _numSets;
-  unordered_map<int, Node *> _nodes;
-public:
-  DisjointSets(): _numElements(0), _numSets(0){}
-
-  ~DisjointSets(){
-    for(auto it = _nodes.begin(); it != _nodes.end(); ++it){
-      delete it->second;
-    }
-    _nodes.clear();
-  }
-
-  int find_set(int element) {
-    if(!_nodes.count(element)){
-      return -1;
-    }
-    Node * curr = _nodes[element];
-
-    while(curr->parent){
-      curr = curr->parent;
-    }
-    Node * root = curr;
-
-    // update the parents along the way
-    curr = _nodes[element];
-    while(curr != root){
-      Node * next = curr->parent;
-      curr->parent = root;
-      curr = next;
-    }
-
-    return root->value;
-  }
-
-  void make_union(int setId1, int setId2){
-    if(setId1 == setId2){
-      return;
-    }
-
-    if(!_nodes.count(setId1)){
-      return;
-    }
-    Node* set1 = _nodes[setId1];
-    if(!_nodes.count(setId2)){
-      return;
-    }
-    Node* set2 = _nodes[setId2];
-
-    if(set1->rank > set2->rank){
-      set2->parent = set1;
-    } else if(set1->rank < set2->rank){
-      set1->parent = set2;
-    } else {
-      set2->parent = set1;
-      set1->rank++;
-    }
-    --_numSets;
-  }
-
-  void add_element(int element) {
-    _nodes[element] = new Node();
-    _nodes[element]->parent = NULL;
-    _nodes[element]->value = element;
-    _nodes[element]->rank = 0;
-
-    _numElements++;;
-    _numSets++;
-  }
-
-  int get_num_elements() const {
-    return _numElements;
-  }
-
-  int get_num_sets() const {
-    return _numSets;
-  }
-};
-
-void printElementSets(DisjointSets & s, const vector<int>& nums)
+namespace ilnumerics_tricks
 {
-  assert(nums.size() <= s.get_num_elements());
-  for (int i = 0; i < nums.size(); ++i) {
-    cout << s.find_set(nums[i]) << "  ";
-  }
-  cout << endl;
-}
+    /// <summary>
+    /// We extend ILMath class so we don't need to prefix all the functions with ILMath. static class name
+    /// </summary>
+    class SampleClass : ILMath, IDisposable
+    {
+        /// <summary>
+        /// By default, all the ILArrays are disposed after they went out of the ILScope, 
+        /// but sometimes we want to keep them as a class member and live with the class
+        /// to do this, we need to declare them as localMember<T>(), then our class needs to 
+        /// implement IDisposable interface and explicitly destroy this ILArray Instance
+        /// </summary>
+        private ILArray<double> classMember = localMember<double>();
 
-void groupTogether(DisjointSets& s, const vector<int>& nums, map<int, vector<int>>& groups){
-  assert(nums.size() <= s.get_num_elements());
-  for (int i = 0; i < nums.size() && i < s.get_num_elements(); ++i) {
-    groups[s.find_set(nums[i])].push_back(nums[i]);
-  }
-}
+        static SampleClass()
+        {
+            //Performance switch, dis-/allow direct assignments to input parameters 
+            //- brings more efficient memory management, default: true (safer, less efficient)
+            Settings.AllowInArrayAssignments = false;
 
-void prettyPrintGroups(const map<int, vector<int>>& groups){
-  for(auto it = groups.begin(); it != groups.end(); ++it){
-    std::cout << "Group " << it->first << " -------------"<< std::endl;
-    for(int i = 0; i <  it->second.size(); ++i){
-      std::cout << it->second[i] << "  ";
+            // By default, ILNumerics.NET sets this to 2 on all multicore machines. 
+            // Therefore, this setting should be set manually for better processor utilization
+            // on multicore machines.
+            // This setting is very important if you want to use C# Parallel functions, 
+            // you have to set it to 1 and manage parallellism by yourself, otherwise, 
+            // you may get random null object reference error.
+            Settings.MaxNumberThreads = 1;
+        }
+
+        /// <summary>
+        /// Below is a useless function to demonstrate the function concept
+        /// </summary>
+        /// <param name="data1">The input array has to have "In", this makes a contract 
+        /// that this is an input data, which should not be mutable,  if we follow this rule, 
+        /// we can use Settings.AllowInArrayAssignments = false;  to make an agreement with 
+        /// the library that we are not alternating the input data, this will result in a 
+        /// performance gain from 1% to 30%(http://ilnumerics.net/apidoc/html/P_ILNumerics_Settings_AllowInArrayAssignments.htm)</param>
+        /// <param name="data2">The output array (much like out keyword) serve as additional, 
+        /// optional, output parameter of a function,  it is fully mutable, it is suggested 
+        /// to use array accessor ".a" to access  by convention, we put ILOutArray as the last
+        ///  arguments and set their default values to false.</param>
+        /// <returns>the return value has to have "Ret", this makes a contract that this 
+        /// return value will be disposed and garbage collected after first use</returns>
+        public ILRetArray<double> BasicFunctionStructure(ILInArray<double> data1, ILOutArray<double> data2 = null)
+        {
+            // Function bodies of any computational function must be enclosed with a 
+            // construct according to the following scheme:
+            using (ILScope.Enter(data1))
+            {
+                ILArray<double> summation = sum(data1);
+
+                for (int i = 0; i < 1000; ++i)
+                {
+                    // you may consider wrapping your function with ILScope inside a loop 
+                    // for better memory management
+                    using (ILScope.Enter())
+                    {
+                        ILArray<double> trash = sqrt(data1);
+                    }
+                }
+
+
+                if (!isnull(data2))
+                {
+                    data2.a = ones(data1.S);
+                }
+                return summation;
+            }
+        }
+
+        /// <summary>
+        /// It is always a good idea to wrap all your ILNumerics.NET code within 
+        /// a using(ILScope.Enter()) block  Here we use check function and use a 
+        /// lambda function to get the result, here we reused the memory space of data1,
+        /// then trasfer the result directly to the return value, this saves our effort
+        /// of allocating extra memory
+        /// </summary>
+        /// <param name="data1"></param>
+        /// <returns></returns>
+        public ILRetArray<double> InPlaceArrayManipulation(ILInArray<double> data1)
+        {
+            using (ILScope.Enter(data1))
+            {
+                return check(data1, todouble);
+            }
+        }
+
+
+        public void Dispose()
+        {
+            // this is important if we want to use ILArray as a class Member
+            if (!isnull(classMember)) { classMember.Dispose(); }
+        }
+
+        static void Main(string[] args)
+        {
+            using (ILScope.Enter())
+            {
+                SampleClass smapleClass = new SampleClass();
+                ILArray<double> input = new[] {1.0, 2.0};
+                ILArray<double> output = empty();
+
+                ILArray<double> returnValue = smapleClass.BasicFunctionStructure(input, output);
+            }
+        }
     }
-    std::cout <<  std::endl;
-  }
 }
-
-void testGenerator(int size){
-  vector<pair<int, int>> rules{{0, 0}, {1, 5}, {10, 30}, {30, 60}, {60, 100}};
-  vector<int> randoms;
-  for(int i = 0; i < size; ++i){
-    randoms.push_back(random() % 100);
-  }
-
-  DisjointSets s;
-
-  for_each(randoms.begin(), randoms.end(), [&](int num){s.add_element(num); });
-
-  std::cout << "Orginal data:" << std::endl;
-  printElementSets(s, randoms);
-
-  for(int i = 0; i < rules.size(); ++i){
-    int rep = rules[i].first;
-    // push representative to DisjointSets
-    s.add_element(rep);
-    for(int j = rules[i].first + 1 ; j < rules[i].second; ++j){
-      s.make_union(s.find_set(rep), s.find_set(j));
-    }
-  }
-  std::cout << "After union find, group representative:" << std::endl;
-  printElementSets(s, randoms);
-  std::cout  << std::endl;
-
-  // group together
-  map<int, vector<int>> groups;
-  groupTogether(s, randoms, groups);
-  prettyPrintGroups(groups);
-}
-
-int main(int argc, char *argv[])
-{
-  const int DATA_SIZE = 10;
-  testGenerator(DATA_SIZE);
-  return 0;
-}
-~~~~
-Sample Output:
-Orginal data:
-83  86  77  15  93  35  86  92  49  21  
-After union find, group representative:
-60  60  60  10  60  30  60  60  30  10  
-
-Group 10 -------------
-15  21  
-Group 30 -------------
-35  49  
-Group 60 -------------
-83  86  77  93  86  92
 ~~~~
