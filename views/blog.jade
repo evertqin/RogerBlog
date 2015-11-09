@@ -59,8 +59,8 @@ block blog_content
                   ul
                     li
                       a(href='/blog/page/1') All
-                    li(ng-repeat="(key, value) in tagList")
-                      a(href='/blog/page/' + "{{ key }}" + '/1') {{key | capitalize}}
+                    li(ng-repeat="(key, value) in tagList ")
+                      a(href='/blog/page/' + "{{ key | escape}}" + '/1') {{key | capitalize}}
       include ./includes/body_scripts.jade
                                 
               

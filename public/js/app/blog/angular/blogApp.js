@@ -23,7 +23,10 @@ define(['angular', 'constants'], function(angular, constants){
       }
 
       return getImage;
-    }]);
+    }])
+    .filter('escape', function() {
+  return window.encodeURIComponent;
+    });
 
     return blogApp;
 

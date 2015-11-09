@@ -26,7 +26,7 @@ mongoClient.connect(mongoUrl, function(err, db) {
     req.connection.remoteAddress ||
     req.socket.remoteAddress ||
     req.connection.socket.remoteAddress;
-    if(visitorIp !== "127.0.0.1") {
+    if(visitorIp !== "127.0.0.1" && visitorIp !== "127.3.45.129") {
       var visitorStats = db.collection('visitor_stats');
       visitorStats.insert({
         ip: visitorIp,
