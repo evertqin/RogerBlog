@@ -9,7 +9,7 @@ var mongoClient = require('mongodb').MongoClient;
 var redisClient = require('../models/redis/redis.js');
 var imageHandler = require('../models/business_logic/images/imgur_handler');
 
-router.get('/', function(req, res, next){
+router.get('/', function(req, res, next) {
   res.render('photography');
 });
 
