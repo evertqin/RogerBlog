@@ -24,7 +24,6 @@ define([
     }
   });
 
-
   var imageHolders = document.getElementsByClassName('post-image');
   if (imageHolders.length > 0) {
     for (var i = 0; i < imageHolders.length; ++i) {
