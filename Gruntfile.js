@@ -6,6 +6,7 @@ module.exports = function(grunt) {
 
     clean: ['public/build'],
 
+
     sass: {
       dynamic_mapping: {
         files: [{
@@ -28,7 +29,7 @@ module.exports = function(grunt) {
         }]
       }
     },
-    babel: {
+    "babel": {
       options: {
         sourceMap: true
       },
@@ -72,20 +73,14 @@ module.exports = function(grunt) {
 
 
     watch:{
-      js: {
-        files: ['public/js/**/*.js'],
-        tasks: ['copy:dev:js'],
-        options: {
-          spawn: false,
-        },
-      },
-      jsx: {
-        files: ['public/js/**/*.jsx'],
-        tasks:['babel'],
-        options: {
-          spawn:false,
-        }
-      },
+      // js: {
+      //   cwd:'public/js',
+      //   files: ['**/*.js'],
+      //   tasks: ['copy:dev:js'],
+      //   options: {
+      //     spawn: false,
+      //   },
+      // },
       css: {
         cwd:'public/stylesheets',
         files: ['**/*.scss'],
@@ -162,8 +157,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-babel');
 
 
-  grunt.registerTask('default',['watch']);
-  grunt.registerTask('dev', ['sass','copy:dev', 'babel']);
-  grunt.registerTask('deploy', ['clean','babel','uglify','sass','cssmin','imagemin','copy:deploy', 'shell']);
+  grunt.registerTask('default', ['sass','copy:dev', 'babel']);
+  grunt.registerTask('deploy', ['clean','babel','uglify','sass','cssmin','imagemin','copy:deploy','shell']);
 
 };
