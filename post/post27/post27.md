@@ -89,6 +89,9 @@ Major change has been made to ReactJS: JSXTransformer was deprecated, [Babel wit
     pkg: grunt.file.readJSON('package.json'),
     clean:['public/build'],
     env: {
+      dev: {
+      NODE_ENV:'dev'
+      },
       build: {
         NODE_ENV: 'production'
       }
@@ -100,7 +103,7 @@ Major change has been made to ReactJS: JSXTransformer was deprecated, [Babel wit
         },
         options:{
           debug: true,
-          transform:['babelify']
+          transform:[['babelify', { "presets": ["react", "es2015"] }]]
         }
       },
       build: {
@@ -109,7 +112,7 @@ Major change has been made to ReactJS: JSXTransformer was deprecated, [Babel wit
         },
         options:{
           debug: false,
-          transform:['babelify']
+          transform:[['babelify', { "presets": ["react", "es2015"] }]]
         }
       }
     },
