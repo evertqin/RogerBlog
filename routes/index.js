@@ -21,12 +21,12 @@ mongoClient.connect(mongoUrl, function(err, db) {
     console.error(err);
   }
 
-  router.get('/', function(req, res, next) {
+  router.get('/', function (req, res, next) {
     var visitorIp = req.headers['x-forwarded-for'] ||
-      req.connection.remoteAddress ||
-      req.socket.remoteAddress ||
-      req.connection.socket.remoteAddress;
-    if (visitorIp !== "127.0.0.1" && visitorIp !== "127.3.45.129") {
+    req.connection.remoteAddress ||
+    req.socket.remoteAddress ||
+    req.connection.socket.remoteAddress;
+    if(visitorIp !== "127.0.0.1" && visitorIp !== "127.3.45.129") {
       var visitorStats = db.collection('visitor_stats');
       visitorStats.insert({
         ip: visitorIp,
@@ -39,43 +39,31 @@ mongoClient.connect(mongoUrl, function(err, db) {
     var baseUrl = req.protocol + "://" + req.get('host');
 
     redisUtils.checkExistsInRedis(FRONT_PAGE_HIGHTLIGHT_CACHE)
-      .then(redisUtils.getEntryFromRedis(FRONT_PAGE_HIGHTLIGHT_CACHE)
-        .then(function(reply) {
-          //resolve
-          res.render('index', {
-            posts: JSON.parse(reply),
-            baseUrl: baseUrl
-          });
-        }),
-        function(reply) {
-          //reject
-          collection.find({}, {
-            limit: PAGE_ITEM_LIMIT,
-            sort: {
-              id: -1
-            }
-          }).toArray(function(err, data) {
-            for (var i = 0; i < data.length; ++i) {
-              data[i].imgUrls = utils.extract_image_href(data[i].content);
-              // reduce the data to send to front end
-              data[i].content = utils.getFirstSeveralPTags(data[i].content).substr(0, CONTENT_LENGTH_LIMIT);
-            }
-            redisUtils.setRedisEntry(FRONT_PAGE_HIGHTLIGHT_CACHE, data, 60);
-            res.render('index', {
-              posts: data,
-              baseUrl: baseUrl
-            });
-          });
-        });
+    .then(redisUtils.getEntryFromRedis(FRONT_PAGE_HIGHTLIGHT_CACHE)
+    .then(function(reply){
+      //resolve
+      res.render('index', {posts:JSON.parse(reply), baseUrl:baseUrl});
+    }), function(reply){
+      //reject
+      collection.find({}, {limit:PAGE_ITEM_LIMIT, sort:{id: -1}}).toArray(function(err, data) {
+        for(var i = 0; i < data.length; ++i) {
+          data[i].imgUrls = utils.extract_image_href(data[i].content);
+          // reduce the data to send to front end
+          data[i].content = utils.getFirstSeveralPTags(data[i].content).substr(0, CONTENT_LENGTH_LIMIT);
+        }
+        redisUtils.setRedisEntry(FRONT_PAGE_HIGHTLIGHT_CACHE, data, 60);
+        res.render('index', {posts:data, baseUrl:baseUrl});
+      });
+    });
 
 
   });
 
   router.get('/ip', function(req, res, next) {
     var clientIp = req.headers['x-forwarded-for'] ||
-      req.connection.remoteAddress ||
-      req.socket.remoteAddress ||
-      req.connection.socket.remoteAddress;
+    req.connection.remoteAddress ||
+    req.socket.remoteAddress ||
+    req.connection.socket.remoteAddress;
     res.send({
       ip: clientIp,
       timestamp: new Date(),
@@ -84,12 +72,8 @@ mongoClient.connect(mongoUrl, function(err, db) {
 
   router.get('/site_stats', function(req, res, next) {
     var visitorStats = db.collection('visitor_stats');
-    visitorStats.find({}, {
-      sort: {
-        timestamp: -1
-      }
-    }).toArray(function(err, data) {
-      if (err === null) {
+    visitorStats.find({}, {sort: {timestamp: -1}}).toArray(function(err, data) {
+      if(err === null) {
         res.send(data);
       }
     });
