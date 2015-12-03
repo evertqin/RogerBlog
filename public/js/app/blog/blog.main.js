@@ -2,13 +2,8 @@
 * Created by Roger on 5/29/2015.
 */
 require(['jquery',
-'/js/lib/jquery.simplePagination.js',
-'./blog/angular/blogApp'],
-function($, simplePagination,blogApp){
-
-  require(["./blog/angular/blogFilter"], function(){
-    blogApp.init();
-  });
+'/js/lib/jquery.simplePagination.js'],
+function($, simplePagination){
   $(function () {
     $(".loader").fadeOut("fast");
 
@@ -24,7 +19,7 @@ function($, simplePagination,blogApp){
         return this.slice(0, str.length) == str;
       };
     }
- 
+
     (function () {
       $('#navigation-items li>a').each(function() {
         var orgHref = $(this).attr('href');

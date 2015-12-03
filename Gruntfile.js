@@ -164,6 +164,6 @@ module.exports = function(grunt) {
 
   grunt.registerTask('default',['watch']);
   grunt.registerTask('dev', ['sass','copy:dev', 'babel']);
-  grunt.registerTask('deploy', ['clean','babel','uglify','sass','cssmin','imagemin','copy:deploy', 'shell']);
+  grunt.registerTask('deploy', ['clean','uglify','sass','cssmin','imagemin','copy:deploy','babel']);
 
 };
