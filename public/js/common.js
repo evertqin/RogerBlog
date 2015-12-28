@@ -13,15 +13,17 @@ require.config({
         angular: "https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min",
         skrollr: "https://cdnjs.cloudflare.com/ajax/libs/skrollr/0.6.30/skrollr.min",
         hljs:"//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/highlight.min",
-        react:["https://fb.me/react-0.14.2.min","../lib/react"],
-        reactDom:["https://fb.me/react-dom-0.14.2.min", "../lib/react-dom"],
+        react:["https://fb.me/react-0.14.2","../lib/react"],
+        reactDom:["https://fb.me/react-dom-0.14.2", "../lib/react-dom"],
         bootstrap:"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min",
         simplePagination:"/js/lib/jquery.simplePagination",
         count:"../lib/count",
         smoothscroll:"../lib/smoothscroll",
         'header-scroll': "../lib/header-scroll",
         utils: "../lib/utils",
-        constants: "../constants/constants"
+        constants: "../constants/constants",
+        photoswipe: "../lib/photoswipe",
+        photoswipeUI: "../lib/photoswipe-ui-default",
     },
     // angular does not support AMD out of the box, put it in a shim
   shim: {

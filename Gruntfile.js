@@ -73,17 +73,22 @@ module.exports = function(grunt) {
 
 
     watch:{
-      // js: {
-      //   cwd:'public/js',
-      //   files: ['**/*.js'],
-      //   tasks: ['copy:dev:js'],
-      //   options: {
-      //     spawn: false,
-      //   },
-      // },
+      js: {
+        files: ['public/js/**/*.js'],
+        tasks: ['copy:dev:js'],
+        options: {
+          spawn: false,
+        },
+      },
+      jsx: {
+        files:['public/js/**/*.jsx'],
+        tasks:['babel'],
+        options: {
+          spawn:false,
+        }
+      },
       css: {
-        cwd:'public/stylesheets',
-        files: ['**/*.scss'],
+        files: ['public/stylesheets/**/*.scss', 'public/stylesheets/**/*.css'],
         tasks: ['sass'],
         options: {
           spawn: false,
@@ -158,6 +163,6 @@ module.exports = function(grunt) {
 
 
   grunt.registerTask('default', ['sass','copy:dev', 'babel']);
-  grunt.registerTask('deploy', ['clean','babel','uglify','sass','cssmin','imagemin','copy:deploy','shell']);
+  grunt.registerTask('deploy', ['clean','babel','uglify','sass','cssmin','imagemin','copy:deploy'/*,'shell'*/]);
 
 };
