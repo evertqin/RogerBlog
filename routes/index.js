@@ -42,6 +42,7 @@ mongoClient.connect(mongoUrl, function(err, db) {
       .then(redisUtils.getEntryFromRedis(FRONT_PAGE_HIGHTLIGHT_CACHE)
         .then(function(reply) {
           //resolve
+          console.log("Get from Redis");
           res.render('index', {
             posts: JSON.parse(reply),
             baseUrl: baseUrl
@@ -67,8 +68,6 @@ mongoClient.connect(mongoUrl, function(err, db) {
             });
           });
         });
-
-
   });
 
   router.get('/ip', function(req, res, next) {

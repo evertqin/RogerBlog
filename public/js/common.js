@@ -12,7 +12,7 @@ require.config({
         jquery : 'https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min',
         angular: "https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min",
         skrollr: "https://cdnjs.cloudflare.com/ajax/libs/skrollr/0.6.30/skrollr.min",
-        hljs:"//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/highlight.min",
+        hljs:"//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/highlight.min",
         react:["https://fb.me/react-0.14.2","../lib/react"],
         reactDom:["https://fb.me/react-dom-0.14.2", "../lib/react-dom"],
         bootstrap:"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min",

@@ -24,10 +24,6 @@ svg {
   height:100%;
 }
 
-img {
-  width: 100%;
-  height:100%;
-}
 
 #post-body {
   padding-top:100px;
@@ -135,4 +131,8 @@ img {
 .comments img {
 vertical-align: middle;
 width:1%;
+}
+
+code {
+      font-family: monospace,monospace;
 }
