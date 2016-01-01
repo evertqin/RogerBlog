@@ -7,5 +7,11 @@ html
     link(rel='stylesheet', href='/build/stylesheets/post.css')
     link(rel='stylesheet', href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/styles/agate.min.css")
     script(data-main="/build/js/post" async="" src="/js/lib/require.js")
+    script(type='text/javascript').
+      var switchTo5x=true;
+    script(type='text/javascript', src='http://w.sharethis.com/button/buttons.js')
+    script(type='text/javascript').
+      stLight.options({publisher: "b1dd6a19-77b3-4549-8f82-a2af0a199824", doNotHash: false, doNotCopy: false, hashAddressBar: false});
+
   body
     block post_content
