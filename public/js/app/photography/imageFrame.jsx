@@ -58,5 +58,4 @@ define([
 
   ReactDOM.render(
     <ImagesDisplay/>, document.getElementById('imageDisplay'));
-
 });

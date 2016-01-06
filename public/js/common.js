@@ -21,9 +21,7 @@ require.config({
         smoothscroll:"../lib/smoothscroll",
         'header-scroll': "../lib/header-scroll",
         utils: "../lib/utils",
-        constants: "../constants/constants",
-        photoswipe: "../lib/photoswipe",
-        photoswipeUI: "../lib/photoswipe-ui-default",
+        constants: "../constants/constants"
     },
     // angular does not support AMD out of the box, put it in a shim
   shim: {
