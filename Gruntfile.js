@@ -143,7 +143,7 @@ module.exports = function(grunt) {
         }, {
           expand: true,
           cwd: '.',
-          src: ['*', '**/*.*', '!/editor/**', '!**/grunt*', '!**/node_modules/*'],
+          src: ['*', '**/*.*', '!/editor/**', '!**/grunt*', '!**/node_modules/*', '!public/js/**/*', '!public/stylesheets/**/*'],
           dest: '../blog',
         }, ]
       }
