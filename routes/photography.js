@@ -56,6 +56,7 @@ router.get('/access_token', function(req, res, next) {
           var thisData = data.data[i];
           //var thumbnail = thisData.images.thumbnail;
           var fullImage = thisData.images.standard_resolution;
+          var caption = thisData.caption;
           //var timeStamp = thisData.caption ? thisData.caption.created_time: "";
           //var text = thisData.caption ? thisData.caption.text : "";
           // ret.push({
@@ -67,7 +68,8 @@ router.get('/access_token', function(req, res, next) {
           images.push({
             src: fullImage.url,
             w:fullImage.width,
-            h: fullImage.height
+            h: fullImage.height,
+            name: caption ? caption.text: "untitled"
           });
         }
       }

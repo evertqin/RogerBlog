@@ -8,6 +8,10 @@
   }
 }
 
+#imageDisplay{
+  padding-top:100px;
+}
+
 .image-outer-container {
   padding-top:200px;
 }
@@ -22,9 +26,24 @@ img{
   max-width: 100%;
   position: relative;
   opacity: 1;
-
+  vertical-align:middle;
   &:hover{
-    opacity: 0.8;
- 
+    opacity: 0.7;
+  }
+
+  &:hover + .img-text-overlay-hidden{
+      visibility:visible;
   }
 }
+// .img-text-overlay-hidden{
+//   visibility:hidden;
+//   //color:black;
+//   font-size:28px;
+//    left: 0;
+//     position:absolute;
+//    text-align:center;
+//     text-align:center;
+//     top: 170px;
+//     width: 100%;
+//     pointer-events:none;
+// }

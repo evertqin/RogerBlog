@@ -5,6 +5,6 @@ html
     title= 'Travel Blog'
     include ../includes/common_includes
     link(rel='stylesheet', href='/build/stylesheets/main.css')
-    script(data-main="/build/js/index" async="" src="/build/js/lib/require.js")
-  body
+    script(src='/build/js/index/index-bundle.js')
+  body(ng-app="mainApp")
     block content

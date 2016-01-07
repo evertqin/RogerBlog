@@ -1,36 +1,34 @@
-define(['angular', 'constants'], function(angular, constants){
-  // angularjs controller
-    var blogApp = angular.module('blogApp', []);
-    //
 
-    blogApp.init = function() {
-      angular.bootstrap(document, ['blogApp']);
-    };
+var $ = require('jquery');
 
-    blogApp.controller('tagListCtrl', ['$scope','$http', function($scope, $http) {
-      $http.get('/blog/tag_list').success(function(data) {
-        $scope.tagList = data.tag_list;
-      });
-    }])
-    .controller('blogImageController', ['$scope', 'getImage', function($scope, getImage){
-      $scope.defaultImgSrc = getImage(constants.staticImageUrls);
+$(function() {
+var angular = require('angular');
+var constants = require('../../../constants/constants');
 
-    }])
-    .factory('getImage', [function(imageUrls){
-      function getImage(imageUrls){
-        var selectedImageIdx = Math.floor(Math.random() * imageUrls.length);
-        return imageUrls[selectedImageIdx];
-      }
+// angularjs controller
+var blogApp = angular.module('blogApp', []);
 
-      return getImage;
-    }])
-    .filter('escape', function() {
-  return window.encodeURIComponent;
+
+blogApp.controller('tagListCtrl', ['$scope', '$http', function($scope, $http) {
+    $http.get('/blog/tag_list').success(function(data) {
+      $scope.tagList = data.tag_list;
     });
+  }])
+  .controller('blogImageController', ['$scope', 'getImage', function($scope, getImage) {
+    $scope.defaultImgSrc = getImage(constants.staticImageUrls);
 
-    return blogApp;
+  }])
+  .factory('getImage', [function(imageUrls) {
+    function getImage(imageUrls) {
+      var selectedImageIdx = Math.floor(Math.random() * imageUrls.length);
+      return imageUrls[selectedImageIdx];
+    }
 
+    return getImage;
+  }])
+  .filter('escape', function() {
+    return window.encodeURIComponent;
+  });
 
-
-
+module.exports = blogApp;
 });

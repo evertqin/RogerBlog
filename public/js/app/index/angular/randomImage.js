@@ -1,28 +1,33 @@
-define(['./mainApp', 'constants'], function(mainApp,constants){
-  'use strict';
+'use strict';
+var $ = require('jquery');
 
-  mainApp.directive('randomImage', ['$interval', 'getImage', '$animate', function($interval, getImage, $animate){
-    var link = function(scope, element, attrs){
+$(function() {
+  var mainApp = require('./mainApp');
+  var constants = require('../../../constants/constants');
+
+  mainApp.directive('randomImage', ['$interval', 'getImage', '$animate', function($interval, getImage, $animate) {
+    var link = function(scope, element, attrs) {
       var url = getImage(constants.staticImageUrls);
       element.css({
-        'background-image':'url(' + url + ')',
+        'background-image': 'url(' + url + ')',
         'background-repeat': 'no-repeat',
       });
 
       var $progressbar, $bar, $elem, tick, percentTime;
       var time = 7;
-      function progressBar(elem){
+
+      function progressBar(elem) {
         $elem = elem;
         buildProgressBar();
         start();
       }
 
-      function buildProgressBar(){
+      function buildProgressBar() {
         $progressbar = $("<div>", {
-          id:"progressbar"
+          id: "progressbar"
         });
         $bar = $("<div>", {
-          id:"bar"
+          id: "bar"
         });
         $progressbar.append($bar).prependTo($elem);
       }
@@ -33,17 +38,17 @@ define(['./mainApp', 'constants'], function(mainApp,constants){
       }
 
       function interval() {
-        percentTime += 1/ time;
+        percentTime += 1 / time;
         $bar.css({
-          width:percentTime + '%'
+          width: percentTime + '%'
         });
 
-        if(percentTime >= 100){
+        if (percentTime >= 100) {
           percentTime = 0;
 
           url = getImage(constants.staticImageUrls);
           element.css({
-            'background-image':'url(' + url + ')',
+            'background-image': 'url(' + url + ')',
           });
         }
 
@@ -53,9 +58,10 @@ define(['./mainApp', 'constants'], function(mainApp,constants){
     };
 
     return {
-      restrict:'A',
-      link:link
+      restrict: 'A',
+      link: link
     };
   }]);
-  return mainApp;
+  module.exports = mainApp;
+
 });
