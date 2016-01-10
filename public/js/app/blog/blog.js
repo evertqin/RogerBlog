@@ -1,13 +1,14 @@
 /**
  * Created by Roger on 5/29/2015.
  */
-var $ = require('jquery');
+window.$ = window.jQuery = require("jquery")
 
 $(function() {
   var simplePagination = require('../../lib/jquery.simplePagination');
   var blogApp = require('./angular/blogApp');
   require('./angular/blogFilter');
   require('./blog_entries.jsx');
+  require('bootstrap');
 
   $(".loader").fadeOut("fast");
 

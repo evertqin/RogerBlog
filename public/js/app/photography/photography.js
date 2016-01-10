@@ -1,8 +1,10 @@
 'use strict';
 
-var $ = require('jquery');
+window.$ = window.jQuery = require("jquery")
+
 $(function() {
   require('../../common/header-scroll');
+  require('bootstrap');
   var constants = require('../../constants/constants');
 
   var instagramClientId = '98cda8148a3247acb2f8a6341d329779';

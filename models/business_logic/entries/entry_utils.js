@@ -25,8 +25,10 @@ entry_utils.getAllEntries = function(collection, callback){
 
         for(var i = 0; i < data.length; ++i){
           var date = new Date(data[i].date);
-          var monthKey = date.getFullYear() + '-' + date.getMonth();
+          var month = date.getMonth() + 1;
+          month = (month < 10 ? '0': '') + month;
 
+          var monthKey = date.getFullYear() + '-' + month;
           var selected = {
             id: data[i].id,
             date: data[i].date,

@@ -26,7 +26,11 @@ mongoClient.connect(mongoUrl, function(err, db) {
       req.connection.remoteAddress ||
       req.socket.remoteAddress ||
       req.connection.socket.remoteAddress;
-    if (visitorIp !== "127.0.0.1" && visitorIp !== "127.3.45.129") {
+    var ipParts = visitorIp.split('.');
+    if (!visitorIp.startsWith('10.') && !visitorIp.startsWith('192.168') && !visitorIp.startsWith('127.0.0') && ( ipParts.length === 4 &&
+    !(ipParts[0] == '172' &&
+    ipParts[1] >= 16 && ipParts[1] <= 31))) {
+      console.log("called" + visitorIp);
       var visitorStats = db.collection('visitor_stats');
       visitorStats.insert({
         ip: visitorIp,

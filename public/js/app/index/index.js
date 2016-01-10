@@ -2,7 +2,7 @@
  * Created by Roger on 5/23/2015.
  */
 /*jslint node: true */
-var $ = require("jquery")
+window.$ = window.jQuery = require("jquery")
 $(function() {
   "use strict";
 
@@ -13,6 +13,7 @@ $(function() {
   var utils = require('../../lib/utils');
   var constants = require('../../constants/constants');
   require('../../common/header-scroll');
+  require('bootstrap');
 
   $(".loader").fadeOut("fast");
 

@@ -4,7 +4,6 @@ var utils = utils || {};
 
 utils.imagePreloader = function(urls) {
     var loadImage = function(url){
-      console.log('Loading URL ' + url);
         if(arguments.length !== 1){
           console.error("I only accept 1 url at a time");
           return;
