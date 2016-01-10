@@ -21,16 +21,25 @@ mongoClient.connect(mongoUrl, function(err, db) {
     console.error(err);
   }
 
+
+  if (typeof String.prototype.startsWith != 'function') {
+    String.prototype.startsWith = function(str) {
+      return this.slice(0, str.length) == str;
+    };
+  }
+
   router.get('/', function(req, res, next) {
     var visitorIp = req.headers['x-forwarded-for'] ||
       req.connection.remoteAddress ||
       req.socket.remoteAddress ||
       req.connection.socket.remoteAddress;
     var ipParts = visitorIp.split('.');
-    if (!visitorIp.startsWith('10.') && !visitorIp.startsWith('192.168') && !visitorIp.startsWith('127.0.0') && ( ipParts.length === 4 &&
-    !(ipParts[0] == '172' &&
-    ipParts[1] >= 16 && ipParts[1] <= 31))) {
-      console.log("called" + visitorIp);
+    if (!visitorIp.startsWith('10.') &&
+      !visitorIp.startsWith('192.168') &&
+      !visitorIp.startsWith('127.0.0') &&
+      (ipParts.length === 4 &&
+        !(ipParts[0] == '172' &&
+          ipParts[1] >= 16 && ipParts[1] <= 31))) {
       var visitorStats = db.collection('visitor_stats');
       visitorStats.insert({
         ip: visitorIp,
