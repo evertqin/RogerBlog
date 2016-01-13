@@ -3,7 +3,7 @@
 
  var React = require('react');
  var $ = require('jquery');
- var constants = require('../../constants/constants');
+ var constants = require('../constants/constants');
 
  class RandomImage extends React.Component {
  	constructor(props) {
@@ -62,7 +62,9 @@
 
  	render (){
  		return (
-
+ 			<div> Test</div>
  			);
  	}
  }
+
+ module.exports = RandomImage;

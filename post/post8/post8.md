@@ -1,9 +1,9 @@
 Title: Canada Banff, Yoho, Jasper trip(2)
 Author: Ruogu Qin
 Date: 07/20/2015
-Tag: travel
-     outdoor
-     hiking
+Tag: Travel
+     Outdoor
+     Hiking
 
 ####第三天————Banff到Lake Louise区域
 

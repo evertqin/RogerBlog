@@ -1,9 +1,9 @@
 Title: Hiking Devil's Path
 Author: Ruogu Qin
 Date: 05/17/2015
-Tag: travel
-     outdoor
-     hiking
+Tag: Travel
+     Outdoor
+     Hiking
 
 I have had a wonderful trip to Devil's path in upstate New York. We hiked the "classic" eastern section which is usually considered to be more difficult. There are four peaks spanning across the entire 12 miles trail, Indian Head, Twin Mountains, Sugarload and Plateau.
 

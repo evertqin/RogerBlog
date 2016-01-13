@@ -50,7 +50,7 @@ $(function() {
   if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
     // seems parallax does not work on mobile, I am diabling them now.
   } else {
-     var s = skrollr.init();
+    var s = skrollr.init();
   }
 
   // check if is chinese of not
@@ -99,4 +99,11 @@ $(function() {
   addLoadEvent(function() {
     utils.imagePreloader(constants.staticImageUrls);
   });
+
+
+  // var React = require('react');
+  // var ReactDOM = require('react-dom');
+  // var RandomImage = require('../../common/randomImage.jsx');
+  // ReactDOM.render(
+  //   <RandomImage/>, document.getElementById('randomImage'));
 });

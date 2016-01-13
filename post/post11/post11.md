@@ -1,9 +1,9 @@
 Title: Canada Banff, Yoho, Jasper trip(5)
 Author: Ruogu Qin
 Date: 07/23/2015
-Tag: travel
-     outdoor
-     hiking
+Tag: Travel
+     Outdoor
+     Hiking
 
 ####Day 6 -- Yoho and Jasper National Park
 
