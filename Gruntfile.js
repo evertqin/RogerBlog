@@ -135,20 +135,24 @@ module.exports = function(grunt) {
       },
 
       deploy: {
-        files: [
-          {
-          expand:true,
+        files: [{
+          expand: true,
+          cwd: 'public/stylesheets/lib',
+          src: ['**/*.css'],
+          dest: 'public/build/stylesheets',
+        }, {
+          expand: true,
           src: ['**/*', '!**/editor/**', '!**/node_modules/**', '!**/public/js/**', '!**/public/stylesheets/**', "!**/scripts/**"],
           dest: '../blog',
-        }, ]
+        }]
       }
     },
 
     shell: {
       options: {
         execOptions: {
-                maxBuffer: Infinity
-            }
+          maxBuffer: Infinity
+        }
       },
       target: {
         command: 'cd ../blog; git add .; git commit -m "update";git push'
@@ -158,7 +162,7 @@ module.exports = function(grunt) {
   });
 
 
-  grunt.registerTask('default', ['sass', 'browserify']);
+  grunt.registerTask('default', ['sass', 'browserify', 'copy:dev']);
   grunt.registerTask('watch', ['watch']);
   grunt.registerTask('deploy', ['clean', 'browserify', 'sass', 'uglify', 'cssmin', 'imagemin', 'copy:deploy', 'shell']);
 
