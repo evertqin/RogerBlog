@@ -2,12 +2,12 @@ Title: Find the nearest location to see the concert
 Author: Ruogu Qin
 Date: 01/01/2016
 Tag: Technology
-     Reactjs
+     ReactJS
      Javascript
 
-First, please take a look at the demo below, there are some pre-populated data in the textarea, click the `Submit` button to see the result.
+First, please take a look at the demo below, there are some pre-populated data in the textarea, click the `Submit` button to see the result. (Note: I am going to keep making modification to this little app to make it better.)
 
-<iframe allowfullscreen style="width:100%; height: 1000px; border: none" src='http://evertqin.github.io/DistanceSort/'></iframe>
+<iframe allowfullscreen style="width:100%; height: 1000px; border: none" src='http://evertqin.github.io/distance_sort'></iframe>
 
 # Why I am building this
 

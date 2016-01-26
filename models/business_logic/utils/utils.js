@@ -60,12 +60,12 @@ utils.summary_category = function(posts) {
   var hashSet = {};
 
   function loopTag(element) {
+    element = element.toLowerCase();
     hashSet[element] = element in hashSet ? hashSet[element] + 1 : 1;
   }
 
   for(var i = 0; i < posts.length; ++i) {
     if(typeof posts[i].tag === 'undefined') {
-      console.log(posts[i]);
       continue;
     }
     posts[i].tag.forEach(loopTag);
