@@ -23,9 +23,16 @@ block post_content
                     //- var count = post.comments == undefined ? 0 :post.comments.length;
                     span#num-comments.disqus-comment-count(data-disqus-url= fullUrl)
                     span &nbsp;comm.
+                    span.st_sharethis(displaytext='ShareThis')
+                    span.st_facebook(displaytext='Facebook')
+                    span.st_twitter(displaytext='Tweet')
+                    span.st_linkedin(displaytext='LinkedIn')
+                    span.st_pinterest(displaytext='Pinterest')
+                    span.st_email(displaytext='Email')
                   h5#title
                     a(href="#")!= post.title
                     //i.fa.fa-pencil-square-o.edit-button
+
                 .post-entry
                   .content.more!= post.content
             .comments

@@ -20,7 +20,7 @@ class MongoConnector:
     _client = None
     _db = None
     _posts = None
-    
+
     def __init__(self, dbname):
         try:
             logger.info("Connecting to mongo client")
@@ -32,7 +32,7 @@ class MongoConnector:
         self._db = self._client[dbname]
         logger.info("Successfully connected to " + dbname)
         self._posts = self._db.posts
-        
+
     def listAllDBCollection(self):
         print(self._db.collection_names(include_system_collections=False))
 

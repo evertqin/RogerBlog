@@ -4,11 +4,12 @@
 doctype html
 html
    head
+    title= "Ruogu Qin Blog"
     meta(name='viewport' content="width=device-width, initial-scale=1")
-    title= 'Blog'
+    meta(name='description' content="This page shows all my blog entries.")
     include ../includes/common_includes
     link(rel='stylesheet', href='/build/stylesheets/blog.css')
     link(rel='stylesheet', href='/build/stylesheets/simplePagination.css')
-    script(data-main='/build/js/blog' async="" src="/build/js/lib/require.js")
-  body
+    script(async defer src="/build/js/blog/blog-bundle.js")
+  body(ng-app="blogApp")
     block blog_content

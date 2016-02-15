@@ -1,22 +1,25 @@
-define(['angular'], function(angular){
-  'use strict';
+'use strict';
+var $ = require('jquery');
+$(function() {
+var angular = require('angular');
 
-  var mainApp = angular.module('mainApp', []);
-  // bootstrap angular here, notice we need to apply directive before bootstraping
-  mainApp.init = function() {
-      angular.bootstrap(document, ['mainApp']);
-  };
+var mainApp = angular.module('mainApp', []);
+// bootstrap angular here, notice we need to apply directive before bootstraping
+//mainApp.init = function() {
+//    angular.bootstrap(document, ['mainApp']);
+//};
 
-  mainApp.controller('backgroundController', ['$scope',function($scope){
-  }])
-  .factory('getImage', [function(imageUrls){
-    function getImage(imageUrls){
-      var selectedImageIdx = Math.floor(Math.random() * imageUrls.length);
-      return imageUrls[selectedImageIdx];
-    }
+mainApp.controller('backgroundController', ['$scope',function($scope){
+}])
+.factory('getImage', [function(imageUrls){
+  function getImage(imageUrls){
+    var selectedImageIdx = Math.floor(Math.random() * imageUrls.length);
+    return imageUrls[selectedImageIdx];
+  }
 
-    return getImage;
-  }]);
+  return getImage;
+}]);
 
-  return mainApp;
+
+module.exports = mainApp;
 });

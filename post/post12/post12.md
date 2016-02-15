@@ -2,7 +2,7 @@ Title: Combine WCF, ASP.NET, SignalR for event broadcasting (1)
 Author: Ruogu Qin
 Date: 07/29/2015
 Tag: Technology
-    CSharp
+     CSharp
 
 Previously, I introduced a way to broadcast logging events from log4net. Today I'm taking it a step forward by enabling event broadcasting on website.
 

@@ -7,7 +7,8 @@
 * Released under the MIT license.
 * http://flaviusmatis.github.com/license.html
 */
-define(['jquery'], function($){
+var $ = require('jquery');
+
 	var methods = {
 		init: function(options) {
 			var o = $.extend({
@@ -336,4 +337,4 @@ define(['jquery'], function($){
 		}
 
 	};
-});
+

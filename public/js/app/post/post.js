@@ -1,13 +1,17 @@
 /**
-* Created by Roger on 6/3/2015.
-*/
-require(['jquery', 'hljs' ], function ($, hljs) {
-  "use strict";
+ * Created by Roger on 6/3/2015.
+ */
 
-  $(function () {
+window.$ = window.jQuery = require("jquery");
+
+$(function() {
+  'use strict';
+
+  require('bootstrap');
+  $(function() {
     $('#navigation-items li>a').each(function() {
       var orgHref = $(this).attr('href');
-      if(orgHref.startsWith('#')) {
+      if (orgHref.startsWith('#')) {
         $(this).attr('href', '/' + orgHref);
       }
     });
@@ -19,7 +23,7 @@ require(['jquery', 'hljs' ], function ($, hljs) {
 
   $('#navigation-items li>a').each(function() {
     var orgHref = $(this).attr('href');
-    if(orgHref.startsWith('#')) {
+    if (orgHref.startsWith('#')) {
       $(this).attr('href', '/' + orgHref);
     }
   });

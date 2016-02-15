@@ -1,9 +1,9 @@
 Title: Canada Banff, Yoho, Jasper trip(3)
 Author: Ruogu Qin
 Date: 07/22/2015
-Tag: travel
-     outdoor
-     hiking
+Tag: Travel
+     Outdoor
+     Hiking
 
 ####Day 4 -- Lake Louise Area
 Since we have climbed Plains of Six Glaciers yesterday, so we need to arrange a trip around lake Louise. After carefully consideration, we picked Mt Fairview

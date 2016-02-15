@@ -1,9 +1,13 @@
-define(['./blogApp'], function(blogApp){
-  blogApp.filter('capitalize', function(){
-    return function(input) {
-      return (!!input) ? input.charAt(0).toUpperCase() + input.substr(1).toLowerCase() :'';
-    };
-  });
+var $ = require('jquery');
 
-  return blogApp;
+$(function() {
+	var blogApp = require('./blogApp');
+
+	blogApp.filter('capitalize', function() {
+		return function(input) {
+			return (!!input) ? input.charAt(0).toUpperCase() + input.substr(1).toLowerCase() : '';
+		};
+	});
+
+	module.exports = blogApp;
 });

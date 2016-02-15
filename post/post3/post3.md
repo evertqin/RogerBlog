@@ -1,10 +1,10 @@
 Title: Three.js first trial
 Author: Ruogu Qin
 Date: 06/26/2015
-Tag: technology
-     programming
-     threejs
-     graphic
+Tag: Technology
+     Programming
+     Threejs
+     Graphic
 
 
 Recently, I am very intrigued by the webGl. There are several frameworks available on the market. For example:

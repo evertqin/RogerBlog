@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Demo of three usages</title>
+</head>
+<body>
+	<h2>Demo result shows here</h2>
+	<div id='demo1'>
+		Demonstration of using .apply can .call. We declare a function play that sum up the total or input arguments
+		<div>
+			apply takes the object you want <b>this</b> to refer to as the first argument and
+			an array of arguments as the second argument:
+			<span id="play1"></span>
+		</div>
+		<div>
+			call takes the object you want <b>this</b> to refer to as the first argument and
+			an arbitary number of arguments as the arguments to the function:
+			<span id="play2"></span>
+		</div>
+		<div>
+			This demonstrate bind
+			<div id="sample0"></div>
+			<div id="sample1"></div>
+
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+// demonstrate call and apply
+// 1) they can change the context of "this"
+// 2) they can be used to invoke function
+	function play(){
+		var count = 0;
+		for(var i = 0; i < arguments.length; ++i){
+			count++;
+		}
+
+		this.count = count;
+	}
+
+	var play1 = {};
+	var play2 = {};
+
+	play.apply(play1, [1, 2, 3, 4, 5]);
+	play.call(play2, 2, 3, 6, 7);
+
+	document.getElementById('play1').innerHTML = "<b>" + play1.count + "</b>";
+	document.getElementById('play2').innerHTML =  "<b>" + play2.count + "</b>";
+
+	(function(){
+	  var something = {
+	    doSomething: function(){
+	      return "I am something";
+	    },
+	    doNothing:function(){
+	      var obj = {
+	        doSomething: function(){
+	          return "I am something in obj";
+	        },
+	        sample0: function(){
+	          return this.doSomething();
+	        },
+
+					sample1: function(){
+	          return this.doSomething();
+	        }.bind(this)
+	      };
+				document.getElementById('sample0').innerHTML =  "<b>" + obj.sample0() + "</b>";
+				document.getElementById('sample1').innerHTML =  "<b>" + obj.sample1() + "</b>";
+
+	    }
+	  };
+
+		something.doNothing();
+
+	})();
+
+</script>
+</html>

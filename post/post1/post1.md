@@ -1,8 +1,8 @@
 Title: SVG Manipulation for interactive label display
 Author: Ruogu Qin
 Date: 05/15/2015
-Tag: technology
-     programming
+Tag: Technology
+     Programming
 
 
 These days, I have been working on manipulating svg files throw d3.js and jQuery. The goal I have been trying to achieve is: given a svg file with point clouds, I need to be able to show label when mouse move close to any point. There are some limitations and require:

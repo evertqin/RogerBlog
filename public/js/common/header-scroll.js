@@ -1,9 +1,8 @@
 /**
  * Created by Roger on 5/30/2015.
  */
-
-
-(function ($) {
+var $ = require('jquery');
+$(function(){
     $(document).ready(function () {
         $(window).scroll(function () {
             var height = $(window).scrollTop();
@@ -18,4 +17,5 @@
             }
         });
     });
-})(jQuery);
+});
+    
