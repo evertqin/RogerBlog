@@ -1,6 +1,6 @@
 Title: Setup Jersey Restful service in Intellij
 Author: Ruogu Qin
-Date: 01/01/2016
+Date: 02/01/2016
 Tag: Technology
      Java
      Jersey
