@@ -53,7 +53,7 @@ if (typeof String.prototype.startsWith != 'function') {
 }());
 
 //info about pagination: http://flaviusmatis.github.io/simplePagination.js/
-var POST_PER_PAGE = 4;
+var POST_PER_PAGE = 10;
 var url = '/blog/blog_count/';
 var tokens = window.location.href.split('/');
 if (tokens[tokens.length - 2] !== "page") {

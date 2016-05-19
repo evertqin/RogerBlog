@@ -4,7 +4,7 @@
  //#############################
  //  Constants
  //#############################
- var POST_PER_PAGE = 4;
+ var POST_PER_PAGE = 10;
  var CONTENT_LENGTH_LIMIT = 300;
  var mongoUrl = 'mongodb://evertqin:QG3VGLyZlRWm@ds047632.mongolab.com:47632/blog';
  //#############################
@@ -66,7 +66,7 @@ mongoClient.connect(mongoUrl, function(err, db) {
     var re = new RegExp("^" + category + "$", 'i');
     collection.find({tag: re}, options).toArray(function(err, data) {
       for(var i = 0; i < data.length; ++i) {
-        data[i].imgUrls = utils.extract_image_href(data[i].content);
+        //data[i].imgUrls = utils.extract_image_href(data[i].content);
         data[i].content = utils.remove_image_href(data[i].content).substr(0, 200);
       }
       res.render('blog', {posts:data, baseUrl:baseUrl});

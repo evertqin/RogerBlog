@@ -3,14 +3,12 @@
 
 var constants = constants || {};
 constants.staticImageUrls = [
-  //'/images/background.png',
-  //'/images/background_1.jpg',
-  '/images/IMG_9851_small.jpg',
-  '/images/IMG_1822_small.jpg',
-  '/images/IMG_3867_small.jpg',
-  '/images/IMG_9852_small.jpg',
-  '/images/IMG_0724_small.jpg',
-  '/images/denali_small.jpg'
+  'http://i.imgur.com/YX0Q4sw.jpg',
+  'http://i.imgur.com/t1GFiiv.jpg',
+  'http://i.imgur.com/BaQa6wc.jpg',
+  'http://i.imgur.com/2vIuUux.jpg',
+  'http://i.imgur.com/Syjl58l.jpg',
+  'http://i.imgur.com/oNiCqvq.jpg'
 ];
 
 var quotes = [
