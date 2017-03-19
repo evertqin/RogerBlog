@@ -22,7 +22,6 @@
   },
   "dependencies": {
     "body-parser": "~1.14.2",
-    "browserify-shim": "^3.8.11",
     "bson": "^0.4.19",
     "bunyan": "^1.5.1",
     "compression": "^1.6.0",

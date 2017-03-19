@@ -30,6 +30,10 @@ mongoClient.connect(mongoUrl, function(err, db) {
 
   var collection = db.collection('posts');
 
+  router.get('/', function(req, res, next) {
+      res.redirect('/blog/page/1/');
+  });
+
   // This one is used to get certain page of all documents
   router.get('/page/[1-9]+/',function(req, res, next) {
       var pathname = url.parse(req.url).pathname;
